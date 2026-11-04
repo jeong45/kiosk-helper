@@ -1,0 +1,10 @@
+# 공통
+.idea/
+
+#frontend
+
+# backend
+backend/venv/
+backend/__pycache__/
+backend/.env
+backend/*.pyc
