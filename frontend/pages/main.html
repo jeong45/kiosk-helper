@@ -1,0 +1,310 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>키우미 - 장소 선택</title>
+
+    <!-- CSS 연결 -->
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+
+<body>
+
+    <!-- 상단 헤더 -->
+    <header class="header">
+        <img src="../images/logo.png" alt="키우미 로고">
+        <h1>키우미</h1>
+    </header>
+
+    <!-- 안내 문구 -->
+    <section class="intro">
+        <h2>
+            오늘은 어떤 키오스크를<br>
+            연습해 볼까요?
+        </h2>
+
+        <p>연습하고 싶은 장소를 하나 선택해 주세요.</p>
+    </section>
+
+    <!-- 장소 선택 카드 -->
+    <main class="category-container">
+
+        <!-- 패스트푸드 -->
+        <a href="#fastfood-modal" class="category-card">
+            <div class="card-top">
+                <div class="category-icon fastfood">🍔</div>
+                <span class="arrow">›</span>
+            </div>
+            <div class="card-info">
+                <h3>패스트푸드</h3>
+                <p>햄버거 주문하기</p>
+            </div>
+        </a>
+
+        <!-- 카페 -->
+        <a href="#cafe-modal" class="category-card">
+            <div class="card-top">
+                <div class="category-icon cafe">☕</div>
+                <span class="arrow">›</span>
+            </div>
+            <div class="card-info">
+                <h3>카페</h3>
+                <p>커피와 음료 주문하기</p>
+            </div>
+        </a>
+
+        <!-- 음식점 -->
+        <a href="#restaurant-modal" class="category-card">
+            <div class="card-top">
+                <div class="category-icon restaurant">🍴</div>
+                <span class="arrow">›</span>
+            </div>
+            <div class="card-info">
+                <h3>음식점</h3>
+                <p>식사 메뉴 주문하기</p>
+            </div>
+        </a>
+
+        <!-- 마트·편의점 -->
+        <a href="#mart-modal" class="category-card">
+            <div class="card-top">
+                <div class="category-icon mart">🏪</div>
+                <span class="arrow">›</span>
+            </div>
+            <div class="card-info">
+                <h3>마트·편의점</h3>
+                <p>상품 직접 계산하기</p>
+            </div>
+        </a>
+
+    </main>
+
+
+    <!-- ========================= -->
+    <!-- 패스트푸드 팝업 -->
+    <!-- ========================= -->
+
+    <div class="mode-modal" id="fastfood-modal">
+        <a href="#" class="modal-backdrop"></a>
+
+        <section class="modal-content">
+
+            <div class="modal-header">
+                <div class="modal-title">
+                    <div class="category-icon fastfood">🍔</div>
+                    <div>
+                        <p>패스트푸드 연습</p>
+                        <h2>연습 방법을 선택하세요</h2>
+                    </div>
+                </div>
+                <a href="#" class="close-button">×</a>
+            </div>
+
+            <a href="fastfood_tutorial.html" class="mode-option recommended">
+                <div class="mode-top">
+                    <div class="mode-icon tutorial">♧</div>
+                    <h3>튜토리얼 모드</h3>
+                    <span class="recommend-label">처음이라면 추천</span>
+                    <span class="mode-arrow">›</span>
+                </div>
+                <p>안내에 따라 한 단계씩 천천히 연습해요.</p>
+            </a>
+
+            <a href="fastfood_free.html" class="mode-option">
+                <div class="mode-top">
+                    <div class="mode-icon free">▤</div>
+                    <h3>자유 연습 모드</h3>
+                    <span class="mode-arrow">›</span>
+                </div>
+                <p>도움 없이 내 마음대로 눌러보며 익혀요.</p>
+            </a>
+
+            <a href="fastfood_mission.html" class="mode-option">
+                <div class="mode-top">
+                    <div class="mode-icon mission">◎</div>
+                    <h3>미션 모드</h3>
+                    <span class="mode-arrow">›</span>
+                </div>
+                <p>주어진 상황을 혼자 해결해 보세요.</p>
+            </a>
+
+            <p class="modal-notice">
+                ⓘ 연습 중에는 실제 결제나 접수가 되지 않아요.
+            </p>
+
+        </section>
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- 카페 팝업 -->
+    <!-- ========================= -->
+
+    <div class="mode-modal" id="cafe-modal">
+        <a href="#" class="modal-backdrop"></a>
+
+        <section class="modal-content">
+
+            <div class="modal-header">
+                <div class="modal-title">
+                    <div class="category-icon cafe">☕</div>
+                    <div>
+                        <p>카페 연습</p>
+                        <h2>연습 방법을 선택하세요</h2>
+                    </div>
+                </div>
+                <a href="#" class="close-button">×</a>
+            </div>
+
+            <a href="cafe_tutorial.html" class="mode-option recommended">
+                <div class="mode-top">
+                    <div class="mode-icon tutorial">♧</div>
+                    <h3>튜토리얼 모드</h3>
+                    <span class="recommend-label">처음이라면 추천</span>
+                    <span class="mode-arrow">›</span>
+                </div>
+                <p>안내에 따라 한 단계씩 천천히 연습해요.</p>
+            </a>
+
+            <a href="cafe_free.html" class="mode-option">
+                <div class="mode-top">
+                    <div class="mode-icon free">▤</div>
+                    <h3>자유 연습 모드</h3>
+                    <span class="mode-arrow">›</span>
+                </div>
+                <p>도움 없이 내 마음대로 눌러보며 익혀요.</p>
+            </a>
+
+            <a href="cafe_mission.html" class="mode-option">
+                <div class="mode-top">
+                    <div class="mode-icon mission">◎</div>
+                    <h3>미션 모드</h3>
+                    <span class="mode-arrow">›</span>
+                </div>
+                <p>주어진 상황을 혼자 해결해 보세요.</p>
+            </a>
+
+            <p class="modal-notice">
+                ⓘ 연습 중에는 실제 결제나 접수가 되지 않아요.
+            </p>
+
+        </section>
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- 음식점 팝업 -->
+    <!-- ========================= -->
+
+    <div class="mode-modal" id="restaurant-modal">
+        <a href="#" class="modal-backdrop"></a>
+
+        <section class="modal-content">
+
+            <div class="modal-header">
+                <div class="modal-title">
+                    <div class="category-icon restaurant">🍴</div>
+                    <div>
+                        <p>음식점 연습</p>
+                        <h2>연습 방법을 선택하세요</h2>
+                    </div>
+                </div>
+                <a href="#" class="close-button">×</a>
+            </div>
+
+            <a href="restaurant_tutorial.html" class="mode-option recommended">
+                <div class="mode-top">
+                    <div class="mode-icon tutorial">♧</div>
+                    <h3>튜토리얼 모드</h3>
+                    <span class="recommend-label">처음이라면 추천</span>
+                    <span class="mode-arrow">›</span>
+                </div>
+                <p>안내에 따라 한 단계씩 천천히 연습해요.</p>
+            </a>
+
+            <a href="restaurant_free.html" class="mode-option">
+                <div class="mode-top">
+                    <div class="mode-icon free">▤</div>
+                    <h3>자유 연습 모드</h3>
+                    <span class="mode-arrow">›</span>
+                </div>
+                <p>도움 없이 내 마음대로 눌러보며 익혀요.</p>
+            </a>
+
+            <a href="restaurant_mission.html" class="mode-option">
+                <div class="mode-top">
+                    <div class="mode-icon mission">◎</div>
+                    <h3>미션 모드</h3>
+                    <span class="mode-arrow">›</span>
+                </div>
+                <p>주어진 상황을 혼자 해결해 보세요.</p>
+            </a>
+
+            <p class="modal-notice">
+                ⓘ 연습 중에는 실제 결제나 접수가 되지 않아요.
+            </p>
+
+        </section>
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- 마트·편의점 팝업 -->
+    <!-- ========================= -->
+
+    <div class="mode-modal" id="mart-modal">
+        <a href="#" class="modal-backdrop"></a>
+
+        <section class="modal-content">
+
+            <div class="modal-header">
+                <div class="modal-title">
+                    <div class="category-icon mart">🏪</div>
+                    <div>
+                        <p>마트·편의점 연습</p>
+                        <h2>연습 방법을 선택하세요</h2>
+                    </div>
+                </div>
+                <a href="#" class="close-button">×</a>
+            </div>
+
+            <a href="mart_tutorial.html" class="mode-option recommended">
+                <div class="mode-top">
+                    <div class="mode-icon tutorial">♧</div>
+                    <h3>튜토리얼 모드</h3>
+                    <span class="recommend-label">처음이라면 추천</span>
+                    <span class="mode-arrow">›</span>
+                </div>
+                <p>안내에 따라 한 단계씩 천천히 연습해요.</p>
+            </a>
+
+            <a href="mart_free.html" class="mode-option">
+                <div class="mode-top">
+                    <div class="mode-icon free">▤</div>
+                    <h3>자유 연습 모드</h3>
+                    <span class="mode-arrow">›</span>
+                </div>
+                <p>도움 없이 내 마음대로 눌러보며 익혀요.</p>
+            </a>
+
+            <a href="mart_mission.html" class="mode-option">
+                <div class="mode-top">
+                    <div class="mode-icon mission">◎</div>
+                    <h3>미션 모드</h3>
+                    <span class="mode-arrow">›</span>
+                </div>
+                <p>주어진 상황을 혼자 해결해 보세요.</p>
+            </a>
+
+            <p class="modal-notice">
+                ⓘ 연습 중에는 실제 결제나 접수가 되지 않아요.
+            </p>
+
+        </section>
+    </div>
+
+</body>
+</html>
