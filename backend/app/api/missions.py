@@ -23,6 +23,26 @@ class MissionSubmission(BaseModel):
     membership_method: str | None = None
 
 
+def _normalize_composition(value: str) -> str:
+    aliases = {
+        "single": "단품",
+        "set": "세트",
+        "large_set": "라지세트",
+    }
+    return aliases.get(value, value)
+
+
+def _normalize_payment_method(value: str) -> str:
+    aliases = {
+        "card": "카드 결제",
+        "samsung": "삼성페이",
+        "spay": "삼성페이",
+        "kakao": "카카오페이",
+        "kpay": "카카오페이",
+    }
+    return aliases.get(value, value)
+
+
 @router.get("/random")
 def random_mission(
     category: Literal["fastfood", "cafe", "restaurant", "mart"],
@@ -33,10 +53,17 @@ def random_mission(
 
 @router.post("/check")
 def submit_mission(payload: MissionSubmission, db: Session = Depends(get_db)):
+    items = [item.model_dump() for item in payload.items]
+    for item in items:
+        if "composition" in item["options"]:
+            item["options"]["composition"] = _normalize_composition(
+                item["options"]["composition"]
+            )
+
     result = check_mission(
         payload.mission_id,
-        [item.model_dump() for item in payload.items],
-        payload.payment_method,
+        items,
+        _normalize_payment_method(payload.payment_method),
         payload.membership_method,
     )
     record = MissionCheckTest(mission_id=payload.mission_id, success=result["success"], checks=result["checks"])

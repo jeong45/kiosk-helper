@@ -66,7 +66,7 @@ def _generate_restaurant(difficulty: str) -> list[dict[str, Any]]:
 def _generate_mart(difficulty: str) -> list[dict[str, Any]]:
     names = list(dict.fromkeys(_flat_items("mart")))
     chosen = random.sample(names, 2 if difficulty == "hard" else 1)
-    return [_item(name, random.choice([1, 2])) for name in chosen]
+    return [_item(name, random.choice([1, 2]) if difficulty == "hard" else 1) for name in chosen]
 
 
 def _describe_item(item: dict[str, Any]) -> str:
