@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>키우미 - 메뉴 선택</title>
+  <link rel="stylesheet" href="restaurant.css">
+</head>
+<body>
+
+  <div class="kiosk-container">
+
+    <!-- 상단 헤더 -->
+    <header class="kiosk-header">
+      <div class="header-left">
+        <div class="brand-icon">🍴</div>
+        <span class="brand-title">T-order</span>
+      </div>
+      <div class="cart-badge-top" id="topCartBadge">
+        장바구니 0
+      </div>
+    </header>
+
+    <!-- 중앙 본문 -->
+    <div class="kiosk-body">
+
+      <!-- 왼쪽 사이드바 -->
+      <aside class="sidebar">
+        <button class="category-btn active">세트메뉴</button>
+        <button class="category-btn">단일메뉴</button>
+        <button class="category-btn">사이드메뉴</button>
+        <button class="category-btn">음료</button>
+        <button class="category-btn">주류</button>
+      </aside>
+
+      <!-- 메뉴 목록 및 장바구니 버튼 -->
+      <main class="menu-content">
+
+        <div class="section-title">세트메뉴 메뉴</div>
+        <h2 class="main-instruction">원하는 메뉴를 골라주세요</h2>
+
+        <div class="menu-list">
+
+            <div class="menu-card" id="tutorialFirstSet"
+            onclick="openModal('1인 세트', 12000)">
+            <div class="menu-img-box orange">🍴</div>
+            <div class="menu-name">1인 세트</div>
+            <div class="menu-price">12,000원</div>
+            </div>
+
+          <div class="menu-card" onclick="openModal('2인 세트', 30000)">
+            <div class="menu-img-box red">🍴</div>
+            <div class="menu-name">2인 세트</div>
+            <div class="menu-price">30,000원</div>
+          </div>
+
+          <div class="menu-card" onclick="openModal('4인 세트', 58000)">
+            <div class="menu-img-box dark-red">🍴</div>
+            <div class="menu-name">4인 세트</div>
+            <div class="menu-price">58,000원</div>
+          </div>
+
+          <div class="menu-card" onclick="openModal('냉모밀정식', 17000)">
+            <div class="menu-img-box blue">🍴</div>
+            <div class="menu-name">냉모밀정식</div>
+            <div class="menu-price">17,000원</div>
+          </div>
+
+          <div class="menu-card" onclick="openModal('비빔우동정식', 17000)">
+            <div class="menu-img-box pink">🍴</div>
+            <div class="menu-name">비빔우동정식</div>
+            <div class="menu-price">17,000원</div>
+          </div>
+
+          <div class="menu-card" onclick="openModal('돈가스정식', 16000)">
+            <div class="menu-img-box yellow">🍴</div>
+            <div class="menu-name">돈가스정식</div>
+            <div class="menu-price">16,000원</div>
+          </div>
+
+        </div>
+
+        <!-- 장바구니 보기: 메뉴 목록의 맨 마지막 -->
+        <button
+          class="bottom-cart-bar"
+          id="bottomCartBar"
+          onclick="goToCart()"
+          type="button"
+        >
+          장바구니 보기 ·
+          <span id="cartCount">0</span>개 ·
+          <span id="cartTotal">0</span>원
+        </button>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- 수량 선택 모달 -->
+  <div class="modal-overlay" id="optionModal">
+    <div class="modal-content">
+
+      <button class="modal-close-btn" onclick="closeModal()">×</button>
+
+      <div class="modal-subtitle">상품 선택</div>
+
+      <h3 class="modal-item-title" id="modalItemTitle">
+        1인 세트
+      </h3>
+
+      <div class="modal-item-price" id="modalItemPrice">
+        12,000원
+      </div>
+
+      <div class="quantity-control-box">
+        <span>수량</span>
+
+        <div class="quantity-btn-group">
+          <button onclick="changeQuantity(-1)">-</button>
+          <span id="modalQuantity">1</span>
+          <button onclick="changeQuantity(1)">+</button>
+        </div>
+      </div>
+
+     <button class="add-to-cart-btn" id="tutorialAddButton"
+        onclick="addToCart()">
+        장바구니 담기 ·
+        <span id="modalTotalPrice">12,000원</span>
+    </button>
+
+    </div>
+  </div>
+
+<script src="restaurant.js"></script>
+<script src="tutorial.js"></script>
+
+</body>
+</html>

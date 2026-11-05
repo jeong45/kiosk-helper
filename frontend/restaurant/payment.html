@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>키우미 - 결제하기</title>
+  <link rel="stylesheet" href="restaurant.css">
+</head>
+<body>
+
+  <!-- 결제 수단 선택 -->
+  <div class="kiosk-container" id="methodStep">
+    <main class="page-content center-layout">
+      <button class="back-circle-btn" onclick="history.back()">‹</button>
+
+      <div class="sub-label text-center">결제 방식 선택</div>
+      <h2 class="page-title text-center">어떻게 결제할까요?</h2>
+      <p class="sub-desc text-center">원하는 결제 방식을 선택해 주세요.</p>
+
+      <div class="payment-options">
+
+        <!-- 카드 결제 -->
+        <div class="pay-card-option selected"
+             id="cardOption"
+             onclick="selectPayMethod('card')">
+
+          <div class="pay-icon card-bg">CARD</div>
+
+          <div class="pay-info">
+            <div class="pay-name">카드 결제</div>
+            <div class="pay-sub">카드를 단말기에 꽂아 결제해요</div>
+          </div>
+
+          <div class="check-icon">✓</div>
+        </div>
+
+        <!-- 삼성페이 -->
+        <div class="pay-card-option"
+             id="spayOption"
+             onclick="selectPayMethod('spay')">
+
+          <div class="pay-icon spay-bg">S Pay</div>
+
+          <div class="pay-info">
+            <div class="pay-name">삼성페이</div>
+            <div class="pay-sub">휴대폰을 카드 단말기에 가까이 대요</div>
+          </div>
+
+          <div class="check-icon">✓</div>
+        </div>
+
+        <!-- 카카오페이 -->
+        <div class="pay-card-option"
+             id="kpayOption"
+             onclick="selectPayMethod('kpay')">
+
+          <div class="pay-icon kpay-bg">pay</div>
+
+          <div class="pay-info">
+            <div class="pay-name">카카오페이</div>
+            <div class="pay-sub">카카오페이 바코드를 보여줘요</div>
+          </div>
+
+          <div class="check-icon">✓</div>
+        </div>
+
+      </div>
+
+      <div class="bottom-fixed-box">
+        <div class="total-row">
+          <span>총 결제금액</span>
+          <span class="total-price" id="payTotalPrice">12,000원</span>
+        </div>
+
+        <button class="btn-primary full"
+                id="tutorialPayProceed"
+                onclick="showCardInsertStep()">
+          카드 결제 진행하기
+        </button>
+      </div>
+    </main>
+  </div>
+
+  <!-- 카드 삽입 안내 -->
+  <div class="kiosk-container" id="insertStep" style="display: none;">
+    <main class="page-content center-layout">
+
+      <div class="sub-label text-center">카드 결제 안내</div>
+
+      <h2 class="page-title text-center">
+        카드 투입구에<br>카드를 삽입해주세요.
+      </h2>
+
+      <p class="sub-desc text-center">
+        카드 앞면이 위를 향하도록 천천히 넣어주세요.
+      </p>
+
+      <!-- 카드 투입구 일러스트 -->
+      <div class="card-terminal-graphic">
+        <div class="terminal-body">
+          <span class="card-slot-label">CARD</span>
+
+          <div class="card-slot">
+            <div class="inserted-card">K</div>
+          </div>
+
+          <div class="green-light"></div>
+        </div>
+      </div>
+
+      <div class="bottom-fixed-box">
+        <div class="total-row">
+          <span>결제 금액</span>
+          <span class="total-price" id="insertTotalPrice">12,000원</span>
+        </div>
+
+        <div class="btn-group-two">
+          <button class="btn-secondary" onclick="showMethodStep()">
+            이전
+          </button>
+
+          <button class="btn-primary"
+                  id="tutorialInsertComplete"
+                  onclick="completePayment()">
+            삽입 완료
+          </button>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="restaurant.js"></script>
+  <script src="tutorial.js"></script>
+
+</body>
+</html>
