@@ -7,12 +7,12 @@ class MissionAttempt(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-    menu_id = Column(Integer, ForeignKey("menu.id"), nullable=False)
     difficulty = Column(String, nullable=False)  # 'easy' / 'hard'
 
-    payment_method_id = Column(Integer, ForeignKey("option_item.id"), nullable=False)
-    side_id = Column(Integer, ForeignKey("option_item.id"), nullable=True)        # 하드모드만
-    point_method_id = Column(Integer, ForeignKey("option_item.id"), nullable=True)  # 하드모드만
+    target_payment_method_id = Column(Integer, ForeignKey("option_item.id"), nullable=True)
+    target_payment_method_name = Column(String, nullable=True)
+    chosen_payment_method_id = Column(Integer, ForeignKey("option_item.id"), nullable=True)
+    chosen_payment_method_name = Column(String, nullable=True)
 
     success = Column(Boolean, nullable=False)
     created_at = Column(DateTime(timezone=True), server_default=func.now())

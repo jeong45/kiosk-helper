@@ -8,7 +8,8 @@ from app.models import (
     option_group,
     option_item,
     mission_attempt,
-    mission_mistake,
+    mission_attempt_item,
+    mission_attempt_option,
 )
 
 Base.metadata.create_all(bind=engine)
