@@ -55,12 +55,10 @@ def _generate_cafe(difficulty: str) -> list[dict[str, Any]]:
 
 
 def _generate_restaurant(difficulty: str) -> list[dict[str, Any]]:
-    main = random.choice(_flat_items("restaurant", ["세트메뉴", "단일메뉴"]))
-    items = [_item(main, random.choice([1, 2]) if difficulty == "hard" else 1)]
+    names = _flat_items("restaurant")
     if difficulty == "hard":
-        items.append(_item(random.choice(list(CATALOG["restaurant"]["사이드메뉴"]))))
-        items.append(_item(random.choice(list(CATALOG["restaurant"]["음료"]))))
-    return items
+        return [_item(name) for name in random.sample(names, 2)]
+    return [_item(random.choice(names))]
 
 
 def _generate_mart(difficulty: str) -> list[dict[str, Any]]:
@@ -106,8 +104,13 @@ def create_mission(category: str, difficulty: str) -> dict[str, Any]:
     for key, stored in list(MISSIONS.items()):
         if now - stored["created_at"] > TTL_SECONDS:
             del MISSIONS[key]
-    MISSIONS[mission_id] = {"items": items, "payment_method": payment,
-                            "membership_method": membership, "created_at": now}
+    MISSIONS[mission_id] = {
+        "items": items,
+        "payment_method": payment,
+        "membership_method": membership,
+        "difficulty": difficulty,
+        "created_at": now,
+    }
     # 정답 구조(items)는 노출하지 않고 미션 문구만 전달
     return {"mission_id": mission_id, "category": category,
             "difficulty": difficulty, "instruction": instruction}
