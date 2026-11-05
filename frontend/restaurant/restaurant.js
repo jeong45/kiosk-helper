@@ -1,4 +1,3 @@
-
 // 현재 모달 선택 상태
 let currentItem = { name: '', price: 0, quantity: 1 };
 
@@ -282,36 +281,51 @@ function renderPaymentPage() {
   }
 }
 
+// 결제 수단을 누를 때 선택 상태(테두리/체크)만 변경
 function selectPayMethod(method) {
-  document.querySelectorAll('.pay-card-option').forEach(el => {
-    el.classList.remove('selected');
-  });
+  const cardOpt = document.getElementById('tutorialCardOption') || document.getElementById('cardOption');
+  const spayOpt = document.getElementById('spayOption');
+  const kpayOpt = document.getElementById('kpayOption');
+
+  if (cardOpt) cardOpt.classList.remove('selected');
+  if (spayOpt) spayOpt.classList.remove('selected');
+  if (kpayOpt) kpayOpt.classList.remove('selected');
 
   if (method === 'card') {
-    // 수정된 payment.html의 ID 사용
-    const cardOption =
-      document.getElementById('tutorialCardOption') ||
-      document.getElementById('cardOption');
-
-    if (cardOption) {
-      cardOption.classList.add('selected');
-    }
+    if (cardOpt) cardOpt.classList.add('selected');
+  } else if (method === 'spay') {
+    if (spayOpt) spayOpt.classList.add('selected');
+  } else if (method === 'kpay') {
+    if (kpayOpt) kpayOpt.classList.add('selected');
   }
+}
 
-  if (method === 'spay') {
-    const spayOption = document.getElementById('spayOption');
+// '결제 진행하기' 버튼을 눌렀을 때 선택된 수단에 맞춰 해당 안내 창으로 이동
+function proceedSelectedPayment() {
+  const methodStep = document.getElementById('methodStep');
+  const insertStep = document.getElementById('insertStep');
+  const spayStep = document.getElementById('spayStep');
+  const kpayStep = document.getElementById('kpayStep');
 
-    if (spayOption) {
-      spayOption.classList.add('selected');
-    }
-  }
+  // 어떤 결제 수단이 선택되었는지 확인
+  const cardOpt = document.getElementById('tutorialCardOption') || document.getElementById('cardOption');
+  const spayOpt = document.getElementById('spayOption');
+  const kpayOpt = document.getElementById('kpayOption');
 
-  if (method === 'kpay') {
-    const kpayOption = document.getElementById('kpayOption');
+  // 먼저 모든 결제 단계 숨기기
+  if (methodStep) methodStep.style.display = 'none';
+  if (insertStep) insertStep.style.display = 'none';
+  if (spayStep) spayStep.style.display = 'none';
+  if (kpayStep) kpayStep.style.display = 'none';
 
-    if (kpayOption) {
-      kpayOption.classList.add('selected');
-    }
+  // 선택된 수단에 따라 각각의 안내 화면 띄우기
+  if (spayOpt && spayOpt.classList.contains('selected')) {
+    if (spayStep) spayStep.style.display = 'flex';
+  } else if (kpayOpt && kpayOpt.classList.contains('selected')) {
+    if (kpayStep) kpayStep.style.display = 'flex';
+  } else {
+    // 기본값은 카드 결제 화면
+    if (insertStep) insertStep.style.display = 'flex';
   }
 }
 
@@ -322,10 +336,31 @@ function showCardInsertStep() {
 
 function showMethodStep() {
   document.getElementById('insertStep').style.display = 'none';
+  document.getElementById('spayStep').style.display = 'none';
+  document.getElementById('kpayStep').style.display = 'none';
   document.getElementById('methodStep').style.display = 'flex';
 }
 
 function completePayment() {
+  window.location.href = 'complete.html';
+}
+
+// 4. complete.html 관련 함수
+
+// 결제 완료 시 선택한 결제 방식을 저장하고 완료 페이지로 이동
+function completePayment() {
+  // 어떤 결제 수단이 선택되어 있는지 확인 후 저장
+  const spayOpt = document.getElementById('spayOption');
+  const kpayOpt = document.getElementById('kpayOption');
+  
+  let payMethodText = '카드 결제';
+  if (spayOpt && spayOpt.classList.contains('selected')) {
+    payMethodText = '삼성페이';
+  } else if (kpayOpt && kpayOpt.classList.contains('selected')) {
+    payMethodText = '카카오페이';
+  }
+  
+  localStorage.setItem('selectedPayMethod', payMethodText);
   window.location.href = 'complete.html';
 }
 
@@ -367,10 +402,17 @@ function renderCompletePage() {
       totalPrice.toLocaleString() + '원';
   }
 
+  // ★ 저장된 결제 방식을 읽어와서 영수증에 텍스트 반영
+  const receiptPayMethod = document.getElementById('receiptPayMethod');
+  if (receiptPayMethod) {
+    const savedMethod = localStorage.getItem('selectedPayMethod') || '카드 결제';
+    receiptPayMethod.innerText = savedMethod;
+  }
+
   if (document.getElementById('completeSummaryText')) {
     document.getElementById('completeSummaryText').innerHTML =
       `${totalCount}개 상품의 결제 연습을 마쳤어요.<br>
-       이제 실제 키오스크도 자신 있게 이용해 보세요.`;
+        이제 실제 키오스크도 자신 있게 이용해 보세요.`;
   }
 }
 

@@ -1,4 +1,3 @@
-
 // ========================================
 // 키우미 음식점 키오스크 튜토리얼
 // ========================================
@@ -32,7 +31,7 @@ if (tutorialActive) {
   let tutorialStep =
     Number(sessionStorage.getItem('tutorialStep')) || 0;
 
-  // 튜토리얼 단계별 클릭 대상
+  // 튜토리얼 단계별 클릭 대상 (요청하신 7번 카드 삽입 완료 버튼 포함)
   const tutorialTargets = {
     0: '#tutorialFirstSet',
     1: '#tutorialAddButton',
@@ -43,7 +42,7 @@ if (tutorialActive) {
     6: '#tutorialPayProceed',
     7: '#tutorialInsertComplete'
   };
-
+  
   // 안내 메시지
   function showTutorialWarning() {
     let warning = document.getElementById('tutorialWarning');

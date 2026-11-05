@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>키우미 - 결제 완료</title>
+  <link rel="stylesheet" href="complete.css">
+</head>
+<body>
+
+  <div class="kiosk-container complete-bg">
+    <main class="page-content center-layout">
+
+      <div class="success-icon-circle">✓</div>
+
+      <div class="complete-badge">연습 완료</div>
+      <h1 class="complete-title">정말 잘하셨어요!</h1>
+
+      <p class="complete-sub" id="completeSummaryText">
+        1개 상품의 결제 연습을 마쳤어요.<br>
+        이제 실제 키오스크도 자신 있게 이용해 보세요.
+      </p>
+
+      <!-- 영수증 -->
+      <div class="receipt-card">
+        <div class="receipt-items-list" id="receiptItems"></div>
+
+        <div class="receipt-row">
+          <span>총 결제금액</span>
+          <span class="total-price" id="receiptTotal">0원</span>
+        </div>
+
+        <div class="receipt-row">
+          <span>결제 방식</span>
+          <span class="pay-method-text" id="receiptPayMethod">
+            카드 결제
+          </span>
+        </div>
+      </div>
+
+      <!-- 하단 버튼 -->
+      <div class="complete-btn-group">
+        <button class="btn-outline" onclick="restartPractice()">
+          한 번 더 연습하기
+        </button>
+
+        <button class="btn-primary full" onclick="goToMain()">
+          다른 연습 선택
+        </button>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="complete.js"></script>
+</body>
+</html>

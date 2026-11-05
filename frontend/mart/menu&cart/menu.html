@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>키우미 - 마트·편의점 키오스크</title>
+
+  <link rel="stylesheet" as="style" crossorigin
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+
+  <link rel="stylesheet" href="mart.css">
+</head>
+<body>
+
+  <div class="kiosk-container">
+
+    <main class="page-content">
+
+      <header class="top-header">
+        <div class="logo-area">
+          <div class="logo-icon-img">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <rect width="24" height="24" rx="6" fill="#DCFCE7"/>
+              <path d="M12 5V15M12 15C10 13 7 13 5 15M12 15C14 13 17 13 19 15"
+                stroke="#166534" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="logo-text">키우미</span>
+        </div>
+
+        <div class="store-badge-bar">
+          <div class="store-title-box">
+            <div class="store-red-icon">🏪</div>
+            <span class="store-main-title">마트·편의점 키오스크</span>
+          </div>
+
+          <button type="button" class="top-cart-badge"
+            id="topCartBadge" onclick="goToCart()">
+            장바구니 0
+          </button>
+        </div>
+      </header>
+
+      <section class="scan-banner">
+        <h2 class="scan-title">상품의 바코드를 스캔해 주세요.</h2>
+        <p class="scan-sub">
+          쇼핑 봉투가 필요하시면 진열대에서 미리 챙겨주세요.
+        </p>
+
+        <div class="scanner-graphic-box">
+          <div class="scanner-canvas">
+            <div class="barcode-target" id="barcodeTarget">
+              <div class="corner tl"></div>
+              <div class="corner tr"></div>
+              <div class="corner bl"></div>
+              <div class="corner br"></div>
+              <div class="barcode-lines"></div>
+            </div>
+
+            <div class="scan-beam" id="scanBeam"></div>
+
+            <div class="scanner-gun">
+              <div class="gun-head"></div>
+              <div class="gun-handle"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="category-tabs">
+        <button type="button" class="tab-btn active">추천상품</button>
+        <button type="button" class="tab-btn">음료</button>
+        <button type="button" class="tab-btn">간편식</button>
+        <button type="button" class="tab-btn">과자</button>
+        <button type="button" class="tab-btn">생활용품</button>
+      </nav>
+
+      <section class="product-section">
+        <p class="section-guide-text">
+          상품을 누르면 바코드가 스캔됩니다
+        </p>
+
+        <h3 class="section-title">셀프 계산</h3>
+
+        <div class="product-grid">
+
+          <div class="product-card" onclick="openModal('생수', 1000)">
+            <div class="product-icon-box blue-bg">
+              <span class="icon-store">🏪</span>
+            </div>
+            <div class="product-name">생수</div>
+            <div class="product-price">1,000원</div>
+          </div>
+
+          <div class="product-card" onclick="openModal('바나나', 9000)">
+            <div class="product-icon-box yellow-bg">
+              <span class="icon-store">🏪</span>
+            </div>
+            <div class="product-name">바나나</div>
+            <div class="product-price">9,000원</div>
+          </div>
+
+          <div class="product-card" onclick="openModal('우유', 2800)">
+            <div class="product-icon-box light-blue-bg">
+              <span class="icon-store">🏪</span>
+            </div>
+            <div class="product-name">우유</div>
+            <div class="product-price">2,800원</div>
+          </div>
+
+          <div class="product-card" onclick="openModal('신라면', 1200)">
+            <div class="product-icon-box red-bg">
+              <span class="icon-store">🏪</span>
+            </div>
+            <div class="product-name">신라면</div>
+            <div class="product-price">1,200원</div>
+          </div>
+
+          <div class="product-card" onclick="openModal('감자칩', 1800)">
+            <div class="product-icon-box orange-bg">
+              <span class="icon-store">🏪</span>
+            </div>
+            <div class="product-name">감자칩</div>
+            <div class="product-price">1,800원</div>
+          </div>
+
+          <div class="product-card" onclick="openModal('삼각김밥', 1500)">
+            <div class="product-icon-box green-bg">
+              <span class="icon-store">🏪</span>
+            </div>
+            <div class="product-name">삼각김밥</div>
+            <div class="product-price">1,500원</div>
+          </div>
+
+        </div>
+      </section>
+    </main>
+
+    <div class="bottom-cart-bar" id="bottomCartBar" onclick="goToCart()">
+      장바구니가 비어있습니다
+    </div>
+
+    <!-- 상품 수량 조절 모달 -->
+    <div class="modal-overlay" id="optionModal" style="display: none;">
+      <div class="modal-card">
+
+        <button type="button" class="modal-close-btn"
+          onclick="closeModal()">✕</button>
+
+        <div class="modal-sub-label">상품 선택</div>
+
+        <h3 class="modal-item-title" id="modalItemTitle">생수</h3>
+
+        <div class="modal-item-price" id="modalItemPrice">1,000원</div>
+
+        <div class="modal-quantity-box">
+          <span class="quantity-label">수량</span>
+
+          <div class="quantity-controls">
+            <button type="button" class="qty-btn"
+              onclick="changeQuantity(-1)">-</button>
+
+            <span id="modalQuantity">1</span>
+
+            <button type="button" class="qty-btn"
+              onclick="changeQuantity(1)">+</button>
+          </div>
+        </div>
+
+        <button type="button" class="btn-primary full"
+          id="modalAddButton" onclick="addToCart()">
+          장바구니 담기 · <span id="modalBtnPrice">1,000원</span>
+        </button>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="mart.js"></script>
+</body>
+</html>
