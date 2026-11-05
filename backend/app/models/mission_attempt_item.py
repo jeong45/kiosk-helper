@@ -12,4 +12,5 @@ class MissionAttemptItem(Base):
     chosen_menu_id = Column(Integer, ForeignKey("menu.id"), nullable=True)
     chosen_menu_name = Column(String, nullable=True)
 
-    quantity = Column(Integer, nullable=False, default=1)
+    target_quantity = Column(Integer, nullable=False, default=1)
+    chosen_quantity = Column(Integer, nullable=False, default=1)
