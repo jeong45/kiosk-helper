@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>키우미 - 결제하기</title>
+  <link rel="stylesheet" href="payment.css">
+</head>
+<body>
+
+  <!-- 결제 수단 선택 -->
+  <div class="kiosk-container" id="methodStep">
+    <main class="page-content center-layout">
+      <button class="back-circle-btn" onclick="goBackToCart()">‹</button>
+
+      <div class="sub-label">결제 방식 선택</div>
+      <h2 class="page-title">어떻게 결제할까요?</h2>
+      <p class="sub-desc">원하는 결제 방식을 선택해 주세요.</p>
+
+      <div class="payment-options">
+
+        <div class="pay-card-option selected"
+             id="cardOption"
+             onclick="selectPayMethod('card')">
+          <div class="pay-icon card-bg">CARD</div>
+          <div class="pay-info">
+            <div class="pay-name">카드 결제</div>
+            <div class="pay-sub">카드를 단말기에 꽂아 결제해요</div>
+          </div>
+          <div class="check-icon">✓</div>
+        </div>
+
+        <div class="pay-card-option"
+             id="spayOption"
+             onclick="selectPayMethod('spay')">
+          <div class="pay-icon spay-bg">S Pay</div>
+          <div class="pay-info">
+            <div class="pay-name">삼성페이</div>
+            <div class="pay-sub">휴대폰을 카드 단말기에 가까이 대요</div>
+          </div>
+          <div class="check-icon">✓</div>
+        </div>
+
+        <div class="pay-card-option"
+             id="kpayOption"
+             onclick="selectPayMethod('kpay')">
+          <div class="pay-icon kpay-bg">pay</div>
+          <div class="pay-info">
+            <div class="pay-name">카카오페이</div>
+            <div class="pay-sub">카카오페이 바코드를 보여줘요</div>
+          </div>
+          <div class="check-icon">✓</div>
+        </div>
+
+      </div>
+
+      <div class="bottom-fixed-box">
+        <div class="total-row">
+          <span>총 결제금액</span>
+          <span class="total-price payment-total">0원</span>
+        </div>
+
+        <button class="btn-primary full"
+                onclick="proceedSelectedPayment()">
+          결제 진행하기
+        </button>
+      </div>
+    </main>
+  </div>
+
+
+  <!-- 카드 삽입 안내 -->
+  <div class="kiosk-container" id="insertStep" style="display: none;">
+    <main class="page-content center-layout">
+
+      <div class="sub-label">카드 결제 안내</div>
+
+      <h2 class="page-title">
+        카드 투입구에<br>카드를 삽입해주세요.
+      </h2>
+
+      <p class="sub-desc">
+        카드 앞면이 위를 향하도록 천천히 넣어주세요.
+      </p>
+
+      <div class="card-terminal-graphic">
+        <div class="terminal-body">
+          <span class="card-slot-label">CARD</span>
+          <div class="card-slot">
+            <div class="inserted-card">K</div>
+          </div>
+          <div class="green-light"></div>
+        </div>
+      </div>
+
+      <div class="bottom-fixed-box">
+        <div class="total-row">
+          <span>결제 금액</span>
+          <span class="total-price payment-total">0원</span>
+        </div>
+
+        <div class="btn-group-two">
+          <button class="btn-secondary" onclick="showMethodStep()">
+            이전
+          </button>
+          <button class="btn-primary" onclick="completePayment()">
+            삽입 완료
+          </button>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+
+  <!-- 삼성페이 안내 -->
+  <div class="kiosk-container" id="spayStep" style="display: none;">
+    <main class="page-content center-layout">
+
+      <div class="sub-label spay-label">삼성페이 안내</div>
+
+      <h2 class="page-title">
+        휴대폰을 카드 투입구<br>가까이 대주세요.
+      </h2>
+
+      <p class="sub-desc">
+        휴대폰 뒷면을 단말기에 가까이 대주세요.
+      </p>
+
+      <div class="spay-graphic">
+        <div class="spay-terminal">
+          <span>CARD</span>
+          <div></div>
+        </div>
+
+        <div class="spay-phone">
+          S Pay
+        </div>
+      </div>
+
+      <div class="bottom-fixed-box">
+        <div class="total-row">
+          <span>결제 금액</span>
+          <span class="total-price payment-total">0원</span>
+        </div>
+
+        <div class="btn-group-two">
+          <button class="btn-secondary" onclick="showMethodStep()">
+            이전
+          </button>
+          <button class="btn-primary" onclick="completePayment()">
+            인식 완료
+          </button>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+
+  <!-- 카카오페이 안내 -->
+  <div class="kiosk-container" id="kpayStep" style="display: none;">
+    <main class="page-content center-layout">
+
+      <div class="sub-label kpay-label">카카오페이 안내</div>
+
+      <h2 class="page-title">
+        결제 바코드를<br>스캔해주세요.
+      </h2>
+
+      <p class="sub-desc">
+        휴대폰의 결제 바코드를 스캐너에 보여주세요.
+      </p>
+
+      <div class="kpay-graphic">
+        <div class="kpay-phone">
+          <div class="phone-speaker"></div>
+          <div class="barcode">
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span>
+          </div>
+          <div class="kakao-pay">kakao pay</div>
+        </div>
+
+        <div class="scan-area">
+          <div class="scan-line"></div>
+        </div>
+      </div>
+
+      <div class="bottom-fixed-box">
+        <div class="total-row">
+          <span>결제 금액</span>
+          <span class="total-price payment-total">0원</span>
+        </div>
+
+        <div class="btn-group-two">
+          <button class="btn-secondary" onclick="showMethodStep()">
+            이전
+          </button>
+          <button class="btn-primary" onclick="completePayment()">
+            스캔 완료
+          </button>
+        </div>
+      </div>
+
+    </main>
+  </div>
+<script src="payment.js"></script>
+<script src="../cafe-tutorial.js"></script>
+</body>
+</html>
