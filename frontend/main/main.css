@@ -1,118 +1,177 @@
 
-/* 기본 설정 */
+/* =====================================
+   1. 기본 설정
+===================================== */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    min-height: 100%;
+    background-color: #2b2b2b;
+}
+
 body {
     font-family: "Malgun Gothic", sans-serif;
     background-color: #f8f9fb;
     color: #071a43;
+
+    width: 100%;
+    max-width: 420px;
+
+    height: 100vh;
+    height: 100svh;
+    max-height: 850px;
+
+    margin: 0 auto;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
-/* 상단 헤더 */
+
+/* =====================================
+   2. 상단 헤더
+===================================== */
+
 .header {
-    height: 100px;
+    height: 76px;
     background-color: #ffffff;
+
     display: flex;
     align-items: center;
-    padding: 0 28px;
+
+    padding: 0 20px;
     gap: 16px;
+
     border-bottom: 1px solid #e5eaf1;
 }
 
 .header img {
-    width: 56px;
-    height: 56px;
+    width: 46px;
+    height: 46px;
     object-fit: contain;
 }
 
 .header h1 {
-    font-size: 28px;
+    font-size: 25px;
     font-weight: 800;
 }
 
-/* 안내 영역 */
+
+/* =====================================
+   3. 안내 영역
+===================================== */
+
 .intro {
-    min-height: 224px;
-    background: linear-gradient(to bottom, #f0f5fd, #ffffff);
+    min-height: 180px;
+
+    background: linear-gradient(
+        to bottom,
+        #f0f5fd,
+        #ffffff
+    );
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     text-align: center;
-    padding: 30px 15px;
+    padding: 24px 15px;
+
     border-bottom: 1px solid #e5eaf1;
 }
 
 .intro h2 {
-    font-size: 36px;
+    font-size: 27px;
     line-height: 1.4;
     font-weight: 800;
-    margin-bottom: 24px;
+    margin-bottom: 14px;
 }
 
 .intro p {
-    font-size: 21px;
+    font-size: 16px;
     color: #7185a5;
     font-weight: 600;
 }
 
-/* 카드 영역 */
+
+/* =====================================
+   4. 장소 선택 카드 영역
+===================================== */
+
 .category-container {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
-    padding: 20px;
+
+    gap: 12px;
+    padding: 16px;
 }
 
-/* 개별 카드 */
 .category-card {
-    min-height: 205px;
+    min-height: 190px;
+
     background-color: #ffffff;
     border: 2px solid #e2e7ef;
-    border-radius: 30px;
-    padding: 22px;
+    border-radius: 24px;
+
+    padding: 16px;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
     text-decoration: none;
     color: #071a43;
+
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-    transition: transform 0.2s, box-shadow 0.2s;
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
 }
 
-/* 마우스를 올렸을 때 카드 효과 */
 .category-card:hover {
     transform: translateY(-3px) scale(1.02);
     border-color: #8bb7ff;
+
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.12);
 }
 
-/* 마우스를 올렸을 때 화살표 버튼 */
 .category-card:hover .arrow {
     background-color: #4c6cff;
     color: #ffffff;
 }
 
-/* 카드 상단 */
+
+/* =====================================
+   5. 카드 상단 및 아이콘
+===================================== */
+
 .card-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-/* 아이콘 */
 .category-icon {
-    width: 62px;
-    height: 62px;
+    width: 54px;
+    height: 54px;
+
     border-radius: 20px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 30px;
+
+    font-size: 27px;
+
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
 }
 
@@ -132,108 +191,117 @@ body {
     background-color: #d71945;
 }
 
-/* 화살표 */
+
+/* =====================================
+   6. 카드 화살표
+===================================== */
+
 .arrow {
-    width: 42px;
-    height: 42px;
+    width: 36px;
+    height: 36px;
+
     border-radius: 50%;
+
     background-color: #f1f4f9;
     color: #71809a;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 32px;
+
+    font-size: 27px;
     line-height: 1;
 }
 
-/* 카드 글자 */
+
+/* =====================================
+   7. 카드 글자
+===================================== */
+
 .card-info h3 {
-    font-size: 23px;
+    font-size: 20px;
     font-weight: 800;
     margin-bottom: 8px;
 }
 
 .card-info p {
-    font-size: 17px;
+    font-size: 14px;
     color: #7185a5;
     font-weight: 600;
 }
 
-/* 작은 화면 대응 */
-@media (max-width: 400px) {
-    .intro h2 {
-        font-size: 29px;
-    }
 
-    .intro p {
-        font-size: 17px;
-    }
+/* =====================================
+   8. 연습 방법 선택 팝업
+===================================== */
 
-    .category-container {
-        gap: 12px;
-        padding: 14px;
-    }
-
-    .category-card {
-        min-height: 185px;
-        padding: 15px;
-        border-radius: 24px;
-    }
-
-    .card-info h3 {
-        font-size: 19px;
-    }
-
-    .card-info p {
-        font-size: 14px;
-    }
-}
-
-
-/* =========================
-   연습 방법 선택 팝업
-========================= */
-
-/* 팝업 기본 상태 */
 .mode-modal {
     display: none;
     position: fixed;
-    /* 팝업이 열렸을 때 배경 스크롤 방지 */
-    body:has(.mode-modal:target) {
-    overflow: hidden;
-    }
-    inset: 0;
+
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 100%;
+    max-width: 420px;
+    max-height: 850px;
+
     z-index: 1000;
+
     align-items: flex-end;
     justify-content: center;
+
+    overflow: hidden;
 }
 
-/* 팝업이 선택되었을 때 */
 .mode-modal:target {
     display: flex;
 }
 
-/* 뒷배경 어둡게 + 블러 */
+/* 팝업이 열렸을 때 배경 스크롤 방지 */
+body:has(.mode-modal:target) {
+    overflow: hidden;
+}
+
+/* 어두운 배경 */
 .modal-backdrop {
     position: absolute;
     inset: 0;
+
     background: rgba(15, 20, 35, 0.65);
+
     backdrop-filter: blur(7px);
     -webkit-backdrop-filter: blur(7px);
 }
 
-/* 팝업 흰색 영역 */
+
+/* =====================================
+   9. 팝업 흰색 영역
+===================================== */
+
 .modal-content {
     position: relative;
     z-index: 1;
+
     width: 100%;
-    max-width: 520px;
+    max-width: 420px;
+    max-height: 90%;
+
     background: #ffffff;
     border-radius: 30px 30px 0 0;
-    padding: 28px 26px 30px;
+
+    padding: 24px 20px 26px;
+
+    overflow-y: auto;
 }
 
-/* 팝업 상단 */
+
+/* =====================================
+   10. 팝업 상단
+===================================== */
+
 .modal-header {
     display: flex;
     justify-content: space-between;
@@ -260,20 +328,32 @@ body {
     color: #11182d;
 }
 
-/* 닫기 버튼 */
+
+/* =====================================
+   11. 팝업 닫기 버튼
+===================================== */
+
 .close-button {
     width: 56px;
     height: 56px;
     flex-shrink: 0;
+
     border-radius: 50%;
+
     background: #f1f4f9;
     color: #526078;
+
     text-decoration: none;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     font-size: 34px;
-    transition: background 0.2s, color 0.2s;
+
+    transition:
+        background 0.2s,
+        color 0.2s;
 }
 
 .close-button:hover {
@@ -281,28 +361,38 @@ body {
     color: #ffffff;
 }
 
-/* 모드 카드 */
+
+/* =====================================
+   12. 연습 모드 카드
+===================================== */
+
 .mode-option {
     display: block;
+
     text-decoration: none;
     color: #11182d;
+
     border: 2px solid #e2e7ef;
     border-radius: 22px;
+
     padding: 20px;
     margin-bottom: 15px;
-    transition: transform 0.2s, border-color 0.2s,
-                background-color 0.2s, box-shadow 0.2s;
+
+    transition:
+        transform 0.2s,
+        border-color 0.2s,
+        background-color 0.2s,
+        box-shadow 0.2s;
 }
 
-/* 마우스를 올렸을 때 */
 .mode-option:hover {
     transform: scale(1.02);
     border-color: #82a9ff;
     background: #f1f5fd;
+
     box-shadow: 0 4px 12px rgba(76, 108, 255, 0.12);
 }
 
-/* 카드 상단 */
 .mode-top {
     display: flex;
     align-items: center;
@@ -310,16 +400,23 @@ body {
     margin-bottom: 15px;
 }
 
-/* 모드 아이콘 */
+
+/* =====================================
+   13. 모드 아이콘
+===================================== */
+
 .mode-icon {
     width: 52px;
     height: 52px;
     border-radius: 15px;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     color: #ffffff;
     font-size: 27px;
+
     flex-shrink: 0;
 }
 
@@ -335,28 +432,34 @@ body {
     background: #8035f5;
 }
 
-/* 모드 이름 */
+
+/* =====================================
+   14. 모드 이름 및 추천 표시
+===================================== */
+
 .mode-top h3 {
     font-size: 23px;
     font-weight: 800;
 }
 
-/* 추천 표시 */
 .recommend-label {
     background: #fff0d9;
     color: #c45112;
+
     border-radius: 20px;
     padding: 7px 12px;
+
     font-size: 14px;
     font-weight: 700;
+
     white-space: nowrap;
 }
 
-/* 오른쪽 화살표 */
 .mode-arrow {
     margin-left: auto;
     color: #9ba8bd;
     font-size: 32px;
+
     transition: color 0.2s;
 }
 
@@ -364,7 +467,6 @@ body {
     color: #4c6cff;
 }
 
-/* 설명 */
 .mode-option > p {
     color: #71809a;
     font-size: 16px;
@@ -372,17 +474,50 @@ body {
     line-height: 1.5;
 }
 
-/* 하단 안내 */
 .modal-notice {
     text-align: center;
     color: #71809a;
+
     font-size: 16px;
     font-weight: 600;
+
     margin-top: 28px;
 }
 
-/* 작은 화면 */
+
+/* =====================================
+   15. 작은 화면 대응
+===================================== */
+
 @media (max-width: 400px) {
+
+    .intro h2 {
+        font-size: 24px;
+    }
+
+    .category-container {
+        gap: 12px;
+        padding: 14px;
+    }
+
+    .category-card {
+        min-height: 175px;
+        padding: 13px;
+    }
+
+    .category-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .card-info h3 {
+        font-size: 18px;
+    }
+
+    .card-info p {
+        font-size: 14px;
+    }
+
     .modal-content {
         padding: 25px 20px;
     }
@@ -407,23 +542,4 @@ body {
     .mode-option {
         padding: 17px;
     }
-}
-
-/* 팝업이 열리면 뒤쪽 화면 스크롤 방지 */
-body:has(.mode-modal:target) {
-    overflow: hidden;
-}
-
-/* 팝업 화면 고정 */
-.mode-modal {
-    position: fixed;
-    inset: 0;
-    overflow: hidden;
-}
-
-/* 팝업 자체도 화면 안에 고정 */
-.modal-content {
-    position: relative;
-    max-height: 90vh;
-    overflow-y: auto;
 }

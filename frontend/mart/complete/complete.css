@@ -6,19 +6,29 @@
   font-family: 'Pretendard', sans-serif;
 }
 
+html {
+  width: 100%;
+  min-height: 100%;
+  background-color: #2b2b2b;
+}
+
 body {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
   background-color: #2b2b2b;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
 }
 
 .kiosk-container {
   width: 100%;
   max-width: 420px;
   height: 100vh;
-  max-height: 840px;
+  height: 100svh;
+  max-height: 850px;
+  margin: 0 auto;
   background-color: #f8fafc;
   display: flex;
   flex-direction: column;
@@ -34,6 +44,7 @@ body {
 /* 완료 화면 기본 레이아웃 */
 .page-content {
   flex: 1;
+  min-height: 0;
   padding: 20px;
   overflow-y: auto;
   display: flex;
@@ -57,6 +68,7 @@ body {
   justify-content: center;
   font-size: 36px;
   margin-bottom: 12px;
+  flex-shrink: 0;
 }
 
 .complete-badge {
@@ -163,11 +175,10 @@ body {
 }
 
 .success-badge {
-    color: #27AE60;
-    font-size: 13px;
-    font-weight: 700;
+  color: #27ae60;
+  font-size: 13px;
+  font-weight: 700;
 }
-
 
 /* ========================================
    EASY 미션 실패 화면
@@ -379,7 +390,6 @@ body {
 .fail-btn-group button:active {
   transform: scale(0.98);
 }
-
 
 /* ========================================
    HARD 미션 결과 화면

@@ -930,15 +930,14 @@ function renderRestaurantMissionResult() {
   const failDescription =
     document.getElementById('failDescription');
 
-  if (membershipResultRow) {
-    membershipResultRow.style.display =
-      isHardMode ? 'flex' : 'none';
-  }
+ // 음식점 미션은 EASY와 HARD 모두 멤버십 조건 없음
+if (membershipResultRow) {
+  membershipResultRow.style.display = 'none';
+}
 
-  if (failMembershipRow) {
-    failMembershipRow.style.display =
-      isHardMode ? 'flex' : 'none';
-  }
+if (failMembershipRow) {
+  failMembershipRow.style.display = 'none';
+}
 
   if (isHardMode) {
 
@@ -949,7 +948,7 @@ function renderRestaurantMissionResult() {
 
     if (failDescription) {
       failDescription.innerHTML =
-        '상품, 수량, 결제, 멤버십 적립 조건을<br>' +
+        '주문한 두 메뉴와 수량, 결제 방식을<br>' +
         '다시 확인해 보세요.';
     }
 

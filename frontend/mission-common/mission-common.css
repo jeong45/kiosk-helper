@@ -1,4 +1,8 @@
-/* 공통 스타일 및 초기화 (수정 완료: - -> *) */
+
+/* ========================================
+   공통 스타일
+======================================== */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -6,12 +10,20 @@
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
 }
 
+html {
+    width: 100%;
+    min-height: 100%;
+    background-color: #2b2b2b;
+}
+
 body {
-    background-color: #f0f2f5;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100svh;
+    background-color: #2b2b2b;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
 }
 
 /* 모바일 디바이스 프레임 */
@@ -19,7 +31,9 @@ body {
     width: 100%;
     max-width: 420px;
     height: 100vh;
+    height: 100svh;
     max-height: 850px;
+    margin: 0 auto;
     background-color: #F8F9FC;
     display: flex;
     flex-direction: column;
@@ -28,12 +42,16 @@ body {
     overflow: hidden;
 }
 
-/* 상단 헤더 */
+/* ========================================
+   상단 헤더
+======================================== */
+
 .header {
     display: flex;
     align-items: center;
     padding: 20px;
     position: relative;
+    flex-shrink: 0;
 }
 
 .back-btn {
@@ -60,15 +78,21 @@ body {
     transform: translateX(-50%);
     font-size: 16px;
     font-weight: 700;
-    color: #5D3FD3; /* 키우미 대표 퍼플 계열 포인트 */
+    color: #5D3FD3;
 }
 
-/* 콘텐츠 영역 */
+/* ========================================
+   콘텐츠 영역
+======================================== */
+
 .content {
     flex: 1;
+    min-height: 0;
     padding: 10px 24px 30px 24px;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 /* 아이콘 */
@@ -109,7 +133,10 @@ body {
     color: #6E7781;
 }
 
-/* 미션 카드 공통 스타일 */
+/* ========================================
+   미션 카드
+======================================== */
+
 .mission-cards {
     display: flex;
     flex-direction: column;
@@ -140,7 +167,7 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* EASY 카드 전용 테마 */
+/* EASY 카드 */
 .mission-card.easy {
     background-color: #FFFFFF;
     border: 2px solid #D4F4DD;
@@ -159,7 +186,7 @@ body {
     color: #111111;
 }
 
-/* HARD 카드 전용 테마 */
+/* HARD 카드 */
 .mission-card.hard {
     background: linear-gradient(135deg, #7C5CFC 0%, #6C5CE7 100%);
     border: 2px solid transparent;
@@ -174,7 +201,7 @@ body {
     color: #FFFFFF;
 }
 
-.mission-card.hard h3, 
+.mission-card.hard h3,
 .mission-card.hard p {
     color: #FFFFFF;
 }
@@ -196,16 +223,14 @@ body {
     color: rgba(255, 255, 255, 0.85);
 }
 
+/* ========================================
+   미션 실패 화면
+======================================== */
 
-/* ==========================================
-   [수정 완료] 미션 실패 화면 (모달 및 결과 카드) 스타일
-   ========================================== */
-
-/* 전체 화면을 덮는 모달 배경 */
+/* 모바일 프레임 내부에서 표시 */
 .modal-container {
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
@@ -214,9 +239,10 @@ body {
     align-items: center;
     z-index: 1000;
     padding: 16px;
+    overflow-y: auto;
 }
 
-/* 실패 결과 카드 박스 (시안 맞춤 배경 및 레이아웃) */
+/* 실패 결과 카드 */
 .result-card {
     background: #F4F7FF;
     width: 100%;
@@ -226,11 +252,11 @@ body {
     text-align: center;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     position: relative;
-    max-height: 90vh;
+    max-height: 100%;
     overflow-y: auto;
 }
 
-/* 상단 실패 X 아이콘 원형 래퍼 */
+/* 실패 아이콘 */
 .fail-icon-wrapper {
     display: flex;
     justify-content: center;
@@ -251,7 +277,7 @@ body {
     box-shadow: 0 8px 20px rgba(224, 68, 68, 0.35);
 }
 
-/* 실패 타이틀 및 안내 텍스트 */
+/* 실패 타이틀 */
 .result-card h2 {
     font-size: 13px;
     font-weight: 800;
@@ -274,7 +300,7 @@ body {
     margin-bottom: 20px;
 }
 
-/* 미션 내용 가이드 박스 (시안 연보라 배경) */
+/* 미션 내용 가이드 */
 .mission-guide-box {
     background-color: #EDE8FF;
     border-radius: 16px;
@@ -295,8 +321,9 @@ body {
     flex-shrink: 0;
 }
 
-/* 조건별 결과 박스 & 유저 선택 내역 박스 공통 카드 */
-.result-box, .user-summary-box {
+/* 결과 박스 */
+.result-box,
+.user-summary-box {
     background-color: #FFFFFF;
     border-radius: 16px;
     padding: 16px;
@@ -316,6 +343,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 8px;
     padding: 10px 12px;
     background-color: #FFF6F6;
     border-radius: 12px;
@@ -329,18 +357,19 @@ body {
     margin-bottom: 0;
 }
 
-/* 놓침 뱃지 (빨간색 ✕ 표시) */
+/* 놓침 뱃지 */
 .fail-badge {
     color: #C62828;
     font-size: 13px;
     font-weight: 800;
 }
 
-/* 유저 실제 수행 결과 요약 항목 */
+/* 실제 수행 결과 */
 .summary-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 8px;
     font-size: 14px;
     font-weight: 700;
     color: #2D3139;
@@ -362,7 +391,7 @@ body {
     font-weight: 800;
 }
 
-/* 하단 액션 버튼 공통 */
+/* 하단 버튼 */
 .result-card button {
     width: 100%;
     padding: 16px;
@@ -378,7 +407,7 @@ body {
     transform: scale(0.98);
 }
 
-/* 첫 번째 버튼: 한 번 더 연습하기 */
+/* 한 번 더 연습하기 */
 .btn-primary {
     background-color: #FFFFFF;
     color: #4A40AF;
@@ -390,7 +419,7 @@ body {
     background-color: #F4F0FF;
 }
 
-/* 두 번째 버튼: 다른 연습 선택 */
+/* 다른 연습 선택 */
 .btn-secondary {
     background-color: #4F46E5;
     color: #FFFFFF;
@@ -398,4 +427,16 @@ body {
 
 .btn-secondary:hover {
     background-color: #4338CA;
+}
+
+/* 작은 화면 대응 */
+@media (max-height: 700px) {
+    .modal-container {
+        align-items: flex-start;
+    }
+
+    .result-card {
+        max-height: none;
+        margin: auto 0;
+    }
 }

@@ -1,0 +1,75 @@
+
+/* =====================================
+   음식점 HARD 미션 전용 디자인
+===================================== */
+
+/* 오늘의 미션 안내 배너 */
+.hard-mission-banner {
+  flex-shrink: 0;
+  margin: 12px 16px;
+  padding: 16px 18px;
+  background: #f3e8ff;
+  border: 2px solid #a855f7;
+  border-radius: 16px;
+  box-shadow: 0 3px 10px rgba(107, 33, 168, 0.12);
+}
+
+/* HARD 배지와 제목 */
+.hard-mission-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* HARD 난이도 배지 */
+.hard-mission-level {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 11px;
+  background: #6b21a8;
+  color: #ffffff;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* 오늘의 미션 제목 */
+.hard-mission-label {
+  color: #581c87;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+/* 미션 안내 문구 */
+.hard-mission-instruction {
+  color: #3b0764;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+/* 미션을 불러오는 동안 */
+.hard-mission-instruction.loading {
+  color: #7e22ce;
+}
+
+/* 미션 배너 아래 메뉴 영역 */
+.kiosk-body {
+  flex: 1;
+  min-height: 0;
+}
+
+/* 작은 화면 대응 */
+@media (max-width: 360px) {
+  .hard-mission-banner {
+    margin: 10px 12px;
+    padding: 14px;
+  }
+
+  .hard-mission-instruction {
+    font-size: 13px;
+  }
+}
