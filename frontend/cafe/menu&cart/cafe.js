@@ -321,8 +321,8 @@ function updateCartBar() {
 }
 
 
-// 상품 선택 화면에서 장바구니 페이지 이동
 
+// 상품 선택 화면에서 장바구니 페이지 이동
 function goToCart() {
   const cart = getCart();
 
@@ -331,9 +331,13 @@ function goToCart() {
     return;
   }
 
-  window.location.href = 'cart.html';
+  // 현재 미션 폴더(easy/hard) 안에 있는지 확인
+  if (window.location.pathname.includes('/mission/')) {
+    window.location.href = '../../menu&cart/cart.html';
+  } else {
+    window.location.href = 'cart.html';
+  }
 }
-
 
 // =====================================
 // 9. 장바구니 화면 상품 목록 표시
@@ -507,14 +511,13 @@ function showCafeView(viewName) {
     orderView.classList.add('active');
 
   } else {
-    renderCafe
-    Cart();
+    // [수정] 
+    renderCafeCart();
 
     orderView.classList.remove('active');
     cartView.classList.add('active');
   }
 }
-
 
 // =====================================
 // 13. 페이지 로딩 후 실행
@@ -541,13 +544,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   renderCafeCart();
-
-  // 메뉴 더 담기 버튼
+// 메뉴 더 담기 버튼
   const btnMoreMenu = document.getElementById('btn-more-menu');
 
   if (btnMoreMenu) {
     btnMoreMenu.addEventListener('click', () => {
-      window.location.href = 'menu.html';
+      if (sessionStorage.getItem('cafeMissionMode') === 'true') {
+        // [추가] 난이도를 가져오되, 만약 null이면 기본값 'hard'로 임시 설정 (null 튕김 방지)
+        let difficulty = sessionStorage.getItem('cafeMissionDifficulty');
+        if (!difficulty || difficulty === 'null') difficulty = 'hard';
+        
+        window.location.href = `../mission/${difficulty}/${difficulty}.html`;
+      } else {
+        window.location.href = 'menu.html';
+      }
     });
   }
 
@@ -556,11 +566,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (btnMore) {
     btnMore.addEventListener('click', () => {
-      window.location.href = 'menu.html';
+      if (sessionStorage.getItem('cafeMissionMode') === 'true') {
+        // [추가] 여기도 동일하게 null 방어 코드 추가
+        let difficulty = sessionStorage.getItem('cafeMissionDifficulty');
+        if (!difficulty || difficulty === 'null') difficulty = 'hard';
+        
+        window.location.href = `../mission/${difficulty}/${difficulty}.html`;
+      } else {
+        window.location.href = 'menu.html';
+      }
     });
   }
 
-  // 주문 확인 버튼
+  // 주문 확인 버튼 (혹시 지워졌을까 봐 다시 확인)
   const btnGoOrder = document.getElementById('btn-go-order');
 
   if (btnGoOrder) {
@@ -569,11 +587,10 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('장바구니가 비어있습니다.');
         return;
       }
-
+      
       showCafeView('order');
     });
   }
-
   // 이전 버튼
   const btnBack = document.getElementById('btn-back');
 
