@@ -55,25 +55,34 @@
 
 ## 6. 실행 방법
 
-시행 링크:
-1. 프로젝트 다운로드
-git clone [GitHub 저장소 주소]
-cd kiosk-helper
+### 1. 프로젝트 다운로드
 
-2. 백엔드 실행(필요한 Python 패키지를 설치한 후 다음 명령어로 서버를 실행합니다.)
+```bash
+git clone https://github.com/jeong45/kiosk-helper.git
+cd kiosk-helper
+```
+
+### 2. 백엔드 실행
+
+필요한 Python 패키지를 설치한 후 다음 명령어로 서버를 실행합니다.
+
+```bash
 cd backend
 python -m uvicorn app.main:app --reload
+```
 
 -> 백엔드 서버 실행 후 다음 주소에서 API 문서를 확인할 수 있습니다.
-- API 문서: http://127.0.0.1:8000/docs
+-> API 문서: http://127.0.0.1:8000/docs
 
-3. 프론트엔드 실행
+### 3. 프론트엔드 실행
+
 1) VS Code에서 프로젝트 폴더를 엽니다.
 2) Live Server 확장 프로그램을 설치합니다.
-3) `frontend/splash/` 폴더의 시작 HTML 파일을 엽니다.
+3) frontend/splash/inde.html 파일을 엽니다.
 4) 마우스 오른쪽 버튼을 클릭하여 Open with Live Server를 선택합니다.
 
-4. 서비스 이용
+### 4. 서비스 이용
+
 1) 연습할 키오스크 카테고리를 선택합니다.
 2) 튜토리얼, 자유 연습, 미션 모드 중 하나를 선택합니다.
 3) 상품 선택부터 결제까지 키오스크 이용 과정을 연습합니다.
