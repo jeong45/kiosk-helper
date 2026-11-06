@@ -249,34 +249,97 @@ function changeQuantity(change) {
 
 
 // =====================================
-// 7. 상품 장바구니에 담기
+// 7. 상품 장바구니에 담기 및 추가 제안
 // =====================================
 
-function addToCart() {
-  if (!currentItem.name || currentItem.price <= 0) {
-    return;
-  }
+// 모달 안의 추가 제안 메뉴 데이터
+const ADDON_PRODUCTS = [
+  { id: 'a1', name: '감자튀김', price: 1700, icon: '🍟' },
+  { id: 'a2', name: '코카콜라', price: 1800, icon: '🥤' },
+  { id: 'a3', name: '코코넛쉬림프', price: 3500, icon: '🍤' },
+  { id: 'a4', name: '바삭킹 2조각', price: 2600, icon: '🍗' }
+];
 
+let selectedAddon = null; // 선택된 추가 메뉴 상태 저장
+
+// 1. 기존 '장바구니 담기' 클릭 시 바로 담지 않고 제안 모달 오픈
+function addToCart() {
+  if (!currentItem.name || currentItem.price <= 0) return;
+  closeModal(); // 기존 수량조절 모달 닫기
+  openAddonModal(); // 추가 제안 모달 열기
+}
+
+// 2. 제안 모달 열기 & 화면 렌더링
+function openAddonModal() {
+  selectedAddon = null; 
+  const addonGrid = document.getElementById('addonGrid');
+  const modal = document.getElementById('addonModal');
+
+  if (addonGrid) {
+    addonGrid.innerHTML = ADDON_PRODUCTS.map((item, index) => `
+      <div class="addon-item" id="addon-item-${index}" onclick="toggleAddon(${index})">
+        <div class="addon-icon-box">${item.icon}</div>
+        <div class="addon-name">${item.name}</div>
+        <div class="addon-price">${formatPrice(item.price)}</div>
+      </div>
+    `).join('');
+  }
+  
+  if (modal) {
+    modal.style.display = 'flex';
+  }
+}
+
+// 3. 제안 모달 닫기
+function closeAddonModal() {
+  const modal = document.getElementById('addonModal');
+  if (modal) modal.style.display = 'none';
+}
+
+// 4. 추가 메뉴 토글 (선택/해제)
+function toggleAddon(index) {
+  const items = document.querySelectorAll('.addon-item');
+  items.forEach(item => item.classList.remove('selected'));
+
+  // 이미 선택된 항목을 또 누르면 선택 취소
+  if (selectedAddon && selectedAddon.id === ADDON_PRODUCTS[index].id) {
+    selectedAddon = null;
+  } else {
+    selectedAddon = ADDON_PRODUCTS[index];
+    document.getElementById(`addon-item-${index}`).classList.add('selected');
+  }
+}
+
+// 5. 최종 장바구니 담기 (아니오 / 추가하기 버튼 클릭 시)
+function submitAddonAndCart(isAdd) {
   const cart = getCart();
 
-  const index = cart.findIndex(
-    item => item.name === currentItem.name
-  );
-
-  if (index > -1) {
-    cart[index].quantity =
-      Number(cart[index].quantity) + currentItem.quantity;
+  // 메인 상품 장바구니에 담기
+  const mainIndex = cart.findIndex(item => item.name === currentItem.name);
+  if (mainIndex > -1) {
+    cart[mainIndex].quantity = Number(cart[mainIndex].quantity) + currentItem.quantity;
   } else {
     cart.push({ ...currentItem });
   }
 
+  // 사용자가 '추가하기'를 눌렀고 선택한 메뉴가 있다면 장바구니에 추가 담기
+  if (isAdd && selectedAddon) {
+    const addonIndex = cart.findIndex(item => item.name === selectedAddon.name);
+    if (addonIndex > -1) {
+      cart[addonIndex].quantity = Number(cart[addonIndex].quantity) + 1;
+    } else {
+      cart.push({
+        name: selectedAddon.name,
+        price: selectedAddon.price,
+        quantity: 1
+      });
+    }
+  }
+
   saveCart(cart);
-
-  closeModal();
-
+  closeAddonModal();
   updateCartBar();
 }
-
 
 // =====================================
 // 8. 상품 선택 화면 장바구니 표시

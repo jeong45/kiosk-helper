@@ -14,55 +14,66 @@
 <body>
 
   <div class="kiosk-container">
+<main class="page-content">
 
-    <main class="page-content">
-
-      <header class="top-header">
-        <div class="logo-area">
-          <div class="logo-icon-img">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <rect width="24" height="24" rx="6" fill="#DCFCE7"/>
-              <path d="M12 5V15M12 15C10 13 7 13 5 15M12 15C14 13 17 13 19 15"
-                stroke="#166534" stroke-width="2" stroke-linecap="round"/>
-            </svg>
+      <!-- [화면 1] 매장/포장 선택 화면  -->
+      <div id="order-type-view" class="view-content active" style="background-color: #fff; border: none; padding: 0;">
+        <div style="text-align: center; margin-top: 30px; margin-bottom: 40px;">
+          <h1 style="font-size: 1.6rem; font-weight: 900; color: #0f172a; margin-bottom: 12px;">어디에서 드시나요?</h1>
+          <p style="color: #64748b; font-size: 0.95rem;">원하는 주문 방법을 선택해 주세요.</p>
+        </div>
+        
+        <div style="display: flex; gap: 16px; justify-content: center; padding: 0 10px;">
+          <div class="type-card" onclick="selectOrderType('매장')">
+            <div class="type-circle">🍽️</div>
+            <h3 class="type-title">매장식사</h3>
           </div>
-          <span class="logo-text">키우미</span>
+          <div class="type-card" onclick="selectOrderType('포장')">
+            <div class="type-circle">🛍️</div>
+            <h3 class="type-title">포장주문</h3>
+          </div>
         </div>
+      </div>
 
-        <div class="store-badge-bar">
-          <div class="store-title-box">
-            <div class="store-red-icon">🍔</div>
-            <span class="store-main-title">햄버거 키오스크</span>
+      <!-- [화면 2] 기존 메뉴판 화면 (처음엔 숨김) -->
+      <div id="menu-main-view" class="view-content" style="background-color: #fff; border: none; padding: 0;">
+        <header class="top-header">
+          <div class="logo-area">
+            <div class="logo-icon-img">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <rect width="24" height="24" rx="6" fill="#DCFCE7"/>
+                <path d="M12 5V15M12 15C10 13 7 13 5 15M12 15C14 13 17 13 19 15"
+                  stroke="#166534" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="logo-text">키우미</span>
           </div>
 
-          <button type="button" class="top-cart-badge"
-            id="topCartBadge" onclick="goToCart()">
-            장바구니 0
-          </button>
-        </div>
-      </header>
+          <div class="store-badge-bar">
+            <div class="store-title-box">
+              <div class="store-red-icon">🍔</div>
+              <span class="store-main-title">햄버거 키오스크</span>
+            </div>
 
-  
+            <button type="button" class="top-cart-badge"
+              id="topCartBadge" onclick="goToCart()">
+              장바구니 0
+            </button>
+          </div>
+        </header>
 
-      <nav class="category-tabs">
-        <button type="button" class="tab-btn active" data-category="스페셜">스페셜</button>
-        <button type="button" class="tab-btn" data-category="프리미엄">프리미엄</button>
-        <button type="button" class="tab-btn" data-category="와퍼">와퍼</button>
-        <button type="button" class="tab-btn" data-category="사이드">사이드</button>
+        <nav class="category-tabs">
+          <button type="button" class="tab-btn active" data-category="스페셜">스페셜</button>
+          <button type="button" class="tab-btn" data-category="프리미엄">프리미엄</button>
+          <button type="button" class="tab-btn" data-category="와퍼">와퍼</button>
+          <button type="button" class="tab-btn" data-category="사이드">사이드</button>
+        </nav>
 
-      </nav>
-
-      <section class="product-section">
-        <p class="section-guide-text">
-         원하는 메뉴를 골라주세요
-        </p>
-
-     
-
-        <div class="product-grid" id="productGrid">
-          <!-- JavaScript에서 장바구니  생성 -->
-        </div>
-      </section>
+        <section class="product-section">
+          <p class="section-guide-text">원하는 메뉴를 골라주세요</p>
+          <div class="product-grid" id="productGrid"></div>
+        </section>
+      </div>
 
     </main>
 
@@ -104,7 +115,24 @@
 
       </div>
     </div>
+<!-- [추가] 함께 하면 더 맛있는 베스트메뉴 모달 -->
+    <div class="modal-overlay" id="addonModal" style="display: none;">
+      <div class="modal-card">
+        <button type="button" class="modal-close-btn" onclick="closeAddonModal()">✕</button>
+        <div class="modal-sub-label">메뉴 추가 제안</div>
+        <h3 class="modal-item-title" style="font-size: 1.3rem;">함께 하면 더 맛있는 베스트메뉴</h3>
 
+        <div class="addon-grid" id="addonGrid">
+          <!-- JS에서 리스트 자동 생성 -->
+        </div>
+
+        <div class="modal-footer-btns">
+          <!-- 기존 CSS의 .btn-secondary(회색), .btn-primary(메인색상) 그대로 활용 -->
+          <button type="button" class="btn btn-secondary" onclick="submitAddonAndCart(false)">아니오</button>
+          <button type="button" class="btn btn-primary" onclick="submitAddonAndCart(true)">추가하기</button>
+        </div>
+      </div>
+    </div>
   </div>
 
 <script src="fastfood.js"></script>
@@ -112,3 +140,12 @@
 
 </body>
 </html>
+<script>
+  function selectOrderType(type) {
+    sessionStorage.setItem('kioskOrderType', type);
+    
+    // 매장/포장 화면 숨기고, 실제 메뉴판 화면 보여주기
+    document.getElementById('order-type-view').classList.remove('active');
+    document.getElementById('menu-main-view').classList.add('active');
+  }
+</script>s

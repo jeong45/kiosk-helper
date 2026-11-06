@@ -782,3 +782,110 @@ body {
 .fastfood-tutorial-warning.show {
   opacity: 1;
 }
+
+/* =====================================
+   추가. 진입 화면 (매장/포장 선택 카드)
+===================================== */
+.type-card {
+  flex: 1;
+  background: #fff;
+  border: 2px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 40px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+.type-card:active {
+  border-color: #4f46e5;
+  background-color: #eef2ff;
+  transform: scale(0.98);
+}
+.type-circle {
+  width: 70px;
+  height: 70px;
+  background: #fdf5d3;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+.type-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+/* =====================================
+   추가. 베스트메뉴(추가 제안) 모달
+===================================== */
+.addon-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 16px 0 24px;
+}
+.addon-item {
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 16px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s;
+}
+.addon-item.selected {
+  border-color: #ef4444; 
+  background-color: #fef2f2;
+}
+.addon-item.selected::after {
+  content: '✔';
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ef4444;
+  color: #fff;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+.addon-icon-box {
+  width: 48px;
+  height: 48px;
+  background: #fff;
+  border-radius: 50%;
+  margin: 0 auto 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.addon-name {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+.addon-price {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #dc2626;
+}
+.modal-footer-btns {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}

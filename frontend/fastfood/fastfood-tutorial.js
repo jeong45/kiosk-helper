@@ -35,40 +35,44 @@ if (fastfoodTutorialActive) {
 
   let fastfoodTutorialStep =
     Number(sessionStorage.getItem('fastfoodTutorialStep')) || 0;
-
-  // ========================================
-  // 2. 단계별 클릭 대상
+// ========================================
+  // 2. 단계별 클릭 대상 (매장/포장 선택 단계 추가)
   // ========================================
 
   const fastfoodTutorialTargets = {
-  0: '.product-card[data-product-index="0"]',
-  1: '#modalAddButton',
-  2: '#bottomCartBar',
-  3: '#btn-go-order',
-  4: '#btn-pay',
-  5: '#step-select [onclick*="step-phone"]',
-  6: '.key-btn[onclick*="appendNum"]',
-  7: '#submit-phone-btn',
-  8: '#cardOption',
-9: '#methodStep .bottom-fixed-box .btn-primary',
-10: '#insertStep .bottom-fixed-box .btn-primary'
-};
+    0: '.type-card',                       // [추가] 0단계: 매장/포장 선택 카드
+    1: '.product-card[data-product-index="0"]', // (기존 0번이 1번으로 밀림)
+    2: '#modalAddButton',
+    3: '#addon-item-1',
+    4: '.modal-footer-btns .btn-primary',
+    5: '#bottomCartBar',
+    6: '#btn-go-order',
+    7: '#btn-pay',
+    8: '#step-select [onclick*="step-phone"]',
+    9: '.key-btn[onclick*="appendNum"]',
+    10: '#submit-phone-btn',
+    11: '#cardOption',
+    12: '#methodStep .bottom-fixed-box .btn-primary',
+    13: '#insertStep .bottom-fixed-box .btn-primary'
+  };
 
   // 단계별 강조 대상
-const fastfoodTutorialHighlightTargets = {
-  0: '.product-card[data-product-index="0"]',
-  1: '#modalAddButton',
-  2: '#bottomCartBar',
-  3: '#btn-go-order',
-  4: '#btn-pay',
-  5: '#step-select [onclick*="step-phone"]',
-  6: '.keypad-grid',
-  7: '#submit-phone-btn',
-  8: '#cardOption',
-9: '#methodStep .bottom-fixed-box .btn-primary',
-10: '#insertStep .bottom-fixed-box .btn-primary'
-};
-
+  const fastfoodTutorialHighlightTargets = {
+    0: '.type-card',                       // [추가] 0단계 강조
+    1: '.product-card[data-product-index="0"]', // (기존 0번이 1번으로 밀림)
+    2: '#modalAddButton',
+    3: '#addon-item-1',
+    4: '.modal-footer-btns .btn-primary',
+    5: '#bottomCartBar',
+    6: '#btn-go-order',
+    7: '#btn-pay',
+    8: '#step-select [onclick*="step-phone"]',
+    9: '.keypad-grid',
+    10: '#submit-phone-btn',
+    11: '#cardOption',
+    12: '#methodStep .bottom-fixed-box .btn-primary',
+    13: '#insertStep .bottom-fixed-box .btn-primary'
+  };
   // ========================================
   // 3. 레스토랑과 동일한 튜토리얼 CSS
   // ========================================
@@ -203,7 +207,9 @@ const fastfoodTutorialHighlightTargets = {
       String(fastfoodTutorialStep)
     );
 
-    updateFastfoodTutorialHighlight();
+    setTimeout(() => {
+      updateFastfoodTutorialHighlight();
+    }, 50);
   }
 
   // ========================================
@@ -262,10 +268,10 @@ const fastfoodTutorialHighlightTargets = {
     }
 
     // 전화번호 입력 단계는 별도 검사
-    if (fastfoodTutorialStep === 6) return;
+    if (fastfoodTutorialStep === 9) return;
 
     // 마지막 단계
-   if (fastfoodTutorialStep === 10) {
+   if (fastfoodTutorialStep === 13) {
   finishFastfoodTutorial();
   return;
 }
@@ -282,7 +288,7 @@ const fastfoodTutorialHighlightTargets = {
 
     if (
       sessionStorage.getItem('fastfoodTutorialMode') !== 'true' ||
-      fastfoodTutorialStep !== 6
+      fastfoodTutorialStep !== 9
     ) {
       return;
     }
