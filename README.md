@@ -41,7 +41,7 @@
 
 - Frontend: HTML5, CSS3, JavaScript
 - Backend: Python, FastAPI, SQLite
-- Design:
+- Design: Figma Make
 
 ## 5. 팀원 및 역할
 
