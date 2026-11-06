@@ -5,7 +5,7 @@ import uuid
 from typing import Any
 from fastapi import HTTPException
 from .mission_data import (
-    PAYMENTS, MEMBERSHIP, FASTFOOD, FASTFOOD_SIDES,
+    PAYMENTS, MEMBERSHIP, FASTFOOD,
     FASTFOOD_SET_SIDES, FASTFOOD_DRINKS, FASTFOOD_RECOMMENDED, CATALOG,
 )
 
@@ -35,7 +35,7 @@ def _generate_fastfood(difficulty: str) -> list[dict[str, Any]]:
     items = [_item(name, **options)]
     if difficulty == "hard":
         # 별도 추가상품은 실제 메뉴에 존재하는 항목에서 선택
-        extra = random.choice(list(FASTFOOD_RECOMMENDED))
+        extra = random.choice(FASTFOOD_RECOMMENDED)
         items.append(_item(extra))
     return items
 
