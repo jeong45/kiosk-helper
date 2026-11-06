@@ -103,7 +103,6 @@ function getTotalCount(cart) {
 function getTotalPrice(cart) {
   return cart.reduce((sum, item) => sum + (Number(item.price) || 0) * (Number(item.quantity) || 0), 0);
 }
-
 // =====================================
 // 4. 메뉴판 렌더링
 // =====================================
@@ -128,8 +127,25 @@ function renderProducts(category) {
   productCards.forEach((card, index) => {
     card.addEventListener('click', () => {
       const product = products[index];
+      
       if (category === '와퍼') {
-        openSetChoiceModal(product); // 와퍼면 세트 선택 모달부터 시작!
+        // [수정된 부분] HTML에 세트 선택 창이 있는지 확인해서 에러 방지
+        const setModalExists = document.getElementById('setChoiceModal');
+        
+        if (setModalExists) {
+          openSetChoiceModal(product); // 기본 메뉴판에서는 세트 선택 창 열기
+        } else {
+          // 미션 모드(easy.html)처럼 세트 창이 없으면 바로 단품 수량 조절 창 열기
+          currentItem = {
+            name: product.name,
+            price: product.price,
+            quantity: 1,
+            setType: 'single',
+            side: null,
+            drink: null
+          };
+          openModal(product.name, product.price);
+        }
       } else {
         // 사이드/음료는 바로 수량 모달로
         currentItem = {
@@ -315,7 +331,15 @@ function changeQuantity(change) {
 function addToCart() {
   if (!currentItem.name || currentItem.price <= 0) return;
   closeModal();
-  openAddonModal();
+  
+  // addonModal(추가 제안 창)이 현재 HTML에 있는지 확인
+  const addonModal = document.getElementById('addonModal');
+  
+  if (addonModal) {
+    openAddonModal(); // 메뉴판(menu.html)처럼 모달이 있으면 띄움
+  } else {
+    submitAddonAndCart(false); // 미션모드(easy.html)처럼 모달이 없으면 바로 담기!
+  }
 }
 
 function openAddonModal() {
@@ -403,15 +427,24 @@ function updateCartBar() {
   }
 }
 
+// =====================================
+// 상품 선택 화면에서 장바구니 페이지 이동 
+// =====================================
 function goToCart() {
   const cart = getCart();
+
   if (cart.length === 0) {
     alert('장바구니가 비어있습니다.');
     return;
   }
-  window.location.href = 'cart.html';
-}
 
+  if (window.location.href.includes('easy.html') || window.location.href.includes('mission')) {
+    window.location.href = '../../menu&cart/cart.html';
+  } else {
+    // 일반 메뉴판일 때는 원래대로 이동
+    window.location.href = 'cart.html';
+  }
+}
 function renderFastfoodCart() {
   const cartList = document.getElementById('cart-item-list');
   if (!cartList) return;
