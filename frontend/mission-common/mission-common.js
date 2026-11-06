@@ -78,6 +78,30 @@ document.addEventListener('DOMContentLoaded', () => {
                         '../mart/mission/hard/hard.html';
                 }
             }
+            
+            // 카페 미션 (기존 기능 유지)
+            if (category === 'cafe') {
+
+                if (selectedLevel === 'easy') {
+                    window.location.href =
+                        '../cafe/mission/easy/easy.html';
+                } else {
+                    window.location.href =
+                        '../cafe/mission/hard/hard.html';
+                }
+            }
+            
+            // 패스트푸드미션 (기존 기능 유지)
+            if (category === 'fastfood') {
+
+                if (selectedLevel === 'easy') {
+                    window.location.href =
+                        '../fastfood/mission/easy/easy.html';
+                } else {
+                    window.location.href =
+                        '../fastfood/mission/hard/hard.html';
+                }
+            }
 
         });
     });

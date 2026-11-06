@@ -1,49 +1,194 @@
-<!-- front/카페/미션/이지/easy.html -->
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <title>키우미 - 기본 주문 연습 (이지모드)</title>
-    <!-- 공통 미션 스타일 및 이지모드 전용 스타일 경로 연결 -->
-    <link rel="stylesheet" href="../../../mission-common/mission-common.css">
-    <link rel="stylesheet" href="easy.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>키우미 - 카페 EASY 미션</title>
+
+  <!-- Pretendard -->
+  <link rel="stylesheet" as="style" crossorigin
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+
+  <!-- 기존 카페 디자인 -->
+  <link rel="stylesheet" href="../../menu&cart/cafe.css">
+
+  <!-- EASY 미션 전용 디자인 -->
+  <link rel="stylesheet" href="easy.css">
 </head>
+
 <body>
-    <div class="kiosk-container">
-        <!-- 상단 헤더 -->
-        <header class="kiosk-header">
-            <div class="logo-area">🌱 키우미</div>
-            <div class="cart-indicator">장바구니 <span id="cart-count">0</span></div>
-        </header>
 
-        <!-- 상단 미션 배너 (모든 화면에서 공유) -->
-        <div id="mission-banner-container">
-            <div class="mission-banner">
-                <span class="mission-tag" id="mission-tag">EASY · 오늘의 미션</span>
-                <p id="mission-desc" class="mission-desc">미션 내용을 불러오는 중입니다...</p>
-            </div>
+  <div class="kiosk-container">
+
+    <main class="page-content">
+
+      <!-- 상단 헤더 -->
+      <header class="top-header">
+
+        <div class="logo-area">
+
+          <div class="logo-icon-img">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <rect width="24" height="24" rx="6" fill="#DCFCE7"/>
+              <path d="M12 5V15M12 15C10 13 7 13 5 15M12 15C14 13 17 13 19 15"
+                stroke="#166534" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+
+          <span class="logo-text">키우미</span>
+
         </div>
 
-        <!-- 메인 카테고리 & 상품 목록 (자유연습모드 레이아웃 계승) -->
-        <div class="main-content">
-            <nav class="category-sidebar">
-                <button class="category-btn active" data-category="set">세트메뉴</button>
-                <button class="category-btn" data-category="single">단일메뉴</button>
-                <button class="category-btn" data-category="side">사이드메뉴</button>
-                <button class="category-btn" data-category="drink">음료</button>
-                <button class="category-btn" data-category="alcohol">주류</button>
-            </nav>
-            <section class="product-display">
-                <h2>원하는 메뉴를 골라주세요</h2>
-                <div class="product-grid" id="product-grid">
-                    <!-- 상품 동적 렌더링 영역 -->
-                </div>
-            </section>
+        <div class="store-badge-bar">
+
+          <div class="store-title-box">
+            <div class="store-red-icon">☕</div>
+            <span class="store-main-title">카페 키오스크</span>
+          </div>
+
+          <button type="button" class="top-cart-badge"
+            id="topCartBadge" onclick="goToCart()">
+            장바구니 0
+          </button>
+
         </div>
+
+      </header>
+
+
+      <!-- EASY 미션 안내창 -->
+      <section class="easy-mission-banner">
+
+        <div class="easy-mission-header">
+
+          <span class="easy-mission-level">EASY</span>
+
+          <span class="easy-mission-label">오늘의 미션</span>
+
+        </div>
+
+        <p class="easy-mission-instruction" id="missionInstruction">
+          미션을 불러오는 중입니다.
+        </p>
+
+      </section>
+
+
+      
+
+      <!-- 상품 카테고리 -->
+      <nav class="category-tabs">
+
+        <button type="button" class="tab-btn active"
+          data-category="커피">
+          커피
+        </button>
+
+        <button type="button" class="tab-btn"
+          data-category="음료">
+          음료
+        </button>
+
+        <button type="button" class="tab-btn"
+          data-category="티">
+          티
+        </button>
+
+        <button type="button" class="tab-btn"
+          data-category="베이커리">
+          베이커리
+        </button>
+
+        <button type="button" class="tab-btn"
+          data-category="상품">
+          상품
+        </button>
+
+      </nav>
+
+      <!-- 상품 목록 -->
+      <section class="product-section">
+        <div class="product-grid" id="productGrid">
+          <!-- JavaScript에서 상품 카드 생성 -->
+        </div>
+
+      </section>
+    </main>
+
+
+    <!-- 하단 장바구니 -->
+    <div class="bottom-cart-bar" id="bottomCartBar"
+      onclick="goToCart()">
+      장바구니가 비어있습니다
     </div>
 
-    <!-- 스크립트 연결: 공통 미션 로직 + 이지모드 전용 로직 -->
-    <script src="../../../mission-common/mission-common.js"></script>
-    <script src="easy.js"></script>
+
+    <!-- 상품 수량 조절 모달 -->
+    <div class="modal-overlay" id="optionModal"
+      style="display: none;">
+
+      <div class="modal-card">
+
+        <button type="button" class="modal-close-btn"
+          onclick="closeModal()">✕</button>
+
+        <div class="modal-sub-label">상품 선택</div>
+
+        <h3 class="modal-item-title" id="modalItemTitle">
+          아메리카노
+        </h3>
+
+        <div class="modal-item-price" id="modalItemPrice">
+          2,000원
+        </div>
+
+        <div class="modal-quantity-box">
+
+          <span class="quantity-label">수량</span>
+
+          <div class="quantity-controls">
+
+            <button type="button" class="qty-btn"
+              onclick="changeQuantity(-1)">
+              -
+            </button>
+
+            <span id="modalQuantity">1</span>
+
+            <button type="button" class="qty-btn"
+              onclick="changeQuantity(1)">
+              +
+            </button>
+
+          </div>
+
+        </div>
+
+        <button type="button" class="btn-primary full"
+          id="modalAddButton" onclick="addToCart()">
+
+          장바구니 담기 ·
+          <span id="modalBtnPrice">1,000원</span>
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- JavaScript 연결 -->
+
+
+  <!-- 기존 카페 상품 및 장바구니 기능 -->
+  <script src="../../menu&cart/cafe.js"></script>
+
+  <!-- EASY 미션 전용 기능 -->
+  <script src="easy.js"></script>
+
 </body>
 </html>
