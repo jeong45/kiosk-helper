@@ -2,23 +2,7 @@
 // =====================================
 // 1. 상품 데이터
 // =====================================
-const FASTFOOD_PRODUCTS = [
-  // 스페셜
-  { name: '텍사스 칠리와퍼 팩1', price: 18000, category: '스페셜', color: '#FFFFFF', isNew: true },
-  { name: '텍사스 칠리와퍼 팩2', price: 18000, category: '스페셜', color: '#FFFFFF', isNew: true },
-  { name: '텍사스 칠리와퍼 팩3', price: 18000, category: '스페셜', color: '#FFFFFF', isNew: true },
-  { name: '텍사스 칠리와퍼 팩4', price: 18000, category: '스페셜', color: '#FFFFFF', isNew: true },
-  { name: '텍사스 칠리와퍼 팩5', price: 20500, category: '스페셜', color: '#FFFFFF', isNew: true },
-  { name: '텍사스 칠리와퍼 팩6', price: 22500, category: '스페셜', color: '#FFFFFF', isNew: true },
-
-  // 프리미엄
-  { name: '콰트로치즈와퍼', price: 3900, category: '프리미엄', color: '#FFFFFF', isNew: false },
-  { name: '통새우와퍼', price: 3900, category: '프리미엄', color: '#FFFFFF', isNew: false },
-  { name: '할라피뇨와퍼', price: 3900, category: '프리미엄', color: '#FFFFFF', isNew: false },
-  { name: '기네스콰트로치즈와퍼', price: 8500, category: '프리미엄', color: '#FFFFFF', isNew: false },
-  { name: '기네스머쉬룸와퍼', price: 8900, category: '프리미엄', color: '#FFFFFF', isNew: false },
-  { name: '기네스와퍼', price: 8500, category: '프리미엄', color: '#FFFFFF', isNew: false },
-
+const FASTFOOD = [
   // 와퍼
   { name: '치즈와퍼', price: 4100, category: '와퍼', color: '#FFFFFF', isNew: false },
   { name: '와퍼', price: 3500, category: '와퍼', color: '#FFFFFF', isNew: false },
@@ -28,20 +12,26 @@ const FASTFOOD_PRODUCTS = [
   { name: '베이컨치즈와퍼', price: 8200, category: '와퍼', color: '#FFFFFF', isNew: false },
 
   // 사이드
-  { name: '사이드소스', price: 300, category: '사이드', color: '#FFFFFF', isNew: false },
-  { name: '너겟킹 8조각', price: 2000, category: '사이드', color: '#FFFFFF', isNew: false },
-  { name: '21치즈스틱', price: 1600, category: '사이드', color: '#FFFFFF', isNew: false },
-  { name: '프렌치프라이(L)', price: 2100, category: '사이드', color: '#FFFFFF', isNew: false },
-  { name: '코코넛쉬림프', price: 3300, category: '사이드', color: '#FFFFFF', isNew: false },
-  { name: '크리미모짜볼', price: 2200, category: '사이드', color: '#FFFFFF', isNew: false },
-  { name: '볼케이노칠리프라이', price: 2800, category: '사이드', color: '#FFFFFF', isNew: false },
-  { name: '치즈프라이', price: 2000, category: '사이드', color: '#FFFFFF', isNew: false },
-  { name: '트러플프라이', price: 2000, category: '사이드', color: '#FFFFFF', isNew: false },
+  { name: '프렌치프라이', price: 2800, category: '사이드', color: '#FFFFFF', isNew: false },
+  { name: '프렌치프라이 교환', price: 2800, category: '사이드', color: '#FFFFFF', isNew: false },
+  { name: '너겟킹 3조각', price: 2000, category: '사이드', color: '#FFFFFF', isNew: false },
+  { name: '치즈스틱', price: 1600, category: '사이드', color: '#FFFFFF', isNew: false },
   { name: '어니언링', price: 2000, category: '사이드', color: '#FFFFFF', isNew: false },
-  { name: '프렌치프라이(R)', price: 1600, category: '사이드', color: '#FFFFFF', isNew: false },
-  { name: '코울슬로', price: 1400, category: '사이드', color: '#FFFFFF', isNew: false }
-];
+  { name: '프렌치프라이', price: 2800, category: '사이드', color: '#FFFFFF', isNew: false },
+  { name: '코울슬로', price: 1400, category: '사이드', color: '#FFFFFF', isNew: false },
+  // 음료
+  { name: '코카콜라', price: 1800, category: '음료', color: '#FFFFFF', isNew: false },
+   { name: '코카콜라제로', price: 1800, category: '음료', color: '#FFFFFF', isNew: false },
+  { name: '스프라이트', price: 1800, category: '음료', color: '#FFFFFF', isNew: false },
+  { name: '미닛메이드 오렌지', price: 1800, category: '음료', color: '#FFFFFF', isNew: false },
+  { name: '아메리카노', price: 1800, category: '음료', color: '#FFFFFF', isNew: false },
+  { name: '씨그램', price: 1800, category: '음료', color: '#FFFFFF', isNew: false }
 
+
+
+
+];
+ㄴ
 // =====================================
 // 2. 현재 선택 상품 및 카테고리
 // =====================================
@@ -117,7 +107,7 @@ function renderProducts(category) {
 
   currentCategory = category;
 
-  const products = FASTFOOD_PRODUCTS.filter(
+  const products = FASTFOOD.filter(
     product => product.category === category
   );
 
