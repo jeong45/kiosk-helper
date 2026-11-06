@@ -782,3 +782,263 @@ body {
   display: block;
 }
 
+
+/* ========================================
+   음식점 EASY / HARD 미션 실패 화면
+======================================== */
+
+/* 실패 화면 전체 영역 */
+#mission-fail-modal {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: #f0f6ff;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* 실패 결과 카드 */
+#mission-fail-modal .result-card {
+  width: 100%;
+  max-width: 380px;
+  max-height: 100%;
+  overflow-y: auto;
+  background: #f4f7ff;
+  border-radius: 24px;
+  padding: 28px 20px;
+  text-align: center;
+}
+
+/* 빨간색 X 아이콘 */
+#mission-fail-modal .fail-icon-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+#mission-fail-modal .fail-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #e04444;
+  color: white;
+  font-size: 32px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 18px rgba(224, 68, 68, 0.2);
+}
+
+/* 실패 제목 */
+#mission-fail-modal .result-card h2 {
+  font-size: 13px;
+  font-weight: 800;
+  color: #a92626;
+  margin-bottom: 6px;
+}
+
+#mission-fail-modal .fail-main-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #1a1a24;
+  margin-bottom: 8px;
+}
+
+#mission-fail-modal .sub-text {
+  font-size: 14px;
+  color: #6c727f;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* 미션 안내 박스 */
+#mission-fail-modal .mission-guide-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 14px;
+  background: #ede8ff;
+  border-radius: 14px;
+  text-align: left;
+  margin-bottom: 14px;
+  color: #4312a7;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+#mission-fail-modal .mission-guide-box .badge {
+  flex-shrink: 0;
+  background: #7000ff;
+  color: white;
+  padding: 4px 9px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* 조건별 결과 / 실제 주문 내역 */
+#mission-fail-modal .result-box,
+#mission-fail-modal .user-summary-box {
+  width: 100%;
+  background: white;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+#mission-fail-modal .result-box-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #8c94a0;
+  margin-bottom: 12px;
+}
+
+/* 조건별 결과 */
+#mission-fail-modal .result-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px;
+  background: #fff6f6;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #2d3139;
+}
+
+#mission-fail-modal .result-item:last-child {
+  margin-bottom: 0;
+}
+
+#mission-fail-modal .fail-badge {
+  color: #c62828;
+  font-size: 13px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+#mission-fail-modal .success-badge {
+  color: #27ae60;
+  font-size: 13px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* 실제 주문 내역 */
+#mission-fail-modal .summary-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #2d3139;
+}
+
+#mission-fail-modal #fail-receipt-items .summary-item {
+  border-bottom: 1px solid #f1f5f9;
+}
+
+#mission-fail-modal .total-price {
+  color: #e04444;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+#mission-fail-modal .payment-method {
+  color: #3842b0;
+  font-weight: 800;
+}
+
+/* 실패 화면 하단 버튼 */
+#mission-fail-modal .fail-btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+#mission-fail-modal .fail-btn-group button {
+  width: 100%;
+  padding: 16px;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+#mission-fail-modal .fail-retry-btn {
+  background: white;
+  color: #4f46e5;
+  border: 2px solid #4f46e5;
+}
+
+#mission-fail-modal .fail-main-btn {
+  background: #4f46e5;
+  color: white;
+  border: 2px solid #4f46e5;
+}
+
+#mission-fail-modal .fail-btn-group button:active {
+  transform: scale(0.98);
+}
+
+/* ========================================
+   HARD 미션 결과 화면
+======================================== */
+
+#mission-fail-modal #failDifficultyBadge.hard-badge {
+  background: #3730a3;
+  color: #ffffff;
+}
+
+#mission-fail-modal.hard-mode .mission-guide-box {
+  background: #e0e7ff;
+  color: #312e81;
+}
+
+#mission-fail-modal.hard-mode #missionResultTitle {
+  color: #3730a3;
+}
+
+#mission-fail-modal #membershipResultRow {
+  gap: 12px;
+}
+
+#mission-fail-modal #fail-receipt-membership {
+  color: #4f46e5;
+  font-weight: 800;
+}
+
+#mission-fail-modal.hard-mode {
+  align-items: flex-start;
+}
+
+#mission-fail-modal.hard-mode .result-card {
+  max-height: none;
+  overflow-y: visible;
+  margin: auto 0;
+}
+
+/* 작은 화면에서도 스크롤 가능 */
+@media (max-height: 700px) {
+  #mission-fail-modal {
+    align-items: flex-start;
+  }
+
+  #mission-fail-modal .result-card {
+    max-height: none;
+    overflow-y: visible;
+  }
+}

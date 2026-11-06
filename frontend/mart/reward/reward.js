@@ -1,17 +1,40 @@
-// Lucide 아이콘 초기화
+
+// ========================================
+// 키우미 마트 멤버십 적립
+// ========================================
+
+
+// ========================================
+// 1. Lucide 아이콘 초기화
+// ========================================
+
 document.addEventListener('DOMContentLoaded', () => {
-  lucide.createIcons();
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
 });
 
-// 입력된 전화번호 저장 변수
+
+// ========================================
+// 2. 전화번호 저장 변수
+// ========================================
+
 let rawPhoneNumber = "";
 
-// 스텝 페이지 이동 함수
+
+// ========================================
+// 3. 화면 이동
+// ========================================
+
 function goToStep(stepId) {
   const pages = document.querySelectorAll('.step-page');
-  pages.forEach(page => page.classList.remove('active'));
+
+  pages.forEach(page => {
+    page.classList.remove('active');
+  });
 
   const targetPage = document.getElementById(stepId);
+
   if (targetPage) {
     targetPage.classList.add('active');
   }
@@ -21,7 +44,11 @@ function goToStep(stepId) {
   }
 }
 
-// 숫자 버튼 입력
+
+// ========================================
+// 4. 숫자 입력
+// ========================================
+
 function appendNum(digit) {
   if (rawPhoneNumber.length < 11) {
     rawPhoneNumber += digit;
@@ -29,7 +56,11 @@ function appendNum(digit) {
   }
 }
 
-// 지우기(BackSpace) 버튼
+
+// ========================================
+// 5. 숫자 한 자리 삭제
+// ========================================
+
 function deleteNum() {
   if (rawPhoneNumber.length > 0) {
     rawPhoneNumber = rawPhoneNumber.slice(0, -1);
@@ -37,13 +68,21 @@ function deleteNum() {
   }
 }
 
-// X 버튼 (전체 지우기)
+
+// ========================================
+// 6. 전화번호 전체 삭제
+// ========================================
+
 function clearPhone() {
   rawPhoneNumber = "";
   updatePhoneUI();
 }
 
-// 전화번호 포맷팅 및 UI 업데이트
+
+// ========================================
+// 7. 전화번호 UI 업데이트
+// ========================================
+
 function updatePhoneUI() {
   const inputEl = document.getElementById('phone-input');
   const clearBtn = document.getElementById('clear-btn');
@@ -55,12 +94,18 @@ function updatePhoneUI() {
 
   if (len < 4) {
     formatted = rawPhoneNumber;
+
   } else if (len < 7) {
-    formatted = `${rawPhoneNumber.slice(0, 3)}-${rawPhoneNumber.slice(3)}`;
+    formatted =
+      `${rawPhoneNumber.slice(0, 3)}-${rawPhoneNumber.slice(3)}`;
+
   } else if (len < 11) {
-    formatted = `${rawPhoneNumber.slice(0, 3)}-${rawPhoneNumber.slice(3, 6)}-${rawPhoneNumber.slice(6)}`;
+    formatted =
+      `${rawPhoneNumber.slice(0, 3)}-${rawPhoneNumber.slice(3, 6)}-${rawPhoneNumber.slice(6)}`;
+
   } else {
-    formatted = `${rawPhoneNumber.slice(0, 3)}-${rawPhoneNumber.slice(3, 7)}-${rawPhoneNumber.slice(7, 11)}`;
+    formatted =
+      `${rawPhoneNumber.slice(0, 3)}-${rawPhoneNumber.slice(3, 7)}-${rawPhoneNumber.slice(7, 11)}`;
   }
 
   inputEl.value = formatted;
@@ -75,15 +120,32 @@ function updatePhoneUI() {
 
   if (len >= 10) {
     submitBtn.disabled = false;
-    submitBtn.className = "btn-primary full-btn";
+    submitBtn.className = 'btn-primary full-btn';
   } else {
     submitBtn.disabled = true;
-    submitBtn.className = "btn-disabled full-btn";
+    submitBtn.className = 'btn-disabled full-btn';
   }
 }
 
-// 완료 후 다음 결제 창 이동
-// 리워드 선택 완료 후 결제 화면으로 이동
-function finishReward() {
+
+// ========================================
+// 8. 멤버십 적립 완료
+// ========================================
+
+function finishReward(method) {
+
+  // 선택한 멤버십 적립 방식 저장
+  // none    : 적립 안 함
+  // barcode : 바코드 적립
+  // phone   : 전화번호 적립
+
+  sessionStorage.setItem(
+    'martMembershipMethod',
+    method
+  );
+
+  console.log('선택한 멤버십 적립 방식:', method);
+
+  // 결제 화면으로 이동
   window.location.href = '../payment/payment.html';
 }

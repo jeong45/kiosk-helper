@@ -1,4 +1,3 @@
-
 // ========================================
 // 키우미 마트 EASY 미션
 // ========================================
@@ -11,6 +10,7 @@ const API_BASE_URL = 'http://127.0.0.1:8000';
 const MISSION_ID_KEY = 'martEasyMissionId';
 const MISSION_MODE_KEY = 'martMissionMode';
 const MISSION_CART_KEY = 'martMissionCartItems';
+const MISSION_INSTRUCTION_KEY = 'martEasyMissionInstruction';
 
 
 // ========================================
@@ -30,6 +30,7 @@ async function loadEasyMission() {
 
     // 이전 미션 데이터 초기화
     sessionStorage.removeItem(MISSION_ID_KEY);
+    sessionStorage.removeItem(MISSION_INSTRUCTION_KEY);
     localStorage.removeItem(MISSION_CART_KEY);
 
     instructionElement.textContent = '미션을 불러오는 중입니다.';
@@ -47,7 +48,16 @@ async function loadEasyMission() {
         const mission = await response.json();
 
         // 미션 ID 저장
-        sessionStorage.setItem(MISSION_ID_KEY, mission.mission_id);
+        sessionStorage.setItem(
+            MISSION_ID_KEY,
+            mission.mission_id
+        );
+
+        // 미션 안내 문구 저장
+        sessionStorage.setItem(
+            MISSION_INSTRUCTION_KEY,
+            mission.instruction
+        );
 
         // 미션 안내 문구 표시
         instructionElement.textContent = mission.instruction;

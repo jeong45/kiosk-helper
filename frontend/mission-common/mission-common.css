@@ -1,4 +1,4 @@
-/* 공통 스타일 및 초기화 */
+/* 공통 스타일 및 초기화 (수정 완료: - -> *) */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -151,8 +151,8 @@ body {
 }
 
 .easy-badge {
-    background-color: #E3FCEF;
-    color: #27AE60;
+    background-color: #7000FF;
+    color: #FFFFFF;
 }
 
 .mission-card.easy h3 {
@@ -194,4 +194,208 @@ body {
 
 .mission-card.hard .card-text p {
     color: rgba(255, 255, 255, 0.85);
+}
+
+
+/* ==========================================
+   [수정 완료] 미션 실패 화면 (모달 및 결과 카드) 스타일
+   ========================================== */
+
+/* 전체 화면을 덮는 모달 배경 */
+.modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 16px;
+}
+
+/* 실패 결과 카드 박스 (시안 맞춤 배경 및 레이아웃) */
+.result-card {
+    background: #F4F7FF;
+    width: 100%;
+    max-width: 380px;
+    padding: 32px 24px;
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* 상단 실패 X 아이콘 원형 래퍼 */
+.fail-icon-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.fail-icon {
+    width: 64px;
+    height: 64px;
+    background-color: #E04444;
+    color: #FFFFFF;
+    font-size: 32px;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(224, 68, 68, 0.35);
+}
+
+/* 실패 타이틀 및 안내 텍스트 */
+.result-card h2 {
+    font-size: 13px;
+    font-weight: 800;
+    color: #A92626;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+}
+
+.fail-main-title {
+    font-size: 26px;
+    font-weight: 800;
+    color: #1A1A24;
+    margin-bottom: 8px;
+}
+
+.result-card .sub-text {
+    font-size: 14px;
+    color: #6C727F;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+/* 미션 내용 가이드 박스 (시안 연보라 배경) */
+.mission-guide-box {
+    background-color: #EDE8FF;
+    border-radius: 16px;
+    padding: 14px 16px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #4312A7;
+    text-align: left;
+    margin-bottom: 16px;
+    line-height: 1.4;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.mission-guide-box .badge {
+    margin-bottom: 0;
+    flex-shrink: 0;
+}
+
+/* 조건별 결과 박스 & 유저 선택 내역 박스 공통 카드 */
+.result-box, .user-summary-box {
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 12px;
+    text-align: left;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.result-box-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #8C94A0;
+    margin-bottom: 10px;
+}
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    background-color: #FFF6F6;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #2D3139;
+    margin-bottom: 8px;
+}
+
+.result-item:last-child {
+    margin-bottom: 0;
+}
+
+/* 놓침 뱃지 (빨간색 ✕ 표시) */
+.fail-badge {
+    color: #C62828;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+/* 유저 실제 수행 결과 요약 항목 */
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: #2D3139;
+    padding: 6px 0;
+}
+
+.summary-item .price {
+    font-weight: 800;
+    color: #1A1A24;
+}
+
+.summary-item .total-price {
+    color: #E04444;
+    font-weight: 800;
+}
+
+.summary-item .payment-method {
+    color: #3842B0;
+    font-weight: 800;
+}
+
+/* 하단 액션 버튼 공통 */
+.result-card button {
+    width: 100%;
+    padding: 16px;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.result-card button:active {
+    transform: scale(0.98);
+}
+
+/* 첫 번째 버튼: 한 번 더 연습하기 */
+.btn-primary {
+    background-color: #FFFFFF;
+    color: #4A40AF;
+    border: 2px solid #4A40AF !important;
+    margin-bottom: 10px;
+}
+
+.btn-primary:hover {
+    background-color: #F4F0FF;
+}
+
+/* 두 번째 버튼: 다른 연습 선택 */
+.btn-secondary {
+    background-color: #4F46E5;
+    color: #FFFFFF;
+}
+
+.btn-secondary:hover {
+    background-color: #4338CA;
 }

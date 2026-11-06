@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -5,138 +6,221 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>멤버십 적립</title>
   <link rel="stylesheet" href="reward.css">
+
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
   <div class="kiosk-container">
-    
-    <!-- 1. 적립 선택 화면 -->
+
+    <!-- ========================================
+         1. 적립 선택 화면
+    ======================================== -->
     <div id="step-select" class="step-page active">
+
       <div class="header">
         <button class="back-btn" onclick="history.back()">
           <i data-lucide="chevron-left"></i>
         </button>
         <span class="header-title">결제 전 확인</span>
       </div>
-      
+
       <div class="content">
-        <!-- 중앙 정렬을 위한 센터링 영역 -->
+
         <div class="center-section">
           <div class="icon-circle">
             <i data-lucide="sparkles"></i>
           </div>
-          <h2 class="main-title text-center">멤버십 적립을<br>하시겠습니까?</h2>
-          <p class="sub-title text-center">원하는 적립 방법을 선택해 주세요.</p>
+
+          <h2 class="main-title text-center">
+            멤버십 적립을<br>하시겠습니까?
+          </h2>
+
+          <p class="sub-title text-center">
+            원하는 적립 방법을 선택해 주세요.
+          </p>
         </div>
-        
+
         <div class="option-list">
-          <button class="option-card" onclick="goToStep('step-barcode')">
+
+          <!-- 바코드 적립 -->
+          <button class="option-card"
+                  onclick="goToStep('step-barcode')">
             <div class="option-info">
               <h3>멤버십 바코드로 적립</h3>
               <p>휴대폰의 바코드를 스캔해요</p>
             </div>
             <i data-lucide="chevron-right" class="arrow-icon"></i>
           </button>
-          
-          <button class="option-card" onclick="goToStep('step-phone')">
+
+          <!-- 전화번호 적립 -->
+          <button class="option-card"
+                  onclick="goToStep('step-phone')">
             <div class="option-info">
               <h3>전화번호로 적립</h3>
               <p>숫자패드로 번호를 입력해요</p>
             </div>
             <i data-lucide="chevron-right" class="arrow-icon"></i>
           </button>
-          
-          <button class="btn-dark full-btn" onclick="finishReward()">
+
+          <!-- 적립 안 함 -->
+          <button class="btn-dark full-btn"
+                  onclick="finishReward('none')">
             적립 안 함
           </button>
+
         </div>
       </div>
     </div>
 
-    <!-- 2. 바코드 스캔 화면 -->
+
+    <!-- ========================================
+         2. 바코드 스캔 화면
+    ======================================== -->
     <div id="step-barcode" class="step-page">
+
       <div class="header">
         <span class="header-title center">멤버십 적립</span>
       </div>
-      
+
       <div class="content">
-        <h2 class="main-title text-center">멤버십 바코드를<br>아래 리더기에 스캔해 주세요</h2>
-        <p class="sub-title text-center">휴대폰 화면의 바코드가 리더기를 향하게 해주세요.</p>
-        
+
+        <h2 class="main-title text-center">
+          멤버십 바코드를<br>
+          아래 리더기에 스캔해 주세요
+        </h2>
+
+        <p class="sub-title text-center">
+          휴대폰 화면의 바코드가 리더기를 향하게 해주세요.
+        </p>
+
         <div class="scanner-box">
           <div class="scanner-illustration">
+
             <div class="reader-device">
-              <span class="reader-label">BARCODE<br>READER</span>
+              <span class="reader-label">
+                BARCODE<br>READER
+              </span>
+
               <div class="red-lights">
                 <span class="light"></span>
                 <span class="light"></span>
               </div>
             </div>
+
             <div class="phone-device">
               <div class="phone-speaker"></div>
+
               <div class="barcode-lines">
-                <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span>
+                <span></span><span></span><span></span>
+                <span></span>
               </div>
             </div>
+
           </div>
         </div>
 
         <div class="bottom-actions two-btns">
-          <button class="btn-dark" onclick="goToStep('step-select')">이전</button>
-          <button class="btn-primary" onclick="finishReward()">스캔 완료</button>
+
+          <button class="btn-dark"
+                  onclick="goToStep('step-select')">
+            이전
+          </button>
+
+          <button class="btn-primary"
+                  onclick="finishReward('barcode')">
+            스캔 완료
+          </button>
+
         </div>
       </div>
     </div>
 
-    <!-- 3. 전화번호 입력 화면 -->
+
+    <!-- ========================================
+         3. 전화번호 입력 화면
+    ======================================== -->
     <div id="step-phone" class="step-page">
+
       <div class="header">
-        <button class="back-btn" onclick="goToStep('step-select')">
+        <button class="back-btn"
+                onclick="goToStep('step-select')">
           <i data-lucide="chevron-left"></i>
         </button>
         <span class="header-title">멤버십 적립</span>
       </div>
 
       <div class="content">
-        <h2 class="main-title text-center">휴대폰 번호를 입력해 주세요</h2>
-        
-        <!-- 번호 입력 창 -->
+
+        <h2 class="main-title text-center">
+          휴대폰 번호를 입력해 주세요
+        </h2>
+
+        <!-- 전화번호 표시 -->
         <div class="phone-display-box" id="display-box">
-          <input type="text" id="phone-input" placeholder="010-0000-0000" readonly />
-          <button class="clear-btn" id="clear-btn" onclick="clearPhone()">
+
+          <input
+            type="text"
+            id="phone-input"
+            placeholder="010-0000-0000"
+            readonly
+          />
+
+          <button class="clear-btn"
+                  id="clear-btn"
+                  onclick="clearPhone()">
             <i data-lucide="x"></i>
           </button>
+
         </div>
 
         <!-- 숫자 키패드 -->
         <div class="keypad-grid">
+
           <button class="key-btn" onclick="appendNum('1')">1</button>
           <button class="key-btn" onclick="appendNum('2')">2</button>
           <button class="key-btn" onclick="appendNum('3')">3</button>
+
           <button class="key-btn" onclick="appendNum('4')">4</button>
           <button class="key-btn" onclick="appendNum('5')">5</button>
           <button class="key-btn" onclick="appendNum('6')">6</button>
+
           <button class="key-btn" onclick="appendNum('7')">7</button>
           <button class="key-btn" onclick="appendNum('8')">8</button>
           <button class="key-btn" onclick="appendNum('9')">9</button>
+
           <div class="empty-cell"></div>
+
           <button class="key-btn" onclick="appendNum('0')">0</button>
-          <button class="key-btn delete-btn" onclick="deleteNum()">
+
+          <button class="key-btn delete-btn"
+                  onclick="deleteNum()">
             <i data-lucide="delete"></i>
           </button>
+
         </div>
 
         <div class="bottom-actions">
-          <button id="submit-phone-btn" class="btn-disabled full-btn" disabled onclick="finishReward()">
+
+          <button
+            id="submit-phone-btn"
+            class="btn-disabled full-btn"
+            disabled
+            onclick="finishReward('phone')">
             입력 완료
           </button>
+
         </div>
       </div>
     </div>
 
   </div>
-<script src="reward.js"></script>
-<script src="../mart-tutorial.js"></script>
+
+  <!-- JavaScript -->
+  <script src="reward.js"></script>
+  <script src="../mart-tutorial.js"></script>
+
 </body>
 </html>
