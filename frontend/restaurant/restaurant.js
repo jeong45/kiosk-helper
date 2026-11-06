@@ -17,7 +17,7 @@ const RESTAURANT_PRODUCTS = [
   { name: '4인 세트', price: 58000, category: '세트메뉴', color: 'dark-red' },
   { name: '냉모밀정식', price: 17000, category: '세트메뉴', color: 'blue' },
   { name: '비빔우동정식', price: 17000, category: '세트메뉴', color: 'pink' },
-  { name: '돈가스 정식', price: 16000, category: '세트메뉴', color: 'yellow' },
+  { name: '돈가스정식', price: 16000, category: '세트메뉴', color: 'yellow' },
 
   // 단일메뉴
   { name: '비빔밥', price: 10000, category: '단일메뉴', color: 'orange' },
@@ -30,8 +30,8 @@ const RESTAURANT_PRODUCTS = [
   // 사이드메뉴
   { name: '새우튀김', price: 6000, category: '사이드메뉴', color: 'orange' },
   { name: '감자고로케', price: 5000, category: '사이드메뉴', color: 'red' },
-  { name: '매니 돈가스', price: 7000, category: '사이드메뉴', color: 'dark-red' },
-  { name: '치킨 가라야게', price: 7500, category: '사이드메뉴', color: 'blue' },
+  { name: '미니 돈가스', price: 7000, category: '사이드메뉴', color: 'dark-red' },
+  { name: '치킨 가라아게', price: 7500, category: '사이드메뉴', color: 'blue' },
   { name: '계란찜', price: 4000, category: '사이드메뉴', color: 'pink' },
   { name: '공깃밥', price: 1000, category: '사이드메뉴', color: 'yellow' },
 
