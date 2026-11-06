@@ -69,11 +69,11 @@
       </section>
 
       <nav class="category-tabs">
-        <button type="button" class="tab-btn active">추천상품</button>
-        <button type="button" class="tab-btn">음료</button>
-        <button type="button" class="tab-btn">간편식</button>
-        <button type="button" class="tab-btn">과자</button>
-        <button type="button" class="tab-btn">생활용품</button>
+        <button type="button" class="tab-btn active" data-category="추천상품">추천상품</button>
+        <button type="button" class="tab-btn" data-category="음료">음료</button>
+        <button type="button" class="tab-btn" data-category="간편식">간편식</button>
+        <button type="button" class="tab-btn" data-category="과자">과자</button>
+        <button type="button" class="tab-btn" data-category="생활용품">생활용품</button>
       </nav>
 
       <section class="product-section">
@@ -83,58 +83,11 @@
 
         <h3 class="section-title">셀프 계산</h3>
 
-        <div class="product-grid">
-
-          <div class="product-card" onclick="openModal('생수', 1000)">
-            <div class="product-icon-box blue-bg">
-              <span class="icon-store">🏪</span>
-            </div>
-            <div class="product-name">생수</div>
-            <div class="product-price">1,000원</div>
-          </div>
-
-          <div class="product-card" onclick="openModal('바나나', 9000)">
-            <div class="product-icon-box yellow-bg">
-              <span class="icon-store">🏪</span>
-            </div>
-            <div class="product-name">바나나</div>
-            <div class="product-price">9,000원</div>
-          </div>
-
-          <div class="product-card" onclick="openModal('우유', 2800)">
-            <div class="product-icon-box light-blue-bg">
-              <span class="icon-store">🏪</span>
-            </div>
-            <div class="product-name">우유</div>
-            <div class="product-price">2,800원</div>
-          </div>
-
-          <div class="product-card" onclick="openModal('신라면', 1200)">
-            <div class="product-icon-box red-bg">
-              <span class="icon-store">🏪</span>
-            </div>
-            <div class="product-name">신라면</div>
-            <div class="product-price">1,200원</div>
-          </div>
-
-          <div class="product-card" onclick="openModal('감자칩', 1800)">
-            <div class="product-icon-box orange-bg">
-              <span class="icon-store">🏪</span>
-            </div>
-            <div class="product-name">감자칩</div>
-            <div class="product-price">1,800원</div>
-          </div>
-
-          <div class="product-card" onclick="openModal('삼각김밥', 1500)">
-            <div class="product-icon-box green-bg">
-              <span class="icon-store">🏪</span>
-            </div>
-            <div class="product-name">삼각김밥</div>
-            <div class="product-price">1,500원</div>
-          </div>
-
+        <div class="product-grid" id="productGrid">
+          <!-- JavaScript에서 상품 카드 생성 -->
         </div>
       </section>
+
     </main>
 
     <div class="bottom-cart-bar" id="bottomCartBar" onclick="goToCart()">
@@ -178,6 +131,8 @@
 
   </div>
 
-  <script src="mart.js"></script>
+<script src="mart.js"></script>
+<script src="../mart-tutorial.js"></script>
+
 </body>
 </html>

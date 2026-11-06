@@ -1,0 +1,49 @@
+<!-- front/마트/미션/이지/easy.html -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>키우미 - 기본 주문 연습 (이지모드)</title>
+    <!-- 공통 미션 스타일 및 이지모드 전용 스타일 경로 연결 -->
+    <link rel="stylesheet" href="../../../mission-common/mission-common.css">
+    <link rel="stylesheet" href="easy.css">
+</head>
+<body>
+    <div class="kiosk-container">
+        <!-- 상단 헤더 -->
+        <header class="kiosk-header">
+            <div class="logo-area">🌱 키우미</div>
+            <div class="cart-indicator">장바구니 <span id="cart-count">0</span></div>
+        </header>
+
+        <!-- 상단 미션 배너 (모든 화면에서 공유) -->
+        <div id="mission-banner-container">
+            <div class="mission-banner">
+                <span class="mission-tag" id="mission-tag">EASY · 오늘의 미션</span>
+                <p id="mission-desc" class="mission-desc">미션 내용을 불러오는 중입니다...</p>
+            </div>
+        </div>
+
+        <!-- 메인 카테고리 & 상품 목록 (자유연습모드 레이아웃 계승) -->
+        <div class="main-content">
+            <nav class="category-sidebar">
+                <button class="category-btn active" data-category="set">세트메뉴</button>
+                <button class="category-btn" data-category="single">단일메뉴</button>
+                <button class="category-btn" data-category="side">사이드메뉴</button>
+                <button class="category-btn" data-category="drink">음료</button>
+                <button class="category-btn" data-category="alcohol">주류</button>
+            </nav>
+            <section class="product-display">
+                <h2>원하는 메뉴를 골라주세요</h2>
+                <div class="product-grid" id="product-grid">
+                    <!-- 상품 동적 렌더링 영역 -->
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 스크립트 연결: 공통 미션 로직 + 이지모드 전용 로직 -->
+    <script src="../../../mission-common/mission-common.js"></script>
+    <script src="easy.js"></script>
+</body>
+</html>

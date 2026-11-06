@@ -1,0 +1,23 @@
+.mission-banner {
+    background-color: #7b2cbf; /* 보라색 계열 포인트 컬러 */
+    color: #ffffff;
+    padding: 14px 18px;
+    margin: 10px 16px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(123, 44, 191, 0.2);
+}
+
+.mission-tag {
+    font-size: 0.8rem;
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.mission-desc {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-top: 6px;
+    line-height: 1.4;
+}

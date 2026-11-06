@@ -1,7 +1,62 @@
+
+// =====================================
 // 현재 모달 선택 상태
+// =====================================
+
 let currentItem = { name: '', price: 0, quantity: 1 };
 
-// 장바구니 데이터를 localStorage로 관리
+
+// =====================================
+// 레스토랑 메뉴 데이터
+// =====================================
+
+const RESTAURANT_PRODUCTS = [
+  // 세트메뉴
+  { name: '1인 세트', price: 12000, category: '세트메뉴', color: 'orange' },
+  { name: '2인 세트', price: 30000, category: '세트메뉴', color: 'red' },
+  { name: '4인 세트', price: 58000, category: '세트메뉴', color: 'dark-red' },
+  { name: '냉모밀정식', price: 17000, category: '세트메뉴', color: 'blue' },
+  { name: '비빔우동정식', price: 17000, category: '세트메뉴', color: 'pink' },
+  { name: '돈가스 정식', price: 16000, category: '세트메뉴', color: 'yellow' },
+
+  // 단일메뉴
+  { name: '비빔밥', price: 10000, category: '단일메뉴', color: 'orange' },
+  { name: '김치찌개', price: 9000, category: '단일메뉴', color: 'red' },
+  { name: '돈가스', price: 11000, category: '단일메뉴', color: 'dark-red' },
+  { name: '냉면', price: 10000, category: '단일메뉴', color: 'blue' },
+  { name: '제육덮밥', price: 10500, category: '단일메뉴', color: 'pink' },
+  { name: '우동', price: 8500, category: '단일메뉴', color: 'yellow' },
+
+  // 사이드메뉴
+  { name: '새우튀김', price: 6000, category: '사이드메뉴', color: 'orange' },
+  { name: '감자고로케', price: 5000, category: '사이드메뉴', color: 'red' },
+  { name: '매니 돈가스', price: 7000, category: '사이드메뉴', color: 'dark-red' },
+  { name: '치킨 가라야게', price: 7500, category: '사이드메뉴', color: 'blue' },
+  { name: '계란찜', price: 4000, category: '사이드메뉴', color: 'pink' },
+  { name: '공깃밥', price: 1000, category: '사이드메뉴', color: 'yellow' },
+
+  // 음료
+  { name: '콜라', price: 2500, category: '음료', color: 'orange' },
+  { name: '사이다', price: 2500, category: '음료', color: 'red' },
+  { name: '제로콜라', price: 2500, category: '음료', color: 'dark-red' },
+  { name: '오렌지주스', price: 3000, category: '음료', color: 'blue' },
+  { name: '식혜', price: 3000, category: '음료', color: 'pink' },
+  { name: '생수', price: 1500, category: '음료', color: 'yellow' },
+
+  // 주류
+  { name: '생맥주', price: 5000, category: '주류', color: 'orange' },
+  { name: '병맥주', price: 5000, category: '주류', color: 'red' },
+  { name: '소주', price: 5000, category: '주류', color: 'dark-red' },
+  { name: '막걸리', price: 6000, category: '주류', color: 'blue' },
+  { name: '하이볼', price: 7000, category: '주류', color: 'pink' },
+  { name: '무알콜 맥주', price: 4500, category: '주류', color: 'yellow' }
+];
+
+
+// =====================================
+// 장바구니 데이터 관리
+// =====================================
+
 function getCart() {
   try {
     return JSON.parse(localStorage.getItem('cartItems')) || [];
@@ -14,38 +69,123 @@ function saveCart(cart) {
   localStorage.setItem('cartItems', JSON.stringify(cart));
 }
 
-// 튜토리얼 모드인지 확인
+
+// =====================================
+// 튜토리얼 관련 함수
+// =====================================
+
 function isTutorialMode() {
   return sessionStorage.getItem('tutorialMode') === 'true';
 }
 
-// 튜토리얼 상태 초기화
 function clearTutorialState() {
   sessionStorage.removeItem('tutorialMode');
   sessionStorage.removeItem('tutorialStep');
 }
 
-// 1. menu.html 관련 함수
 
+// =====================================
+// 1. menu.html 관련 함수
+// =====================================
+
+// 메뉴 화면에 메뉴 카드 생성
+function renderMenu(category) {
+  const menuList = document.getElementById('menuList');
+  const sectionTitle = document.getElementById('sectionTitle');
+
+  if (!menuList) return;
+
+  const filteredProducts = RESTAURANT_PRODUCTS.filter(
+    item => item.category === category
+  );
+
+  if (sectionTitle) {
+    sectionTitle.innerText = category + ' 메뉴';
+  }
+
+  let html = '';
+
+  filteredProducts.forEach((item, index) => {
+    const tutorialId =
+      category === '세트메뉴' && index === 0
+        ? 'id="tutorialFirstSet"'
+        : '';
+
+    html += `
+      <div class="menu-card" ${tutorialId}
+           onclick="openModal('${item.name}', ${item.price})">
+
+        <div class="menu-img-box ${item.color}">
+          🍴
+        </div>
+
+        <div class="menu-name">
+          ${item.name}
+        </div>
+
+        <div class="menu-price">
+          ${item.price.toLocaleString()}원
+        </div>
+
+      </div>
+    `;
+  });
+
+  menuList.innerHTML = html;
+}
+
+
+// 카테고리 버튼 연결
+function setupCategoryButtons() {
+  const categoryButtons = document.querySelectorAll('.category-btn');
+
+  categoryButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const category = button.dataset.category;
+
+      if (!category) return;
+
+      categoryButtons.forEach(btn => {
+        btn.classList.remove('active');
+      });
+
+      button.classList.add('active');
+
+      renderMenu(category);
+    });
+  });
+}
+
+
+// 메뉴 선택 모달 열기
 function openModal(name, price) {
   currentItem = { name, price, quantity: 1 };
 
   document.getElementById('modalItemTitle').innerText = name;
+
   document.getElementById('modalItemPrice').innerText =
     price.toLocaleString() + '원';
 
   document.getElementById('modalQuantity').innerText = 1;
+
   document.getElementById('modalTotalPrice').innerText =
     price.toLocaleString() + '원';
 
   document.getElementById('optionModal').style.display = 'flex';
 }
 
+
+// 모달 닫기
 function closeModal() {
   const modal = document.getElementById('optionModal');
-  if (modal) modal.style.display = 'none';
+
+  if (modal) {
+    modal.style.display = 'none';
+  }
 }
 
+
+// 수량 변경
 function changeQuantity(change) {
   if (currentItem.quantity + change >= 1) {
     currentItem.quantity += change;
@@ -58,7 +198,8 @@ function changeQuantity(change) {
   }
 }
 
-// 장바구니 담기 버튼을 눌렀을 때만 상품 추가
+
+// 장바구니 담기
 function addToCart() {
   if (!currentItem.name || currentItem.price <= 0) return;
 
@@ -78,9 +219,9 @@ function addToCart() {
 
   closeModal();
 
-  // 실제 상품 추가 후에만 버튼 활성화
   updateCartBar();
 }
+
 
 // 하단 장바구니 바 및 상단 배지 업데이트
 function updateCartBar() {
@@ -120,6 +261,8 @@ function updateCartBar() {
   }
 }
 
+
+// 장바구니 페이지 이동
 function goToCart() {
   const cart = getCart();
 
@@ -131,13 +274,17 @@ function goToCart() {
   window.location.href = 'cart.html';
 }
 
+
+// 메뉴 화면으로 돌아가기
 function goToMenu() {
-  // 장바구니 화면에서 돌아오는 경우 기존 데이터 유지
   sessionStorage.setItem('preserveCartOnMenu', 'true');
   window.location.href = 'menu.html';
 }
 
+
+// =====================================
 // 2. cart.html 관련 함수
+// =====================================
 
 function renderCartPage() {
   const cart = getCart();
@@ -230,6 +377,7 @@ function renderCartPage() {
   }
 }
 
+
 function updateCartQuantity(index, change) {
   let cart = getCart();
 
@@ -246,6 +394,7 @@ function updateCartQuantity(index, change) {
   renderCartPage();
 }
 
+
 // 주문 확인
 function showOrderConfirm() {
   document.getElementById('cartStep').style.display = 'none';
@@ -261,7 +410,10 @@ function goToPayment() {
   window.location.href = 'payment.html';
 }
 
+
+// =====================================
 // 3. payment.html 관련 함수
+// =====================================
 
 function renderPaymentPage() {
   const cart = getCart();
@@ -281,9 +433,13 @@ function renderPaymentPage() {
   }
 }
 
-// 결제 수단을 누를 때 선택 상태(테두리/체크)만 변경
+
+// 결제 수단 선택
 function selectPayMethod(method) {
-  const cardOpt = document.getElementById('tutorialCardOption') || document.getElementById('cardOption');
+  const cardOpt =
+    document.getElementById('tutorialCardOption') ||
+    document.getElementById('cardOption');
+
   const spayOpt = document.getElementById('spayOption');
   const kpayOpt = document.getElementById('kpayOption');
 
@@ -300,34 +456,31 @@ function selectPayMethod(method) {
   }
 }
 
-// '결제 진행하기' 버튼을 눌렀을 때 선택된 수단에 맞춰 해당 안내 창으로 이동
+
+// 결제 진행
 function proceedSelectedPayment() {
   const methodStep = document.getElementById('methodStep');
   const insertStep = document.getElementById('insertStep');
   const spayStep = document.getElementById('spayStep');
   const kpayStep = document.getElementById('kpayStep');
 
-  // 어떤 결제 수단이 선택되었는지 확인
-  const cardOpt = document.getElementById('tutorialCardOption') || document.getElementById('cardOption');
   const spayOpt = document.getElementById('spayOption');
   const kpayOpt = document.getElementById('kpayOption');
 
-  // 먼저 모든 결제 단계 숨기기
   if (methodStep) methodStep.style.display = 'none';
   if (insertStep) insertStep.style.display = 'none';
   if (spayStep) spayStep.style.display = 'none';
   if (kpayStep) kpayStep.style.display = 'none';
 
-  // 선택된 수단에 따라 각각의 안내 화면 띄우기
   if (spayOpt && spayOpt.classList.contains('selected')) {
     if (spayStep) spayStep.style.display = 'flex';
   } else if (kpayOpt && kpayOpt.classList.contains('selected')) {
     if (kpayStep) kpayStep.style.display = 'flex';
   } else {
-    // 기본값은 카드 결제 화면
     if (insertStep) insertStep.style.display = 'flex';
   }
 }
+
 
 function showCardInsertStep() {
   document.getElementById('methodStep').style.display = 'none';
@@ -341,30 +494,29 @@ function showMethodStep() {
   document.getElementById('methodStep').style.display = 'flex';
 }
 
-function completePayment() {
-  window.location.href = 'complete.html';
-}
 
-// 4. complete.html 관련 함수
-
-// 결제 완료 시 선택한 결제 방식을 저장하고 완료 페이지로 이동
+// 결제 완료
 function completePayment() {
-  // 어떤 결제 수단이 선택되어 있는지 확인 후 저장
   const spayOpt = document.getElementById('spayOption');
   const kpayOpt = document.getElementById('kpayOption');
-  
+
   let payMethodText = '카드 결제';
+
   if (spayOpt && spayOpt.classList.contains('selected')) {
     payMethodText = '삼성페이';
   } else if (kpayOpt && kpayOpt.classList.contains('selected')) {
     payMethodText = '카카오페이';
   }
-  
+
   localStorage.setItem('selectedPayMethod', payMethodText);
+
   window.location.href = 'complete.html';
 }
 
+
+// =====================================
 // 4. complete.html 관련 함수
+// =====================================
 
 function renderCompletePage() {
   const cart = getCart();
@@ -402,10 +554,12 @@ function renderCompletePage() {
       totalPrice.toLocaleString() + '원';
   }
 
-  // ★ 저장된 결제 방식을 읽어와서 영수증에 텍스트 반영
   const receiptPayMethod = document.getElementById('receiptPayMethod');
+
   if (receiptPayMethod) {
-    const savedMethod = localStorage.getItem('selectedPayMethod') || '카드 결제';
+    const savedMethod =
+      localStorage.getItem('selectedPayMethod') || '카드 결제';
+
     receiptPayMethod.innerText = savedMethod;
   }
 
@@ -416,7 +570,11 @@ function renderCompletePage() {
   }
 }
 
-// 처음부터 다시 연습
+
+// =====================================
+// 5. 처음부터 다시 연습 / 메인 이동
+// =====================================
+
 function restartPractice() {
   localStorage.removeItem('cartItems');
 
@@ -426,6 +584,7 @@ function restartPractice() {
 
   window.location.href = 'menu.html';
 }
+
 
 function goToMain() {
   localStorage.removeItem('cartItems');
@@ -437,10 +596,14 @@ function goToMain() {
   window.location.href = '../main/main.html';
 }
 
-// 페이지 로드 시 초기화
+
+// =====================================
+// 6. 페이지 로드 시 초기화
+// =====================================
+
 document.addEventListener('DOMContentLoaded', () => {
 
-  // 메뉴 화면에 새로 접속하면 이전 장바구니 초기화
+  // 메뉴 화면 초기화
   if (window.location.pathname.endsWith('menu.html')) {
 
     const shouldPreserveCart =
@@ -451,6 +614,12 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       localStorage.removeItem('cartItems');
     }
+  }
+
+  // menu.html에서만 카테고리 및 메뉴 생성
+  if (document.getElementById('menuList')) {
+    setupCategoryButtons();
+    renderMenu('세트메뉴');
   }
 
   updateCartBar();
