@@ -3,7 +3,7 @@
 // 1. 상품 데이터
 // =====================================
 
-const CAFE_PRODUCTS = [
+const CAFE = [
   // 커피
   { name: '아메리카노', price: 2000, category: '커피', color: '#633A1F' },
   { name: '카페라떼', price: 3500, category: '커피', color: '#F2D3A1' },
@@ -121,7 +121,7 @@ function renderProducts(category) {
 
   currentCategory = category;
 
-  const products = CAFE_PRODUCTS.filter(
+  const products = CAFE.filter(
     product => product.category === category
   );
 
