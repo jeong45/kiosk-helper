@@ -39,8 +39,8 @@
 
 ## 4. 기술 스택
 
-- Frontend:
-- Backend:
+- Frontend: HTML5, CSS3, JavaScript
+- Backend: Python, FastAPI, SQLite
 - Design: Figma Make
 
 ## 5. 팀원 및 역할
@@ -55,11 +55,41 @@
 
 ## 6. 실행 방법
 
-시행 링크: 
+### 1. 프로젝트 다운로드
+
+```bash
+git clone https://github.com/jeong45/kiosk-helper.git
+cd kiosk-helper
+```
+
+### 2. 백엔드 실행
+
+필요한 Python 패키지를 설치한 후 다음 명령어로 서버를 실행합니다.
+
+```bash
+cd backend
+python -m uvicorn app.main:app --reload
+```
+
+-> 백엔드 서버 실행 후 다음 주소에서 API 문서를 확인할 수 있습니다.
+-> API 문서: http://127.0.0.1:8000/docs
+
+### 3. 프론트엔드 실행
+
+1) VS Code에서 프로젝트 폴더를 엽니다.
+2) Live Server 확장 프로그램을 설치합니다.
+3) frontend/splash/inde.html 파일을 엽니다.
+4) 마우스 오른쪽 버튼을 클릭하여 Open with Live Server를 선택합니다.
+
+### 4. 서비스 이용
+
+1) 연습할 키오스크 카테고리를 선택합니다.
+2) 튜토리얼, 자유 연습, 미션 모드 중 하나를 선택합니다.
+3) 상품 선택부터 결제까지 키오스크 이용 과정을 연습합니다.
+4) 미션 모드에서는 주문 완료 후 수행 결과를 확인할 수 있습니다.
 
 ## 7. 참고 자료
 
-- 프로토타입(Figma): https://www.figma.com/make/JCpm2mYyjkLTCEU2hDOLD8/%ED%82%A4%EC%9A%B0%EB%AF%B8-%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85?p=f&t=8qe8Bhs55P7BOuBo-0&fullscreen=1
-  
-- 배포 링크:
+- 프로토타입(Figma): https://www.figma.com/make/JCpm2mYyjkLTCEU2hDOLD8/%ED%82%A4%EC%9A%B0%EB%AF%B8-%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85?t=o3zhXNKVsCVK7q8g-20&fullscreen=1
+
 
