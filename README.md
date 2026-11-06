@@ -40,7 +40,7 @@
 ## 4. 기술 스택
 
 - Frontend: HTML5, CSS3, JavaScript
-- Backend:
+- Backend: Python, FastAPI, SQLite
 - Design:
 
 ## 5. 팀원 및 역할
