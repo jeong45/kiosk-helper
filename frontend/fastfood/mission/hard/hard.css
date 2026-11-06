@@ -1,0 +1,57 @@
+
+/* ========================================
+   카페 HARD 미션 화면
+======================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+/* 미션 안내 영역 */
+.easy-mission-banner {
+    width: 100%;
+    margin: 12px 0 16px;
+    padding: 18px 20px;
+    background: linear-gradient(135deg, #3730A3, #6366F1);
+    border-radius: 16px;
+    color: #FFFFFF;
+    box-shadow: 0 4px 12px rgba(55, 48, 163, 0.2);
+}
+
+/* HARD / 오늘의 미션 */
+.easy-mission-header {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 12px;
+}
+
+/* 난이도 표시 */
+.easy-mission-level {
+    padding: 5px 10px;
+    background-color: #FFFFFF;
+    color: #3730A3;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+/* 오늘의 미션 글자 */
+.easy-mission-label {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* 미션 내용 */
+.easy-mission-instruction {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    word-break: keep-all;
+}
+
+/* 미션 로딩 안내 */
+.easy-mission-instruction.loading {
+    opacity: 0.8;
+}
