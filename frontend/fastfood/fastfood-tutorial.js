@@ -39,39 +39,56 @@ if (fastfoodTutorialActive) {
   // 2. 단계별 클릭 대상 (매장/포장 선택 단계 추가)
   // ========================================
 
+ // 단계별 클릭 타겟 (튜토리얼 진행용)
   const fastfoodTutorialTargets = {
-    0: '.type-card',                       // [추가] 0단계: 매장/포장 선택 카드
-    1: '.product-card[data-product-index="0"]', // (기존 0번이 1번으로 밀림)
-    2: '#modalAddButton',
-    3: '#addon-item-1',
-    4: '.modal-footer-btns .btn-primary',
-    5: '#bottomCartBar',
-    6: '#btn-go-order',
-    7: '#btn-pay',
-    8: '#step-select [onclick*="step-phone"]',
-    9: '.key-btn[onclick*="appendNum"]',
-    10: '#submit-phone-btn',
-    11: '#cardOption',
-    12: '#methodStep .bottom-fixed-box .btn-primary',
-    13: '#insertStep .bottom-fixed-box .btn-primary'
+    0: '.type-card',                            // 0단계: 매장/포장 선택 카드
+    1: '.product-card[data-product-index="0"]', // 1단계: 치즈와퍼 선택
+    
+    // ===== [신규 추가] 세트 옵션 단계 =====
+    2: '#opt-set',                              // 2단계: '세트' 구성 옵션 선택
+    3: '#setChoiceModal .btn-primary',          // 3단계: 세트 구성 선택 완료 버튼
+    4: '#setSideModal .btn-primary',            // 4단계: 사이드 선택 완료 버튼
+    5: '#setDrinkModal .btn-primary',           // 5단계: 음료 선택 완료 버튼
+    // ======================================
+
+    6: '#modalAddButton',                       // 6단계: 수량 확인 후 장바구니 담기
+    7: '#addon-item-1',                         // 7단계: 베스트메뉴 추가 제안 선택
+    8: '.modal-footer-btns .btn-primary',       // 8단계: 추가 제안 '추가하기' 버튼
+    9: '#bottomCartBar',                        // 9단계: 하단 장바구니 보기 바
+    10: '#btn-go-order',                        // 10단계: 장바구니 페이지 '주문 확인'
+    11: '#btn-pay',                             // 11단계: 장바구니 페이지 '결제하기'
+    12: '#step-select [onclick*="step-phone"]', // 12단계: 전화번호 적립 선택
+    13: '.key-btn[onclick*="appendNum"]',       // 13단계: 키패드 번호 입력
+    14: '#submit-phone-btn',                    // 14단계: 번호 적립 완료 버튼
+    15: '#cardOption',                          // 15단계: 카드 결제 선택
+    16: '#methodStep .bottom-fixed-box .btn-primary', // 16단계: 결제 진행하기
+    17: '#insertStep .bottom-fixed-box .btn-primary'  // 17단계: 카드 삽입 완료
   };
 
-  // 단계별 강조 대상
+  // 단계별 깜빡임 강조 대상 (UI Highlight)
   const fastfoodTutorialHighlightTargets = {
-    0: '.type-card',                       // [추가] 0단계 강조
-    1: '.product-card[data-product-index="0"]', // (기존 0번이 1번으로 밀림)
-    2: '#modalAddButton',
-    3: '#addon-item-1',
-    4: '.modal-footer-btns .btn-primary',
-    5: '#bottomCartBar',
-    6: '#btn-go-order',
-    7: '#btn-pay',
-    8: '#step-select [onclick*="step-phone"]',
-    9: '.keypad-grid',
-    10: '#submit-phone-btn',
-    11: '#cardOption',
-    12: '#methodStep .bottom-fixed-box .btn-primary',
-    13: '#insertStep .bottom-fixed-box .btn-primary'
+    0: '.type-card',                            // 0단계 강조
+    1: '.product-card[data-product-index="0"]', // 1단계 강조
+    
+    // ===== [신규 추가] 세트 옵션 단계 강조 =====
+    2: '#opt-set',                              // 2단계: 세트 옵션 카드 강조
+    3: '#setChoiceModal .btn-primary',          // 3단계: 구성 선택 완료 버튼 강조
+    4: '#setSideModal .btn-primary',            // 4단계: 사이드 완료 버튼 강조
+    5: '#setDrinkModal .btn-primary',           // 5단계: 음료 완료 버튼 강조
+    // ==========================================
+
+    6: '#modalAddButton',                       // 6단계 강조
+    7: '#addon-item-1',                         // 7단계 강조
+    8: '.modal-footer-btns .btn-primary',       // 8단계 강조
+    9: '#bottomCartBar',                        // 9단계 강조
+    10: '#btn-go-order',                        // 10단계 강조
+    11: '#btn-pay',                             // 11단계 강조
+    12: '#step-select [onclick*="step-phone"]', // 12단계 강조
+    13: '.keypad-grid',                         // 13단계: 키패드 전체 영역 강조
+    14: '#submit-phone-btn',                    // 14단계 강조
+    15: '#cardOption',                          // 15단계 강조
+    16: '#methodStep .bottom-fixed-box .btn-primary', // 16단계 강조
+    17: '#insertStep .bottom-fixed-box .btn-primary'  // 17단계 강조
   };
   // ========================================
   // 3. 레스토랑과 동일한 튜토리얼 CSS
@@ -268,10 +285,10 @@ if (fastfoodTutorialActive) {
     }
 
     // 전화번호 입력 단계는 별도 검사
-    if (fastfoodTutorialStep === 9) return;
+    if (fastfoodTutorialStep === 13) return;
 
     // 마지막 단계
-   if (fastfoodTutorialStep === 13) {
+   if (fastfoodTutorialStep === 17) {
   finishFastfoodTutorial();
   return;
 }
@@ -288,7 +305,7 @@ if (fastfoodTutorialActive) {
 
     if (
       sessionStorage.getItem('fastfoodTutorialMode') !== 'true' ||
-      fastfoodTutorialStep !== 9
+      fastfoodTutorialStep !== 13
     ) {
       return;
     }

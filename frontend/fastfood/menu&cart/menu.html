@@ -66,7 +66,7 @@
      
           <button type="button" class="tab-btn" data-category="와퍼">와퍼</button>
           <button type="button" class="tab-btn" data-category="사이드">사이드</button>
-             <button type="button" class="tab-btn" data-category="음료">음료</button>
+          <button type="button" class="tab-btn" data-category="음료">음료</button>
         </nav>
 
         <section class="product-section">
@@ -80,7 +80,60 @@
     <div class="bottom-cart-bar" id="bottomCartBar" onclick="goToCart()">
       장바구니가 비어있습니다
     </div>
+<!-- [추가 1] 단품/세트/라지세트 선택 모달 -->
+    <div class="modal-overlay" id="setChoiceModal" style="display: none;">
+      <div class="modal-card">
+        <button type="button" class="modal-close-btn" onclick="closeSetChoiceModal()">✕</button>
+        <div class="modal-sub-label">구성 선택</div>
+        <h3 class="modal-item-title" id="setTitleBurgerName">치즈와퍼</h3>
 
+        <div style="display: flex; flex-direction: column; gap: 10px; margin: 12px 0;">
+          <div class="addon-item set-opt-item" id="opt-large-set" onclick="selectSetOption('large_set')">
+            <div class="addon-name" id="label-large-set">라지세트</div>
+            <div style="font-size:0.8rem; color:#64748b;">버거 + 라지 감자튀김 + 라지 음료</div>
+            <div class="addon-price" id="price-large-set">0원</div>
+          </div>
+          <div class="addon-item set-opt-item" id="opt-set" onclick="selectSetOption('set')">
+            <div class="addon-name" id="label-set">세트</div>
+            <div style="font-size:0.8rem; color:#64748b;">버거 + 감자튀김 + 음료</div>
+            <div class="addon-price" id="price-set">0원</div>
+          </div>
+          <div class="addon-item set-opt-item selected" id="opt-single" onclick="selectSetOption('single')">
+            <div class="addon-name">단품</div>
+            <div style="font-size:0.8rem; color:#64748b;">버거 단품</div>
+            <div class="addon-price" id="price-single">0원</div>
+          </div>
+        </div>
+
+        <button type="button" class="btn-primary full" onclick="confirmSetChoice()">선택 완료</button>
+      </div>
+    </div>
+
+    <!-- [추가 2] 세트 사이드 선택 모달 -->
+    <div class="modal-overlay" id="setSideModal" style="display: none;">
+      <div class="modal-card">
+        <button type="button" class="modal-close-btn" onclick="closeSetSideModal()">✕</button>
+        <div class="modal-sub-label">세트 옵션 (1/2)</div>
+        <h3 class="modal-item-title">사이드 선택</h3>
+
+        <div class="addon-grid" id="setSideGrid"></div>
+
+        <button type="button" class="btn-primary full" onclick="confirmSetSide()">다음 (음료 선택)</button>
+      </div>
+    </div>
+
+    <!-- [추가 3] 세트 음료 선택 모달 -->
+    <div class="modal-overlay" id="setDrinkModal" style="display: none;">
+      <div class="modal-card">
+        <button type="button" class="modal-close-btn" onclick="closeSetDrinkModal()">✕</button>
+        <div class="modal-sub-label">세트 옵션 (2/2)</div>
+        <h3 class="modal-item-title">음료 선택</h3>
+
+        <div class="addon-grid" id="setDrinkGrid"></div>
+
+        <button type="button" class="btn-primary full" onclick="confirmSetDrink()">선택 완료</button>
+      </div>
+    </div>
     <!-- 상품 수량 조절 모달 -->
     <div class="modal-overlay" id="optionModal" style="display: none;">
       <div class="modal-card">
@@ -90,9 +143,9 @@
 
         <div class="modal-sub-label">상품 선택</div>
 
-        <h3 class="modal-item-title" id="modalItemTitle">생수</h3>
+        <h3 class="modal-item-title" id="modalItemTitle">치즈와퍼</h3>
 
-        <div class="modal-item-price" id="modalItemPrice">1,000원</div>
+        <div class="modal-item-price" id="modalItemPrice">4100원</div>
 
         <div class="modal-quantity-box">
           <span class="quantity-label">수량</span>
