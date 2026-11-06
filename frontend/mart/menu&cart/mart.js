@@ -72,20 +72,42 @@ if (!sessionStorage.getItem(sessionKey)) {
 
 
 // =====================================
-// 4. 장바구니 데이터 관리
+// 4. 미션 모드 확인 및 장바구니 설정
+// =====================================
+
+function isMartMissionMode() {
+  return sessionStorage.getItem('martMissionMode') === 'true';
+}
+
+function getCartStorageKey() {
+  return isMartMissionMode()
+    ? 'martMissionCartItems'
+    : 'martCartItems';
+}
+
+
+// =====================================
+// 5. 장바구니 데이터 관리
 // =====================================
 
 function getCart() {
   try {
-    const cart = JSON.parse(localStorage.getItem('martCartItems'));
+    const cart = JSON.parse(
+      localStorage.getItem(getCartStorageKey())
+    );
+
     return Array.isArray(cart) ? cart : [];
+
   } catch (error) {
     return [];
   }
 }
 
 function saveCart(cart) {
-  localStorage.setItem('martCartItems', JSON.stringify(cart));
+  localStorage.setItem(
+    getCartStorageKey(),
+    JSON.stringify(cart)
+  );
 }
 
 function formatPrice(price) {
@@ -109,7 +131,7 @@ function getTotalPrice(cart) {
 
 
 // =====================================
-// 5. 상품 목록 표시
+// 6. 상품 목록 표시
 // =====================================
 
 function renderProducts(category) {
@@ -127,8 +149,9 @@ function renderProducts(category) {
 
   productGrid.innerHTML = products.map((product, index) => `
     <div class="product-card"
-     data-product-index="${index}"
-     data-product-name="${product.name}">
+      data-product-index="${index}"
+      data-product-name="${product.name}">
+
       <div class="product-icon-box"
         style="background-color: ${product.color};">
         <span class="icon-store">🏪</span>
@@ -136,10 +159,10 @@ function renderProducts(category) {
 
       <div class="product-name">${product.name}</div>
       <div class="product-price">${formatPrice(product.price)}</div>
+
     </div>
   `).join('');
 
-  // 상품 카드 클릭 이벤트
   const productCards = productGrid.querySelectorAll('.product-card');
 
   productCards.forEach((card, index) => {
@@ -149,7 +172,6 @@ function renderProducts(category) {
     });
   });
 
-  // 선택된 카테고리 버튼 표시
   document.querySelectorAll('.tab-btn').forEach(button => {
     button.classList.toggle(
       'active',
@@ -157,7 +179,6 @@ function renderProducts(category) {
     );
   });
 
-  // 카테고리에 맞춰 제목 변경
   const sectionTitle = document.querySelector('.section-title');
 
   if (sectionTitle) {
@@ -180,7 +201,7 @@ function initCategoryTabs() {
 
 
 // =====================================
-// 6. 상품 선택 모달
+// 7. 상품 선택 모달
 // =====================================
 
 function openModal(name, price) {
@@ -253,7 +274,7 @@ function changeQuantity(change) {
 
 
 // =====================================
-// 7. 상품 장바구니에 담기
+// 8. 상품 장바구니에 담기
 // =====================================
 
 function addToCart() {
@@ -283,7 +304,7 @@ function addToCart() {
 
 
 // =====================================
-// 8. 상품 선택 화면 장바구니 표시
+// 9. 상품 선택 화면 장바구니 표시
 // =====================================
 
 function updateCartBar() {
@@ -331,12 +352,16 @@ function goToCart() {
     return;
   }
 
-  window.location.href = 'cart.html';
+  if (isMartMissionMode()) {
+    window.location.href = '../../menu&cart/cart.html';
+  } else {
+    window.location.href = 'cart.html';
+  }
 }
 
 
 // =====================================
-// 9. 장바구니 화면 상품 목록 표시
+// 10. 장바구니 화면 상품 목록 표시
 // =====================================
 
 function renderMartCart() {
@@ -406,7 +431,7 @@ function renderMartCart() {
 
 
 // =====================================
-// 10. 장바구니 상품 수량 변경
+// 11. 장바구니 상품 수량 변경
 // =====================================
 
 function changeMartCartQuantity(index, change) {
@@ -431,7 +456,7 @@ function changeMartCartQuantity(index, change) {
 
 
 // =====================================
-// 11. 주문 확인 화면 상품 목록 표시
+// 12. 주문 확인 화면 상품 목록 표시
 // =====================================
 
 function renderMartOrder() {
@@ -489,7 +514,7 @@ function renderMartOrder() {
 
 
 // =====================================
-// 12. 장바구니 / 주문 확인 화면 전환
+// 13. 장바구니 / 주문 확인 화면 전환
 // =====================================
 
 function showMartView(viewName) {
@@ -516,7 +541,7 @@ function showMartView(viewName) {
 
 
 // =====================================
-// 13. 페이지 로딩 후 실행
+// 14. 페이지 로딩 후 실행
 // =====================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -541,23 +566,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
   renderMartCart();
 
+
   // 메뉴 더 담기 버튼
   const btnMoreMenu = document.getElementById('btn-more-menu');
 
   if (btnMoreMenu) {
     btnMoreMenu.addEventListener('click', () => {
-      window.location.href = 'menu.html';
+
+      if (isMartMissionMode()) {
+        window.location.href = '../mission/easy/easy.html';
+      } else {
+        window.location.href = 'menu.html';
+      }
+
     });
   }
+
 
   // 더 담기 버튼
   const btnMore = document.getElementById('btn-more');
 
   if (btnMore) {
     btnMore.addEventListener('click', () => {
-      window.location.href = 'menu.html';
+
+      if (isMartMissionMode()) {
+        window.location.href = '../mission/easy/easy.html';
+      } else {
+        window.location.href = 'menu.html';
+      }
+
     });
   }
+
 
   // 주문 확인 버튼
   const btnGoOrder = document.getElementById('btn-go-order');
@@ -573,6 +613,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+
   // 이전 버튼
   const btnBack = document.getElementById('btn-back');
 
@@ -581,6 +622,7 @@ document.addEventListener('DOMContentLoaded', () => {
       showMartView('cart');
     });
   }
+
 
   // 결제하기 버튼
   const btnPay = document.getElementById('btn-pay');
