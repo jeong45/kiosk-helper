@@ -1,0 +1,784 @@
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Pretendard', sans-serif;
+}
+
+body {
+  background-color: #2b2b2b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.kiosk-container {
+  width: 100%;
+  max-width: 420px;
+  height: 100vh;
+  max-height: 840px;
+  background-color: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.complete-bg {
+  background-color: #f0f6ff;
+}
+
+/* Header */
+.kiosk-header {
+  background-color: #0f172a;
+  color: #ffffff;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-icon {
+  background-color: #7c3aed;
+  padding: 6px 10px;
+  border-radius: 12px;
+}
+
+.brand-title {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.cart-badge-top {
+  background-color: #1e293b;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+/* Kiosk Body */
+.kiosk-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 100px;
+  flex-shrink: 0;
+  background-color: #0f172a;
+  display: flex;
+  flex-direction: column;
+}
+
+.category-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  padding: 18px 10px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: left;
+  cursor: pointer;
+}
+
+.category-btn.active {
+  background-color: #f8fafc;
+  color: #0f172a;
+  border-radius: 16px 0 0 16px;
+}
+
+/* Menu Content */
+.menu-content {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  padding: 16px;
+  padding-bottom: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-title {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-bottom: 4px;
+}
+
+.main-instruction {
+  font-size: 20px;
+  color: #1e293b;
+  margin-bottom: 16px;
+}
+
+.menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.menu-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 14px;
+  cursor: pointer;
+  border: 1px solid #e2e8f0;
+}
+
+.menu-img-box {
+  width: 100%;
+  height: 90px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.menu-img-box.orange { background-color: #e06d1a; }
+.menu-img-box.red { background-color: #d94343; }
+.menu-img-box.dark-red { background-color: #9e1b42; }
+.menu-img-box.blue { background-color: #4a90e2; }
+.menu-img-box.pink { background-color: #e06d75; }
+.menu-img-box.yellow { background-color: #e09f1a; }
+
+.menu-name {
+  font-size: 15px;
+  font-weight: bold;
+  color: #1e293b;
+}
+
+.menu-price {
+  font-size: 16px;
+  font-weight: bold;
+  color: #d94343;
+  margin-top: 4px;
+}
+
+/* Bottom Cart Bar - 메뉴 목록 맨 아래 */
+.bottom-cart-bar {
+  position: static;
+  width: 100%;
+  flex-shrink: 0;
+  background-color: #cbd5e1;
+  color: #64748b;
+  padding: 16px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+  border: none;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* 장바구니에 상품이 담겼을 때만 활성화 */
+.bottom-cart-bar.active {
+  background-color: #4f46e5;
+  color: #ffffff;
+}
+
+/* Modal */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 100;
+}
+
+.modal-content {
+  background: #ffffff;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 24px 24px 0 0;
+  padding: 20px;
+  position: relative;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #f1f5f9;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.modal-subtitle {
+  font-size: 13px;
+  color: #4f46e5;
+  font-weight: bold;
+}
+
+.modal-item-title {
+  font-size: 22px;
+  margin-top: 2px;
+}
+
+.modal-item-price {
+  font-size: 18px;
+  color: #d94343;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.quantity-control-box {
+  background-color: #f8fafc;
+  padding: 14px;
+  border-radius: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.quantity-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #ffffff;
+  padding: 4px 12px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+.quantity-btn-group button {
+  border: none;
+  background: none;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.add-to-cart-btn {
+  width: 100%;
+  background-color: #4f46e5;
+  color: #ffffff;
+  border: none;
+  padding: 16px;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Page Content Common */
+.page-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.center-layout {
+  align-items: center;
+  justify-content: center;
+}
+
+.sub-label {
+  font-size: 13px;
+  color: #4f46e5;
+  font-weight: bold;
+}
+
+.page-title {
+  font-size: 24px;
+  color: #0f172a;
+  margin-top: 4px;
+}
+
+.sub-desc {
+  font-size: 14px;
+  color: #64748b;
+  margin-top: 6px;
+}
+
+.top-nav-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.more-btn {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 8px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Cart List */
+.cart-list,
+.confirm-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 100px;
+}
+
+.cart-item-card {
+  background: #ffffff;
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #e2e8f0;
+}
+
+.cart-item-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.item-thumb {
+  width: 44px;
+  height: 44px;
+  background: #e06d1a;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.item-name {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.item-price {
+  font-size: 14px;
+  color: #d94343;
+  font-weight: bold;
+  margin-top: 2px;
+}
+
+/* Bottom Fixed Controls */
+.bottom-fixed-box {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 24px 24px 0 0;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 15px;
+  margin-bottom: 16px;
+}
+
+.total-price {
+  color: #d94343;
+  font-size: 18px;
+}
+
+.btn-group-two {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-secondary {
+  flex: 1;
+  background: #334155;
+  color: #ffffff;
+  border: none;
+  padding: 16px;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-primary {
+  flex: 1;
+  background: #4f46e5;
+  color: #ffffff;
+  border: none;
+  padding: 16px;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-primary.full {
+  width: 100%;
+}
+
+.btn-outline {
+  width: 100%;
+  background: #ffffff;
+  color: #4f46e5;
+  border: 2px solid #4f46e5;
+  padding: 16px;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Payment Options */
+.back-circle-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.payment-options {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 30px;
+  margin-bottom: 100px;
+}
+
+.pay-card-option {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  position: relative;
+}
+
+/* 결제 수단 기본 상태 */
+.pay-card-option {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  position: relative;
+}
+
+/* 선택된 결제 수단 */
+.pay-card-option.selected {
+  border: 2px solid #4f46e5;
+}
+
+/* 체크 표시 기본 숨김 */
+.check-icon {
+  display: none;
+  position: absolute;
+  right: 16px;
+  background: #4f46e5;
+  color: #ffffff;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+/* 선택된 항목에만 체크 표시 */
+.pay-card-option.selected .check-icon {
+  display: flex;
+}
+
+.pay-icon {
+  width: 50px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.card-bg {
+  background: #4f46e5;
+}
+
+.spay-bg {
+  background: #0f172a;
+}
+
+.kpay-bg {
+  background: #fee500;
+  color: #000;
+}
+
+.pay-name {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.pay-sub {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+/* Card Terminal Graphic */
+.card-terminal-graphic {
+  margin: 40px 0 100px 0;
+}
+
+.terminal-body {
+  width: 220px;
+  height: 140px;
+  background: #1e293b;
+  border-radius: 20px;
+  position: relative;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-slot-label {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.card-slot {
+  width: 140px;
+  height: 60px;
+  background: #0f172a;
+  border-radius: 8px;
+  margin-top: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.inserted-card {
+  width: 100px;
+  height: 80px;
+  background: #fef08a;
+  border-radius: 6px;
+  position: absolute;
+  bottom: -20px;
+  left: 20px;
+  color: #166534;
+  font-weight: bold;
+  padding: 8px;
+  font-size: 14px;
+}
+
+.green-light {
+  width: 10px;
+  height: 10px;
+  background: #22c55e;
+  border-radius: 50%;
+  position: absolute;
+  right: 20px;
+  top: 60px;
+}
+
+/* Complete Screen */
+.success-icon-circle {
+  width: 70px;
+  height: 70px;
+  background: #22c55e;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  margin-bottom: 12px;
+}
+
+.complete-badge {
+  color: #15803d;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.complete-title {
+  font-size: 26px;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.complete-sub {
+  font-size: 14px;
+  color: #64748b;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.receipt-card {
+  width: 100%;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 30px;
+}
+
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #f1f5f9;
+  font-weight: bold;
+}
+
+.pay-method-text {
+  color: #4f46e5;
+}
+
+.complete-btn-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.confirm-quantity-badge {
+  background-color: #f1f5f9;
+  color: #1e293b;
+  border: 1px solid #e2e8f0;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+/* ========================================
+   튜토리얼 전용 스타일
+======================================== */
+
+/* 강조되는 버튼 */
+.tutorial-highlight {
+  position: relative !important;
+  z-index: 150 !important;
+  outline: 4px solid #111111 !important;
+  outline-offset: 5px !important;
+  animation: tutorialBlink 0.7s steps(1, end) infinite !important;
+}
+
+/* 여기를 눌러요 표시 */
+.tutorial-highlight::after {
+  content: "여기를 눌러요";
+  position: absolute;
+  top: -35px;
+  right: 0;
+  background-color: #111111;
+  color: #ffffff;
+  padding: 7px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: bold;
+  white-space: nowrap;
+  z-index: 200;
+}
+
+/* 테두리 깜박임 */
+@keyframes tutorialBlink {
+  0%, 49% {
+    outline-color: #111111;
+  }
+
+  50%, 100% {
+    outline-color: transparent;
+  }
+}
+
+/* 스크롤 안내 */
+.tutorial-scroll-hint {
+  position: fixed;
+  left: max(8px, calc(50% - 205px));
+  bottom: 120px;
+  background-color: #111111;
+  color: #ffffff;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  z-index: 300;
+  animation: tutorialHintBlink 1s infinite alternate;
+}
+
+@keyframes tutorialHintBlink {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0.55;
+  }
+}
+
+/* 잘못된 버튼을 눌렀을 때 안내 */
+.tutorial-warning {
+  display: none;
+  position: fixed;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+  width: calc(100% - 32px);
+  max-width: 390px;
+  padding: 16px;
+  background-color: #111111;
+  color: #ffffff;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.5;
+  z-index: 500;
+}
+
+.tutorial-warning.show {
+  display: block;
+}
+
