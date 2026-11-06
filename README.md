@@ -41,7 +41,7 @@
 
 - Frontend:
 - Backend:
-- Design:
+- Design: Figma Make
 
 ## 5. 팀원 및 역할
 
@@ -59,7 +59,7 @@
 
 ## 7. 참고 자료
 
-- 프로토타입(Figma): https://www.figma.com/make/JCpm2mYyjkLTCEU2hDOLD8/%EC%96%B4%EB%A5%B4%EC%8B%A0-%ED%82%A4%EC%98%A4%EC%8A%A4%ED%81%AC-%EC%97%B0%EC%8A%B5-%EC%95%B1-1%EC%B0%A8-%EC%88%98%EC%A0%95%EB%B3%B8--1-?t=0Q6p2dn4Pb1j1MbP-20&fullscreen=1
+- 프로토타입(Figma): https://www.figma.com/make/JCpm2mYyjkLTCEU2hDOLD8/%ED%82%A4%EC%9A%B0%EB%AF%B8-%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85?p=f&t=8qe8Bhs55P7BOuBo-0&fullscreen=1
   
 - 배포 링크:
 
