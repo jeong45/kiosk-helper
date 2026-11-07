@@ -39,6 +39,7 @@ const SET_SIDES = [
 // 세트용 음료 옵션
 const SET_DRINKS = [
   { name: '코카콜라', price: 0, icon: '🥤' },
+
   { name: '코카콜라 제로', price: 0, icon: '🥤' },
   { name: '스프라이트', price: 0, icon: '🥤' },
   { name: '씨그램', price: 0, icon: '🥤' },
@@ -104,6 +105,7 @@ function getTotalCount(cart) {
 function getTotalPrice(cart) {
   return cart.reduce((sum, item) => sum + (Number(item.price) || 0) * (Number(item.quantity) || 0), 0);
 }
+
 // =====================================
 // 4. 메뉴판 렌더링
 // =====================================
@@ -128,7 +130,8 @@ function renderProducts(category) {
   productCards.forEach((card, index) => {
     card.addEventListener('click', () => {
       const product = products[index];
-      
+
+     
       if (category === '와퍼') {
         // [수정된 부분] HTML에 세트 선택 창이 있는지 확인해서 에러 방지
         const setModalExists = document.getElementById('setChoiceModal');
@@ -147,6 +150,7 @@ function renderProducts(category) {
           };
           openModal(product.name, product.price);
         }
+
       } else {
         // 사이드/음료는 바로 수량 모달로
         currentItem = {
@@ -198,6 +202,7 @@ function openSetChoiceModal(burger) {
   document.getElementById('label-large-set').innerText = `${burger.name} 라지세트`;
   document.getElementById('label-set').innerText = `${burger.name} 세트`;
 
+
   document.getElementById('price-single').innerText = formatPrice(burger.price);
   document.getElementById('price-set').innerText = formatPrice(burger.price + 3500);
   document.getElementById('price-large-set').innerText = formatPrice(burger.price + 4200);
@@ -218,14 +223,29 @@ function closeSetChoiceModal() {
   document.getElementById('setChoiceModal').style.display = 'none';
 }
 
-function confirmSetChoice() {
-  closeSetChoiceModal();
-  if (currentItem.setType === 'single') {
-    openModal(currentItem.name, currentItem.price);
-  } else {
-    openSetSideModal(); // 세트나 라지세트면 사이드 선택으로 이동
-  }
+=======
+
+  document.getElementById('price-single').innerText = formatPrice(burger.price);
+  document.getElementById('price-set').innerText = formatPrice(burger.price + 3500);
+  document.getElementById('price-large-set').innerText = formatPrice(burger.price + 4200);
+
+  selectSetOption('single'); // 기본 선택은 단품
+  document.getElementById('setChoiceModal').style.display = 'flex';
 }
+
+function selectSetOption(type) {
+  currentItem.setType = type;
+  document.querySelectorAll('.set-opt-item').forEach(el => el.classList.remove('selected'));
+  if (type === 'single') document.getElementById('opt-single').classList.add('selected');
+  if (type === 'set') document.getElementById('opt-set').classList.add('selected');
+  if (type === 'large_set') document.getElementById('opt-large-set').classList.add('selected');
+}
+
+function closeSetChoiceModal() {
+  document.getElementById('setChoiceModal').style.display = 'none';
+}
+
+
 
 // 세트 사이드 선택 모달
 function openSetSideModal() {
@@ -332,6 +352,7 @@ function changeQuantity(change) {
 function addToCart() {
   if (!currentItem.name || currentItem.price <= 0) return;
   closeModal();
+
   
   // addonModal(추가 제안 창)이 현재 HTML에 있는지 확인
   const addonModal = document.getElementById('addonModal');
@@ -404,7 +425,9 @@ function submitAddonAndCart(isAdd) {
       name: selectedAddon.name,
       price: selectedAddon.price,
       quantity: 1,
+
       options: {}
+
     });
   }
 
@@ -436,16 +459,18 @@ function updateCartBar() {
   }
 }
 
+
 // =====================================
 // 상품 선택 화면에서 장바구니 페이지 이동 
 // =====================================
+
 function goToCart() {
   const cart = getCart();
-
   if (cart.length === 0) {
     alert('장바구니가 비어있습니다.');
     return;
   }
+
 
   if (window.location.href.includes('easy.html') || window.location.href.includes('mission')) {
     window.location.href = '../../menu&cart/cart.html';
@@ -454,6 +479,7 @@ function goToCart() {
     window.location.href = 'cart.html';
   }
 }
+
 function renderFastfoodCart() {
   const cartList = document.getElementById('cart-item-list');
   if (!cartList) return;
@@ -579,6 +605,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderFastfoodCart();
 
   const btnMoreMenu = document.getElementById('btn-more-menu');
+
   if (btnMoreMenu) btnMoreMenu.addEventListener('click', () => {
     if (sessionStorage.getItem('fastfoodMissionMode') === 'true') {
       const difficulty =
@@ -603,6 +630,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     window.location.href = 'menu.html';
   });
+
 
   const btnGoOrder = document.getElementById('btn-go-order');
   if (btnGoOrder) {
