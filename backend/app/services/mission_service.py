@@ -3,7 +3,12 @@ import random
 import time
 import uuid
 from typing import Any
+
 from fastapi import HTTPException
+from sqlalchemy.orm import Session
+
+from app.db.session import SessionLocal
+from app.models.mission_target import MissionTarget
 from .mission_data import (
     PAYMENTS, MEMBERSHIP, FASTFOOD,
     FASTFOOD_SET_SIDES, FASTFOOD_DRINKS, FASTFOOD_RECOMMENDED, CATALOG,
@@ -81,7 +86,11 @@ def _describe_item(item: dict[str, Any]) -> str:
     return f"{desc} {item['quantity']}개"
 
 
-def create_mission(category: str, difficulty: str) -> dict[str, Any]:
+def create_mission(
+    category: str,
+    difficulty: str,
+    db: Session | None = None,
+) -> dict[str, Any]:
     if category not in {"fastfood", "cafe", "restaurant", "mart"}:
         raise HTTPException(400, "category는 fastfood/cafe/restaurant/mart 중 하나여야 합니다.")
     if difficulty not in {"easy", "hard"}:
@@ -111,6 +120,26 @@ def create_mission(category: str, difficulty: str) -> dict[str, Any]:
         "difficulty": difficulty,
         "created_at": now,
     }
+
+    def save_target(session: Session) -> None:
+        session.query(MissionTarget).filter(
+            MissionTarget.created_at < now - TTL_SECONDS
+        ).delete(synchronize_session=False)
+        session.add(
+            MissionTarget(
+                mission_id=mission_id,
+                target=MISSIONS[mission_id],
+                created_at=now,
+            )
+        )
+
+    if db is None:
+        with SessionLocal.begin() as session:
+            save_target(session)
+    else:
+        save_target(db)
+        db.commit()
+
     # 정답 구조(items)는 노출하지 않고 미션 문구만 전달
     return {"mission_id": mission_id, "category": category,
             "difficulty": difficulty, "instruction": instruction}
@@ -121,10 +150,36 @@ def _normalize(items: list[dict[str, Any]]) -> list[tuple[Any, ...]]:
                   for i in items)
 
 
-def check_mission(mission_id: str, items: list[dict[str, Any]],
-                  payment_method: str, membership_method: str | None) -> dict[str, Any]:
+def get_mission_target(
+    mission_id: str,
+    db: Session | None = None,
+) -> dict[str, Any] | None:
+    now = time.time()
     target = MISSIONS.get(mission_id)
-    if target is None or time.time() - target["created_at"] > TTL_SECONDS:
+    if target is not None and now - target["created_at"] <= TTL_SECONDS:
+        return target
+
+    MISSIONS.pop(mission_id, None)
+    if db is None:
+        return None
+
+    record = db.get(MissionTarget, mission_id)
+    if record is None or now - record.created_at > TTL_SECONDS:
+        return None
+
+    MISSIONS[mission_id] = record.target
+    return record.target
+
+
+def check_mission(
+    mission_id: str,
+    items: list[dict[str, Any]],
+    payment_method: str,
+    membership_method: str | None,
+    db: Session | None = None,
+) -> dict[str, Any]:
+    target = get_mission_target(mission_id, db)
+    if target is None:
         raise HTTPException(404, "미션을 찾을 수 없거나 만료되었습니다. 새 미션을 요청하세요.")
     checks = {
         "items": _normalize(items) == _normalize(target["items"]),

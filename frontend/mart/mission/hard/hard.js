@@ -59,6 +59,7 @@ async function loadHardMission() {
 
     // 새로운 미션일 때만 장바구니 초기화
     localStorage.removeItem(MISSION_CART_KEY);
+    if (typeof updateCartBar === 'function') updateCartBar();
 
     // 이전 EASY 미션 정보 삭제
     sessionStorage.removeItem('martEasyMissionId');

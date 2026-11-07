@@ -8,7 +8,7 @@
  // 미션 데이터 저장 키
  const MISSION_ID_KEY = 'fastfoodEasyMissionId';
  const MISSION_MODE_KEY = 'fastfoodMissionMode';
- const MISSION_CART_KEY = 'fastfoodMissionCartItems';
+ const MISSION_CART_KEY = 'fastfoodCartItems';
  const MISSION_INSTRUCTION_KEY = 'fastfoodEasyMissionInstruction';
 
 
@@ -26,6 +26,7 @@
 
      // 미션 모드 활성화
      sessionStorage.setItem(MISSION_MODE_KEY, 'true');
+     sessionStorage.setItem('fastfoodMissionDifficulty', 'easy');
 
      // 기존 미션 확인
      const savedMissionId = sessionStorage.getItem(MISSION_ID_KEY);
@@ -45,6 +46,10 @@
 
      // 새로운 미션을 시작할 때만 장바구니 초기화
      localStorage.removeItem(MISSION_CART_KEY);
+     if (typeof updateCartBar === 'function') updateCartBar();
+     sessionStorage.removeItem('fastfoodHardMissionId');
+     sessionStorage.removeItem('fastfoodHardMissionInstruction');
+     sessionStorage.removeItem('fastfoodMissionResult');
 
      instructionElement.textContent = '미션을 불러오는 중입니다.';
      instructionElement.classList.add('loading');

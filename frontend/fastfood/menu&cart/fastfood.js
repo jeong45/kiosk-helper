@@ -29,6 +29,7 @@ const FASTFOOD = [
 // 세트용 사이드 옵션
 const SET_SIDES = [
   { name: '프렌치프라이', price: 0, icon: '🍟' },
+  { name: '프렌치프라이 교환', price: 0, icon: '🍟' },
   { name: '너겟킹 3조각', price: 0, icon: '🍗' },
   { name: '치즈스틱', price: 0, icon: '🧀' },
   { name: '어니언링', price: 300, icon: '🧅' },
@@ -38,7 +39,7 @@ const SET_SIDES = [
 // 세트용 음료 옵션
 const SET_DRINKS = [
   { name: '코카콜라', price: 0, icon: '🥤' },
-  { name: '코카콜라제로', price: 0, icon: '🥤' },
+  { name: '코카콜라 제로', price: 0, icon: '🥤' },
   { name: '스프라이트', price: 0, icon: '🥤' },
   { name: '씨그램', price: 0, icon: '🥤' },
   { name: '아메리카노', price: 0, icon: '☕' },
@@ -378,16 +379,24 @@ function toggleAddon(index) {
 
 function submitAddonAndCart(isAdd) {
   const cart = getCart();
+  const isBurger = FASTFOOD.some(
+    item => item.name === currentItem.name && item.category === '와퍼'
+  );
+  const options = {};
+
+  if (isBurger) {
+    options.composition = currentItem.setType;
+    if (currentItem.setType !== 'single') {
+      options.set_side = currentItem.side ? currentItem.side.name : null;
+      options.drink = currentItem.drink ? currentItem.drink.name : null;
+    }
+  }
 
   cart.push({
     name: currentItem.name,
     price: currentItem.price,
     quantity: currentItem.quantity,
-    options: {
-      composition: currentItem.setType,
-      set_side: currentItem.side ? currentItem.side.name : null,
-      drink: currentItem.drink ? currentItem.drink.name : null
-    }
+    options
   });
 
   if (isAdd && selectedAddon) {
@@ -395,7 +404,7 @@ function submitAddonAndCart(isAdd) {
       name: selectedAddon.name,
       price: selectedAddon.price,
       quantity: 1,
-      options: { composition: 'single', set_side: null, drink: null }
+      options: {}
     });
   }
 
@@ -570,10 +579,30 @@ document.addEventListener('DOMContentLoaded', () => {
   renderFastfoodCart();
 
   const btnMoreMenu = document.getElementById('btn-more-menu');
-  if (btnMoreMenu) btnMoreMenu.addEventListener('click', () => window.location.href = 'menu.html');
+  if (btnMoreMenu) btnMoreMenu.addEventListener('click', () => {
+    if (sessionStorage.getItem('fastfoodMissionMode') === 'true') {
+      const difficulty =
+        sessionStorage.getItem('fastfoodMissionDifficulty') === 'hard'
+          ? 'hard'
+          : 'easy';
+      window.location.href = `../mission/${difficulty}/${difficulty}.html`;
+      return;
+    }
+    window.location.href = 'menu.html';
+  });
 
   const btnMore = document.getElementById('btn-more');
-  if (btnMore) btnMore.addEventListener('click', () => window.location.href = 'menu.html');
+  if (btnMore) btnMore.addEventListener('click', () => {
+    if (sessionStorage.getItem('fastfoodMissionMode') === 'true') {
+      const difficulty =
+        sessionStorage.getItem('fastfoodMissionDifficulty') === 'hard'
+          ? 'hard'
+          : 'easy';
+      window.location.href = `../mission/${difficulty}/${difficulty}.html`;
+      return;
+    }
+    window.location.href = 'menu.html';
+  });
 
   const btnGoOrder = document.getElementById('btn-go-order');
   if (btnGoOrder) {

@@ -9,7 +9,7 @@ const API_BASE_URL = 'http://127.0.0.1:8000';
 // HARD 미션 데이터 저장 키
 const MISSION_ID_KEY = 'fastfoodHardMissionId';
 const MISSION_MODE_KEY = 'fastfoodMissionMode';
-const MISSION_CART_KEY = 'fastfoodMissionCartItems';
+const MISSION_CART_KEY = 'fastfoodCartItems';
 const MISSION_INSTRUCTION_KEY = 'fastfoodHardMissionInstruction';
 
 
@@ -30,7 +30,7 @@ async function loadHardMission() {
     sessionStorage.setItem(MISSION_MODE_KEY, 'true');
 
     // HARD 난이도 저장
-    sessionStorage.setItem('fastfoodHardMissionDifficulty', 'hard');
+    sessionStorage.setItem('fastfoodMissionDifficulty', 'hard');
 
     // ========================================
     // 2. 기존 미션이 있으면 유지
@@ -46,7 +46,7 @@ async function loadHardMission() {
         instructionElement.textContent = savedInstruction;
 
         console.log(
-            '기존 카페 HARD 미션 유지:',
+            '기존 패스트푸드 HARD 미션 유지:',
             savedMissionId
         );
 
@@ -59,13 +59,14 @@ async function loadHardMission() {
 
     // 새로운 미션일 때만 장바구니 초기화
     localStorage.removeItem(MISSION_CART_KEY);
+    if (typeof updateCartBar === 'function') updateCartBar();
 
     // 이전 EASY 미션 정보 삭제
-    sessionStorage.removeItem('martEasyMissionId');
-    sessionStorage.removeItem('martEasyMissionInstruction');
+    sessionStorage.removeItem('fastfoodEasyMissionId');
+    sessionStorage.removeItem('fastfoodEasyMissionInstruction');
 
     // 이전 미션 판정 결과 삭제
-    sessionStorage.removeItem('martMissionResult');
+    sessionStorage.removeItem('fastfoodMissionResult');
 
     instructionElement.textContent =
         'HARD 미션을 불러오는 중입니다.';
@@ -101,13 +102,13 @@ async function loadHardMission() {
             mission.instruction;
 
         console.log(
-            '카페 HARD 미션 불러오기 성공:',
+            '패스트푸드 HARD 미션 불러오기 성공:',
             mission
         );
 
     } catch (error) {
         console.error(
-            '카페 HARD 미션 불러오기 오류:',
+            '패스트푸드 HARD 미션 불러오기 오류:',
             error
         );
 

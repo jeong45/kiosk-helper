@@ -9,6 +9,7 @@ from app.models import (
     mission_attempt,
     mission_attempt_item,
     mission_attempt_option,
+    mission_target,
     option_group,
     option_item,
     users,
@@ -24,6 +25,7 @@ app.add_middleware(
         "http://localhost:5500",
         "http://127.0.0.1:5500",
     ],
+    allow_origin_regex=r"http://(localhost|127\.0\.0\.1):55[0-9]{2}",
     allow_methods=["GET", "POST"],
     allow_headers=["Content-Type"],
 )

@@ -9,7 +9,7 @@ const API_BASE_URL = 'http://127.0.0.1:8000';
 // HARD 미션 데이터 저장 키
 const MISSION_ID_KEY = 'cafeHardMissionId';
 const MISSION_MODE_KEY = 'cafeMissionMode';
-const MISSION_CART_KEY = 'cafeMissionCartItems';
+const MISSION_CART_KEY = 'cafeCartItems';
 const MISSION_INSTRUCTION_KEY = 'cafeHardMissionInstruction';
 
 
@@ -30,7 +30,7 @@ async function loadHardMission() {
     sessionStorage.setItem(MISSION_MODE_KEY, 'true');
 
     // HARD 난이도 저장
-    sessionStorage.setItem('cafeHardMissionDifficulty', 'hard');
+    sessionStorage.setItem('cafeMissionDifficulty', 'hard');
 
     // ========================================
     // 2. 기존 미션이 있으면 유지
@@ -59,13 +59,14 @@ async function loadHardMission() {
 
     // 새로운 미션일 때만 장바구니 초기화
     localStorage.removeItem(MISSION_CART_KEY);
+    if (typeof updateCartBar === 'function') updateCartBar();
 
     // 이전 EASY 미션 정보 삭제
-    sessionStorage.removeItem('martEasyMissionId');
-    sessionStorage.removeItem('martEasyMissionInstruction');
+    sessionStorage.removeItem('cafeEasyMissionId');
+    sessionStorage.removeItem('cafeEasyMissionInstruction');
 
     // 이전 미션 판정 결과 삭제
-    sessionStorage.removeItem('martMissionResult');
+    sessionStorage.removeItem('cafeMissionResult');
 
     instructionElement.textContent =
         'HARD 미션을 불러오는 중입니다.';

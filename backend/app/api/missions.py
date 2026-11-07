@@ -12,7 +12,11 @@ from app.models.mission_attempt import MissionAttempt
 from app.models.mission_attempt_item import MissionAttemptItem
 from app.models.mission_attempt_option import MissionAttemptOption
 from app.models.users import Users
-from app.services.mission_service import MISSIONS, check_mission, create_mission
+from app.services.mission_service import (
+    check_mission,
+    create_mission,
+    get_mission_target,
+)
 
 router = APIRouter(prefix="/api/missions", tags=["missions"])
 
@@ -135,13 +139,14 @@ def _save_attempt(
 def random_mission(
     category: Literal["fastfood", "cafe", "restaurant", "mart"],
     difficulty: Literal["easy", "hard"],
+    db: Session = Depends(get_db),
 ):
-    return create_mission(category, difficulty)
+    return create_mission(category, difficulty, db)
 
 
 @router.post("/check")
 def submit_mission(payload: MissionSubmission, db: Session = Depends(get_db)):
-    target = MISSIONS.get(payload.mission_id)
+    target = get_mission_target(payload.mission_id, db)
     items = [item.model_dump() for item in payload.items]
     for item in items:
         if "composition" in item["options"]:
@@ -154,6 +159,7 @@ def submit_mission(payload: MissionSubmission, db: Session = Depends(get_db)):
         items,
         _normalize_payment_method(payload.payment_method),
         payload.membership_method,
+        db,
     )
     try:
         record = _save_attempt(
