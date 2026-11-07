@@ -75,7 +75,7 @@ async function loadHardMission() {
     try {
         // 백엔드에서 랜덤 HARD 미션 요청
         const response = await fetch(
-            `${API_BASE_URL}/api/missions/random?category=mart&difficulty=hard`
+            `${API_BASE_URL}/api/missions/random?category=cafe&difficulty=hard`
         );
 
         if (!response.ok) {
