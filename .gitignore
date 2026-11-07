@@ -8,3 +8,9 @@ backend/venv/
 backend/__pycache__/
 backend/.env
 backend/*.pyc
+backend/app.db
+backend/app.db-journal
+backend/app.db-shm
+backend/app.db-wal
+__pycache__/
+*.pyc

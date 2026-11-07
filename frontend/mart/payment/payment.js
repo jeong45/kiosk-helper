@@ -4,11 +4,20 @@
 
 function getCart() {
   try {
-    return JSON.parse(localStorage.getItem('martCartItems')) || [];
+    const isMissionMode =
+      sessionStorage.getItem('martMissionMode') === 'true';
+
+    const storageKey = isMissionMode
+      ? 'martMissionCartItems'
+      : 'martCartItems';
+
+    return JSON.parse(localStorage.getItem(storageKey)) || [];
+
   } catch (error) {
     return [];
   }
 }
+
 
 
 // =====================================

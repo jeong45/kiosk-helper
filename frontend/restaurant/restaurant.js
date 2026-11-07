@@ -17,7 +17,7 @@ const RESTAURANT_PRODUCTS = [
   { name: '4인 세트', price: 58000, category: '세트메뉴', color: 'dark-red' },
   { name: '냉모밀정식', price: 17000, category: '세트메뉴', color: 'blue' },
   { name: '비빔우동정식', price: 17000, category: '세트메뉴', color: 'pink' },
-  { name: '돈가스 정식', price: 16000, category: '세트메뉴', color: 'yellow' },
+  { name: '돈가스정식', price: 16000, category: '세트메뉴', color: 'yellow' },
 
   // 단일메뉴
   { name: '비빔밥', price: 10000, category: '단일메뉴', color: 'orange' },
@@ -30,8 +30,8 @@ const RESTAURANT_PRODUCTS = [
   // 사이드메뉴
   { name: '새우튀김', price: 6000, category: '사이드메뉴', color: 'orange' },
   { name: '감자고로케', price: 5000, category: '사이드메뉴', color: 'red' },
-  { name: '매니 돈가스', price: 7000, category: '사이드메뉴', color: 'dark-red' },
-  { name: '치킨 가라야게', price: 7500, category: '사이드메뉴', color: 'blue' },
+  { name: '미니 돈가스', price: 7000, category: '사이드메뉴', color: 'dark-red' },
+  { name: '치킨 가라아게', price: 7500, category: '사이드메뉴', color: 'blue' },
   { name: '계란찜', price: 4000, category: '사이드메뉴', color: 'pink' },
   { name: '공깃밥', price: 1000, category: '사이드메뉴', color: 'yellow' },
 
@@ -57,17 +57,43 @@ const RESTAURANT_PRODUCTS = [
 // 장바구니 데이터 관리
 // =====================================
 
+
+// =====================================
+// 장바구니 데이터 관리
+// =====================================
+
+// 음식점 미션모드인지 확인
+function isRestaurantMissionMode() {
+  return sessionStorage.getItem('restaurantMissionMode') === 'true';
+}
+
+// 현재 모드에 맞는 장바구니 저장 키
+function getRestaurantCartKey() {
+  return isRestaurantMissionMode()
+    ? 'restaurantMissionCartItems'
+    : 'cartItems';
+}
+
+// 장바구니 가져오기
 function getCart() {
   try {
-    return JSON.parse(localStorage.getItem('cartItems')) || [];
+    return JSON.parse(
+      localStorage.getItem(getRestaurantCartKey())
+    ) || [];
   } catch (error) {
+    console.error('장바구니 불러오기 실패:', error);
     return [];
   }
 }
 
+// 장바구니 저장하기
 function saveCart(cart) {
-  localStorage.setItem('cartItems', JSON.stringify(cart));
+  localStorage.setItem(
+    getRestaurantCartKey(),
+    JSON.stringify(cart)
+  );
 }
+
 
 
 // =====================================
@@ -271,15 +297,43 @@ function goToCart() {
     return;
   }
 
+  // 음식점 미션모드
+  if (isRestaurantMissionMode()) {
+    window.location.href = '../../cart.html';
+    return;
+  }
+
+  // 자유 연습 및 튜토리얼
   window.location.href = 'cart.html';
 }
 
 
+
 // 메뉴 화면으로 돌아가기
 function goToMenu() {
+  // 장바구니 데이터를 유지하도록 설정
   sessionStorage.setItem('preserveCartOnMenu', 'true');
+
+  // 음식점 미션모드
+  if (isRestaurantMissionMode()) {
+    const difficulty =
+      sessionStorage.getItem('restaurantMissionDifficulty');
+
+    if (difficulty === 'easy') {
+      window.location.href = 'mission/easy/easy.html';
+      return;
+    }
+
+    if (difficulty === 'hard') {
+      window.location.href = 'mission/hard/hard.html';
+      return;
+    }
+  }
+
+  // 자유 연습 및 튜토리얼
   window.location.href = 'menu.html';
 }
+
 
 
 // =====================================
@@ -495,8 +549,11 @@ function showMethodStep() {
 }
 
 
+// =====================================
 // 결제 완료
-function completePayment() {
+// =====================================
+
+async function completePayment() {
   const spayOpt = document.getElementById('spayOption');
   const kpayOpt = document.getElementById('kpayOption');
 
@@ -508,11 +565,81 @@ function completePayment() {
     payMethodText = '카카오페이';
   }
 
+  // 선택한 결제 수단 저장
   localStorage.setItem('selectedPayMethod', payMethodText);
 
-  window.location.href = 'complete.html';
-}
+  // 자유 연습 및 튜토리얼은 기존 방식 유지
+  if (!isRestaurantMissionMode()) {
+    window.location.href = 'complete.html';
+    return;
+  }
 
+  // 음식점 미션 난이도 확인
+  const difficulty =
+    sessionStorage.getItem('restaurantMissionDifficulty');
+
+  const missionIdKey = difficulty === 'hard'
+    ? 'restaurantHardMissionId'
+    : 'restaurantEasyMissionId';
+
+  const missionId = sessionStorage.getItem(missionIdKey);
+
+  if (!missionId) {
+    alert('미션 정보를 찾을 수 없습니다. 미션을 다시 시작해 주세요.');
+    return;
+  }
+
+  // 현재 장바구니를 백엔드 제출 형식으로 변환
+  const items = getCart().map(item => ({
+    name: item.name,
+    quantity: item.quantity,
+    options: {}
+  }));
+
+  const requestData = {
+    mission_id: missionId,
+    items: items,
+    payment_method: payMethodText,
+    membership_method: null
+  };
+
+  try {
+    const response = await fetch(
+      'http://127.0.0.1:8000/api/missions/check',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestData)
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`미션 확인 실패: ${response.status}`);
+    }
+
+    const result = await response.json();
+
+    // 성공·실패 결과 저장
+    sessionStorage.setItem(
+      'restaurantMissionResult',
+      JSON.stringify(result)
+    );
+
+    console.log('음식점 미션 판정 결과:', result);
+
+    // 결제 완료 화면으로 이동
+    window.location.href = 'complete.html';
+
+  } catch (error) {
+    console.error('음식점 미션 제출 오류:', error);
+
+    alert(
+      '미션 결과를 확인하지 못했습니다. 서버 연결을 확인하고 다시 시도해 주세요.'
+    );
+  }
+}
 
 // =====================================
 // 4. complete.html 관련 함수
@@ -570,12 +697,331 @@ function renderCompletePage() {
   }
 }
 
+/* =====================================
+   음식점 미션 성공·실패 결과 표시
+===================================== */
+
+// 조건별 성공 / 실패 배지
+function updateRestaurantCheckResult(elementId, passed) {
+  const element = document.getElementById(elementId);
+
+  if (!element) return;
+
+  element.textContent = passed === true
+    ? '✓ 성공'
+    : '✕ 놓침';
+
+  element.className = passed === true
+    ? 'success-badge'
+    : 'fail-badge';
+}
+
+
+// 실패 화면 실제 주문 내역
+function renderRestaurantFailReceipt() {
+  const cart = getCart();
+
+  const container =
+    document.getElementById('fail-receipt-items');
+
+  if (!container) return;
+
+  container.replaceChildren();
+
+  let totalPrice = 0;
+
+  cart.forEach(item => {
+    const quantity = Number(item.quantity) || 0;
+    const price = Number(item.price) || 0;
+    const itemTotal = price * quantity;
+
+    totalPrice += itemTotal;
+
+    const row = document.createElement('div');
+    row.className = 'summary-item';
+
+    const name = document.createElement('span');
+    name.textContent = `${item.name} × ${quantity}`;
+
+    const amount = document.createElement('span');
+    amount.textContent = itemTotal.toLocaleString() + '원';
+
+    row.append(name, amount);
+    container.appendChild(row);
+  });
+
+  const totalElement =
+    document.getElementById('fail-receipt-total');
+
+  if (totalElement) {
+    totalElement.textContent =
+      totalPrice.toLocaleString() + '원';
+  }
+
+  const paymentElement =
+    document.getElementById('fail-receipt-payment');
+
+  if (paymentElement) {
+    paymentElement.textContent =
+      localStorage.getItem('selectedPayMethod') ||
+      '카드 결제';
+  }
+}
+
+
+// 음식점 미션 결과 표시
+function renderRestaurantMissionResult() {
+
+  // 자유 연습과 튜토리얼은 기존 화면 유지
+  if (!isRestaurantMissionMode()) return;
+
+  // 결제 완료 페이지에서만 실행
+  const completePage =
+    document.getElementById('completePage');
+
+  const failModal =
+    document.getElementById('mission-fail-modal');
+
+  if (!completePage || !failModal) return;
+
+  // 저장된 미션 결과 불러오기
+  const savedResult =
+    sessionStorage.getItem('restaurantMissionResult');
+
+  if (!savedResult) {
+    console.warn('저장된 음식점 미션 결과가 없습니다.');
+    return;
+  }
+
+  let result;
+
+  try {
+    result = JSON.parse(savedResult);
+  } catch (error) {
+    console.error('미션 결과 읽기 실패:', error);
+    return;
+  }
+
+  const difficulty =
+    sessionStorage.getItem('restaurantMissionDifficulty');
+
+  const isHardMode = difficulty === 'hard';
+
+  const difficultyText = isHardMode ? 'HARD' : 'EASY';
+
+  // =====================================
+  // 1. 미션 성공
+  // =====================================
+
+  if (result.success === true) {
+
+    // 실패 화면 숨기기
+    failModal.style.display = 'none';
+
+    // 성공 화면 표시
+    completePage.style.display = 'flex';
+
+    const icon = document.getElementById('completeIcon');
+    const badge = document.getElementById('completeBadge');
+    const title = document.getElementById('completeTitle');
+    const summary =
+      document.getElementById('completeSummaryText');
+
+    if (icon) {
+      icon.textContent = '✓';
+    }
+
+    if (badge) {
+      badge.textContent = `${difficultyText} 미션 성공`;
+    }
+
+    if (title) {
+      title.textContent = '미션을 완료했어요!';
+    }
+
+    if (summary) {
+      summary.textContent =
+        '오늘의 미션을 정확하게 완료했어요. 정말 잘하셨어요!';
+    }
+
+    return;
+  }
+
+  // =====================================
+  // 2. 미션 실패
+  // =====================================
+
+  if (result.success !== false) {
+    console.error('올바르지 않은 미션 결과:', result);
+    return;
+  }
+
+  // 기존 완료 화면 숨기기
+  completePage.style.display = 'none';
+
+  // 난이도 표시
+  const resultTitle =
+    document.getElementById('missionResultTitle');
+
+  if (resultTitle) {
+    resultTitle.textContent =
+      `${difficultyText} 미션 결과`;
+  }
+
+  const difficultyBadge =
+    document.getElementById('failDifficultyBadge');
+
+  if (difficultyBadge) {
+    difficultyBadge.textContent = difficultyText;
+
+    difficultyBadge.classList.toggle(
+      'hard-badge',
+      isHardMode
+    );
+  }
+
+  failModal.classList.toggle('hard-mode', isHardMode);
+
+  // =====================================
+  // 3. 미션 안내 문구
+  // =====================================
+
+  const instructionKey = isHardMode
+    ? 'restaurantHardMissionInstruction'
+    : 'restaurantEasyMissionInstruction';
+
+  const instruction =
+    sessionStorage.getItem(instructionKey);
+
+  const instructionElement =
+    document.getElementById('fail-mission-instruction');
+
+  if (instructionElement) {
+    instructionElement.textContent =
+      instruction || '미션 안내를 불러오지 못했습니다.';
+  }
+
+  // =====================================
+  // 4. 조건별 결과
+  // =====================================
+
+  const checks = result.checks || {};
+
+  updateRestaurantCheckResult(
+    'product-result',
+    checks.items
+  );
+
+  updateRestaurantCheckResult(
+    'payment-result',
+    checks.payment_method
+  );
+
+  // =====================================
+  // 5. HARD 전용 결과
+  // =====================================
+
+  const membershipResultRow =
+    document.getElementById('membershipResultRow');
+
+  const failMembershipRow =
+    document.getElementById('failMembershipRow');
+
+  const failDescription =
+    document.getElementById('failDescription');
+
+ // 음식점 미션은 EASY와 HARD 모두 멤버십 조건 없음
+if (membershipResultRow) {
+  membershipResultRow.style.display = 'none';
+}
+
+if (failMembershipRow) {
+  failMembershipRow.style.display = 'none';
+}
+
+  if (isHardMode) {
+
+    updateRestaurantCheckResult(
+      'membership-result',
+      checks.membership_method
+    );
+
+    if (failDescription) {
+      failDescription.innerHTML =
+        '주문한 두 메뉴와 수량, 결제 방식을<br>' +
+        '다시 확인해 보세요.';
+    }
+
+    const membershipText =
+      document.getElementById('fail-receipt-membership');
+
+    if (membershipText) {
+      membershipText.textContent =
+        '선택 정보 없음';
+    }
+
+  } else {
+
+    if (failDescription) {
+      failDescription.innerHTML =
+        '주문 상품, 수량, 결제 조건을<br>' +
+        '다시 확인해 보세요.';
+    }
+  }
+
+  // =====================================
+  // 6. 실제 주문 내역
+  // =====================================
+
+  renderRestaurantFailReceipt();
+
+  // =====================================
+  // 7. 실패 화면 표시
+  // =====================================
+
+  failModal.style.display = 'flex';
+}
+
+
 
 // =====================================
 // 5. 처음부터 다시 연습 / 메인 이동
 // =====================================
 
+
 function restartPractice() {
+
+  // 음식점 미션모드일 경우
+  if (isRestaurantMissionMode()) {
+
+    const difficulty =
+      sessionStorage.getItem('restaurantMissionDifficulty');
+
+    // 이전 미션 정보 삭제
+    sessionStorage.removeItem('restaurantEasyMissionId');
+    sessionStorage.removeItem('restaurantEasyMissionInstruction');
+    sessionStorage.removeItem('restaurantHardMissionId');
+    sessionStorage.removeItem('restaurantHardMissionInstruction');
+    sessionStorage.removeItem('restaurantMissionResult');
+    sessionStorage.removeItem('preserveCartOnMenu');
+
+    // 미션 장바구니 초기화
+    localStorage.removeItem('restaurantMissionCartItems');
+
+    // EASY 미션 다시 시작
+    if (difficulty === 'easy') {
+      window.location.href = 'mission/easy/easy.html';
+      return;
+    }
+
+    // HARD 미션 다시 시작
+    if (difficulty === 'hard') {
+      window.location.href = 'mission/hard/hard.html';
+      return;
+    }
+  }
+
+  // 자유 연습 및 튜토리얼
   localStorage.removeItem('cartItems');
 
   sessionStorage.removeItem('preserveCartOnMenu');
@@ -586,15 +1032,39 @@ function restartPractice() {
 }
 
 
+
 function goToMain() {
+
+  // 일반 장바구니 삭제
   localStorage.removeItem('cartItems');
 
+  // 음식점 미션 장바구니 삭제
+  localStorage.removeItem('restaurantMissionCartItems');
+
+  // 튜토리얼 정보 초기화
   sessionStorage.removeItem('preserveCartOnMenu');
   sessionStorage.removeItem('tutorialMode');
   sessionStorage.removeItem('tutorialStep');
 
+  // 음식점 미션모드 초기화
+  sessionStorage.removeItem('restaurantMissionMode');
+  sessionStorage.removeItem('restaurantMissionDifficulty');
+
+  // EASY 미션 정보 삭제
+  sessionStorage.removeItem('restaurantEasyMissionId');
+  sessionStorage.removeItem('restaurantEasyMissionInstruction');
+
+  // HARD 미션 정보 삭제
+  sessionStorage.removeItem('restaurantHardMissionId');
+  sessionStorage.removeItem('restaurantHardMissionInstruction');
+
+  // 미션 결과 삭제
+  sessionStorage.removeItem('restaurantMissionResult');
+
+  // 메인 화면으로 이동
   window.location.href = '../main/main.html';
 }
+
 
 
 // =====================================
@@ -626,4 +1096,5 @@ document.addEventListener('DOMContentLoaded', () => {
   renderCartPage();
   renderPaymentPage();
   renderCompletePage();
+  renderRestaurantMissionResult();
 });

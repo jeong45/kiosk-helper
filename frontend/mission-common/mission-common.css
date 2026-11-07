@@ -1,23 +1,442 @@
-.mission-banner {
-    background-color: #7b2cbf; /* 보라색 계열 포인트 컬러 */
-    color: #ffffff;
-    padding: 14px 18px;
-    margin: 10px 16px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(123, 44, 191, 0.2);
+
+/* ========================================
+   공통 스타일
+======================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
 }
 
-.mission-tag {
-    font-size: 0.8rem;
-    font-weight: bold;
-    background: rgba(255, 255, 255, 0.2);
-    padding: 2px 8px;
-    border-radius: 4px;
+html {
+    width: 100%;
+    min-height: 100%;
+    background-color: #2b2b2b;
 }
 
-.mission-desc {
-    font-size: 1.05rem;
-    font-weight: 600;
-    margin-top: 6px;
+body {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100svh;
+    background-color: #2b2b2b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 모바일 디바이스 프레임 */
+.mobile-container {
+    width: 100%;
+    max-width: 420px;
+    height: 100vh;
+    height: 100svh;
+    max-height: 850px;
+    margin: 0 auto;
+    background-color: #F8F9FC;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+/* ========================================
+   상단 헤더
+======================================== */
+
+.header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.back-btn {
+    background: #FFFFFF;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.2s;
+}
+
+.back-btn:hover {
+    background-color: #f1f3f5;
+}
+
+.header-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    font-weight: 700;
+    color: #5D3FD3;
+}
+
+/* ========================================
+   콘텐츠 영역
+======================================== */
+
+.content {
+    flex: 1;
+    min-height: 0;
+    padding: 10px 24px 30px 24px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* 아이콘 */
+.category-icon-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.category-icon {
+    width: 64px;
+    height: 64px;
+    background-color: #6C5CE7;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    box-shadow: 0 8px 16px rgba(108, 92, 231, 0.25);
+}
+
+/* 타이틀 섹션 */
+.title-section {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.title-section h2 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #1A1A1A;
+    margin-bottom: 8px;
+}
+
+.title-section p {
+    font-size: 14px;
+    color: #6E7781;
+}
+
+/* ========================================
+   미션 카드
+======================================== */
+
+.mission-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.mission-card {
+    border-radius: 20px;
+    padding: 24px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    position: relative;
+}
+
+.mission-card:active {
+    transform: scale(0.98);
+}
+
+/* 뱃지 공통 */
+.badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+}
+
+/* EASY 카드 */
+.mission-card.easy {
+    background-color: #FFFFFF;
+    border: 2px solid #D4F4DD;
+}
+
+.mission-card.easy:hover {
+    box-shadow: 0 6px 16px rgba(46, 204, 113, 0.1);
+}
+
+.easy-badge {
+    background-color: #7000FF;
+    color: #FFFFFF;
+}
+
+.mission-card.easy h3 {
+    color: #111111;
+}
+
+/* HARD 카드 */
+.mission-card.hard {
+    background: linear-gradient(135deg, #7C5CFC 0%, #6C5CE7 100%);
+    border: 2px solid transparent;
+}
+
+.mission-card.hard:hover {
+    box-shadow: 0 6px 16px rgba(108, 92, 231, 0.25);
+}
+
+.hard-badge {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #FFFFFF;
+}
+
+.mission-card.hard h3,
+.mission-card.hard p {
+    color: #FFFFFF;
+}
+
+/* 카드 내부 텍스트 */
+.card-text h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.card-text p {
+    font-size: 13px;
     line-height: 1.4;
+    color: #6E7781;
+}
+
+.mission-card.hard .card-text p {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* ========================================
+   미션 실패 화면
+======================================== */
+
+/* 모바일 프레임 내부에서 표시 */
+.modal-container {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 16px;
+    overflow-y: auto;
+}
+
+/* 실패 결과 카드 */
+.result-card {
+    background: #F4F7FF;
+    width: 100%;
+    max-width: 380px;
+    padding: 32px 24px;
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    position: relative;
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+/* 실패 아이콘 */
+.fail-icon-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.fail-icon {
+    width: 64px;
+    height: 64px;
+    background-color: #E04444;
+    color: #FFFFFF;
+    font-size: 32px;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(224, 68, 68, 0.35);
+}
+
+/* 실패 타이틀 */
+.result-card h2 {
+    font-size: 13px;
+    font-weight: 800;
+    color: #A92626;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+}
+
+.fail-main-title {
+    font-size: 26px;
+    font-weight: 800;
+    color: #1A1A24;
+    margin-bottom: 8px;
+}
+
+.result-card .sub-text {
+    font-size: 14px;
+    color: #6C727F;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+/* 미션 내용 가이드 */
+.mission-guide-box {
+    background-color: #EDE8FF;
+    border-radius: 16px;
+    padding: 14px 16px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #4312A7;
+    text-align: left;
+    margin-bottom: 16px;
+    line-height: 1.4;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.mission-guide-box .badge {
+    margin-bottom: 0;
+    flex-shrink: 0;
+}
+
+/* 결과 박스 */
+.result-box,
+.user-summary-box {
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 12px;
+    text-align: left;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.result-box-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #8C94A0;
+    margin-bottom: 10px;
+}
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background-color: #FFF6F6;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #2D3139;
+    margin-bottom: 8px;
+}
+
+.result-item:last-child {
+    margin-bottom: 0;
+}
+
+/* 놓침 뱃지 */
+.fail-badge {
+    color: #C62828;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+/* 실제 수행 결과 */
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #2D3139;
+    padding: 6px 0;
+}
+
+.summary-item .price {
+    font-weight: 800;
+    color: #1A1A24;
+}
+
+.summary-item .total-price {
+    color: #E04444;
+    font-weight: 800;
+}
+
+.summary-item .payment-method {
+    color: #3842B0;
+    font-weight: 800;
+}
+
+/* 하단 버튼 */
+.result-card button {
+    width: 100%;
+    padding: 16px;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.result-card button:active {
+    transform: scale(0.98);
+}
+
+/* 한 번 더 연습하기 */
+.btn-primary {
+    background-color: #FFFFFF;
+    color: #4A40AF;
+    border: 2px solid #4A40AF !important;
+    margin-bottom: 10px;
+}
+
+.btn-primary:hover {
+    background-color: #F4F0FF;
+}
+
+/* 다른 연습 선택 */
+.btn-secondary {
+    background-color: #4F46E5;
+    color: #FFFFFF;
+}
+
+.btn-secondary:hover {
+    background-color: #4338CA;
+}
+
+/* 작은 화면 대응 */
+@media (max-height: 700px) {
+    .modal-container {
+        align-items: flex-start;
+    }
+
+    .result-card {
+        max-height: none;
+        margin: auto 0;
+    }
 }

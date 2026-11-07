@@ -1,44 +1,272 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>키우미 - 결제 완료</title>
+
   <link rel="stylesheet" href="restaurant.css">
 </head>
+
 <body>
 
   <div class="kiosk-container complete-bg">
-    <main class="page-content center-layout">
-      <!-- 완료 체크 아이콘 -->
-      <div class="success-icon-circle">✓</div>
-      
-      <div class="complete-badge">연습 완료</div>
-      <h1 class="complete-title">정말 잘하셨어요!</h1>
-      <p class="complete-sub" id="completeSummaryText">1개 상품의 결제 연습을 마쳤어요.<br>이제 실제 키오스크도 자신 있게 이용해 보세요.</p>
+
+    <!-- =====================================
+         1. 결제 완료 / 미션 성공 화면
+    ===================================== -->
+
+    <main class="page-content center-layout" id="completePage">
+
+      <!-- 완료 아이콘 -->
+      <div class="success-icon-circle" id="completeIcon">
+        ✓
+      </div>
+
+      <!-- 완료 문구 -->
+      <div class="complete-badge" id="completeBadge">
+        연습 완료
+      </div>
+
+      <h1 class="complete-title" id="completeTitle">
+        정말 잘하셨어요!
+      </h1>
+
+      <p class="complete-sub" id="completeSummaryText">
+        결제 연습을 마쳤어요.
+      </p>
 
       <!-- 영수증 카드 -->
       <div class="receipt-card">
+
         <div class="receipt-items-list" id="receiptItems"></div>
+
         <div class="receipt-row">
           <span>총 결제금액</span>
-          <span class="total-price" id="receiptTotal">12,000원</span>
+          <span class="total-price" id="receiptTotal">
+            0원
+          </span>
         </div>
+
         <div class="receipt-row">
           <span>결제 방식</span>
-          <span class="pay-method-text" id="receiptPayMethod">카드 결제</span>
+          <span class="pay-method-text" id="receiptPayMethod">
+            카드 결제
+          </span>
         </div>
+
       </div>
 
       <!-- 하단 버튼 -->
       <div class="complete-btn-group">
-        <button class="btn-outline" onclick="restartPractice()">한 번 더 연습하기</button>
-        <button class="btn-primary full" onclick="goToMain()">다른 연습 선택</button>
+
+        <button
+          class="btn-outline"
+          onclick="restartPractice()"
+          id="restartButton"
+        >
+          한 번 더 연습하기
+        </button>
+
+        <button
+          class="btn-primary full"
+          onclick="goToMain()"
+        >
+          다른 연습 선택
+        </button>
+
       </div>
+
     </main>
+
+
+    <!-- =====================================
+         2. EASY / HARD 미션 실패 화면
+    ===================================== -->
+
+    <div
+      id="mission-fail-modal"
+      class="modal-container"
+      style="display: none;"
+    >
+
+      <div class="result-card">
+
+        <!-- 실패 아이콘 -->
+        <div class="fail-icon-wrapper">
+          <span class="fail-icon">✕</span>
+        </div>
+
+        <!-- 난이도별 결과 제목 -->
+        <h2 id="missionResultTitle">
+          EASY 미션 결과
+        </h2>
+
+        <h3 class="fail-main-title">
+          미션에 실패했어요
+        </h3>
+
+        <p class="sub-text" id="failDescription">
+          주문 상품, 수량, 결제 조건을<br>
+          다시 확인해 보세요.
+        </p>
+
+        <!-- 미션 안내 -->
+        <div class="mission-guide-box">
+
+          <span
+            class="badge easy-badge"
+            id="failDifficultyBadge"
+          >
+            EASY
+          </span>
+
+          <span id="fail-mission-instruction">
+            미션 내용을 불러오는 중입니다.
+          </span>
+
+        </div>
+
+
+        <!-- 조건별 결과 -->
+        <div class="result-box">
+
+          <div class="result-box-title">
+            조건별 결과
+          </div>
+
+          <!-- 주문 상품과 수량 -->
+          <div class="result-item">
+
+            <span>주문 상품과 수량</span>
+
+            <span id="product-result" class="fail-badge">
+              ✕ 놓침
+            </span>
+
+          </div>
+
+          <!-- 결제 방식 -->
+          <div class="result-item">
+
+            <span>결제 방식</span>
+
+            <span id="payment-result" class="fail-badge">
+              ✕ 놓침
+            </span>
+
+          </div>
+
+          <!-- HARD 전용: 멤버십 적립 -->
+          <div
+            class="result-item"
+            id="membershipResultRow"
+            style="display: none;"
+          >
+
+            <span>멤버십 적립</span>
+
+            <span id="membership-result" class="fail-badge">
+              ✕ 놓침
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- 실제 주문 내역 -->
+        <div class="user-summary-box">
+
+          <div class="result-box-title">
+            실제 주문 내역
+          </div>
+
+          <!-- 주문한 음식 목록 -->
+          <div id="fail-receipt-items"></div>
+
+          <!-- 총 결제금액 -->
+          <div class="summary-item">
+
+            <span>총 결제금액</span>
+
+            <span
+              id="fail-receipt-total"
+              class="total-price"
+            >
+              0원
+            </span>
+
+          </div>
+
+          <!-- 결제 방식 -->
+          <div class="summary-item">
+
+            <span>결제 방식</span>
+
+            <span
+              id="fail-receipt-payment"
+              class="payment-method"
+            >
+              카드 결제
+            </span>
+
+          </div>
+
+          <!-- HARD 전용: 실제 멤버십 적립 -->
+          <div
+            class="summary-item"
+            id="failMembershipRow"
+            style="display: none;"
+          >
+
+            <span>멤버십 적립</span>
+
+            <span id="fail-receipt-membership">
+              적립 안 함
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- 실패 화면 하단 버튼 -->
+        <div class="fail-btn-group">
+
+          <button
+            id="retry-btn"
+            class="fail-retry-btn"
+            onclick="restartPractice()"
+          >
+            한 번 더 연습하기
+          </button>
+
+          <button
+            id="back-btn"
+            class="fail-main-btn"
+            onclick="goToMain()"
+          >
+            다른 연습 선택
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
 
-    <script src="restaurant.js"></script>
-    <script src="tutorial.js"></script>
+
+  <!-- =====================================
+       JavaScript 연결
+  ===================================== -->
+
+  <script src="restaurant.js"></script>
+  <script src="tutorial.js"></script>
+
 </body>
 </html>

@@ -1,69 +1,103 @@
-// front/마트/미션/이지/easy.js
 
-let currentMission = null;
-let cart = [];
+ // ========================================
+ // 키우미 패스트푸드 EASY 미션
+ // ========================================
 
-document.addEventListener("DOMContentLoaded", async () => {
-    await fetchAndRenderMission();
-    initEventListeners();
-});
+ const API_BASE_URL = 'http://127.0.0.1:8000';
 
-// 1. 백엔드에서 무작위 미션 데이터 불러오기
-async function fetchAndRenderMission() {
-    try {
-        // TODO: 백엔드 API 연동 (예: /api/mission/easy)
-        // 임시 데이터 구조
-        currentMission = {
-            difficulty: "EASY",
-            targetItemName: "1인 세트",
-            targetQuantity: 2,
-            targetPayment: "card",
-            description: "1인 세트 2개를 주문하고 카드 결제하세요."
-        };
+ // 미션 데이터 저장 키
+ const MISSION_ID_KEY = 'fastfoodEasyMissionId';
+ const MISSION_MODE_KEY = 'fastfoodMissionMode';
+ const MISSION_CART_KEY = 'fastfoodCartItems';
+ const MISSION_INSTRUCTION_KEY = 'fastfoodEasyMissionInstruction';
 
-        // 상단 배너 텍스트 업데이트
-        document.getElementById("mission-tag").innerText = `${currentMission.difficulty} · 오늘의 미션`;
-        document.getElementById("mission-desc").innerText = currentMission.description;
-    } catch (error) {
-        console.error("미션 정보를 불러오지 못했습니다.", error);
-    }
-}
 
-// 2. 장바구니 담기 및 조건 체크 로직
-function addToCart(item) {
-    // 이지모드는 메뉴 1개 조건이므로 선택 편의성 고려
-    const existing = cart.find(i => i.id === item.id);
-    if (existing) {
-        existing.quantity += 1;
-    } else {
-        cart.push({ ...item, quantity: 1 });
-    }
-    updateCartUI();
-}
+ // ========================================
+ // 1. EASY 미션 불러오기
+ // ========================================
 
-// 3. 결제 단계 진입 시 검증 데이터 저장
-function proceedToCheckout(selectedPaymentMethod) {
-    // 사용자의 행동 데이터를 객체로 정리
-    const userAction = {
-        orderedItem: cart[0]?.name || "",
-        orderedQuantity: cart[0]?.quantity || 0,
-        paymentMethod: selectedPaymentMethod // 'card', 's-pay', 'kakao-pay' 등
-    };
+ async function loadEasyMission() {
+     const instructionElement = document.getElementById('missionInstruction');
 
-    // 미션 성공 조건 검증 (메뉴 이름 및 수량, 결제 수단 일치 여부)
-    const isItemMatched = userAction.orderedItem === currentMission.targetItemName && 
-                          userAction.orderedQuantity === currentMission.targetQuantity;
-    const isPaymentMatched = userAction.paymentMethod === currentMission.targetPayment;
+     if (!instructionElement) {
+         console.error('미션 안내창을 찾을 수 없습니다.');
+         return;
+     }
 
-    // 결과를 세션스토리지에 저장하여 최종 성공 페이지(스크린샷 7번째 화면)에서 활용
-    sessionStorage.setItem("missionResult", JSON.stringify({
-        success: isItemMatched && isPaymentMatched,
-        itemCheck: isItemMatched,
-        paymentCheck: isPaymentMatched,
-        details: userAction,
-        mission: currentMission
-    }));
+     // 미션 모드 활성화
+     sessionStorage.setItem(MISSION_MODE_KEY, 'true');
+     sessionStorage.setItem('fastfoodMissionDifficulty', 'easy');
 
-    // 결제 완료 후 결과 페이지로 이동
-    window.location.href = "mission-result.html";
-}
+     // 기존 미션 확인
+     const savedMissionId = sessionStorage.getItem(MISSION_ID_KEY);
+     const savedInstruction = sessionStorage.getItem(MISSION_INSTRUCTION_KEY);
+
+     // 기존 미션이 있으면 그대로 사용
+     if (savedMissionId && savedInstruction) {
+         instructionElement.textContent = savedInstruction;
+
+         console.log('기존 EASY 미션 유지:', {
+             mission_id: savedMissionId,
+             instruction: savedInstruction
+         });
+
+         return;
+     }
+
+     // 새로운 미션을 시작할 때만 장바구니 초기화
+     localStorage.removeItem(MISSION_CART_KEY);
+     if (typeof updateCartBar === 'function') updateCartBar();
+     sessionStorage.removeItem('fastfoodHardMissionId');
+     sessionStorage.removeItem('fastfoodHardMissionInstruction');
+     sessionStorage.removeItem('fastfoodMissionResult');
+
+     instructionElement.textContent = '미션을 불러오는 중입니다.';
+     instructionElement.classList.add('loading');
+
+     try {
+         const response = await fetch(
+             `${API_BASE_URL}/api/missions/random?category=fastfood&difficulty=easy`
+         );
+
+         if (!response.ok) {
+             throw new Error(`미션 요청 실패: ${response.status}`);
+         }
+
+         const mission = await response.json();
+
+         // 미션 ID 저장
+         sessionStorage.setItem(
+             MISSION_ID_KEY,
+             String(mission.mission_id)
+         );
+
+         // 미션 안내 문구 저장
+         sessionStorage.setItem(
+             MISSION_INSTRUCTION_KEY,
+             mission.instruction
+         );
+
+         // 미션 안내 문구 표시
+         instructionElement.textContent = mission.instruction;
+
+         console.log('새 EASY 미션 불러오기 성공:', mission);
+
+     } catch (error) {
+         console.error('EASY 미션 불러오기 오류:', error);
+
+         instructionElement.textContent =
+             '미션을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.';
+
+     } finally {
+         instructionElement.classList.remove('loading');
+     }
+ }
+
+
+ // ========================================
+ // 2. 페이지 실행
+ // ========================================
+
+ document.addEventListener('DOMContentLoaded', () => {
+     loadEasyMission();
+ });

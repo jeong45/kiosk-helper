@@ -47,7 +47,7 @@
             <i data-lucide="chevron-right" class="arrow-icon"></i>
           </button>
           
-          <button class="btn-dark full-btn" onclick="finishReward()">
+          <button class="btn-dark full-btn" onclick="finishReward('none')">
             적립 안 함
           </button>
         </div>
@@ -84,7 +84,7 @@
 
         <div class="bottom-actions two-btns">
           <button class="btn-dark" onclick="goToStep('step-select')">이전</button>
-          <button class="btn-primary" onclick="finishReward()">스캔 완료</button>
+          <button class="btn-primary" onclick="finishReward('barcode')">스캔 완료</button>
         </div>
       </div>
     </div>
@@ -128,7 +128,7 @@
         </div>
 
         <div class="bottom-actions">
-          <button id="submit-phone-btn" class="btn-disabled full-btn" disabled onclick="finishReward()">
+          <button id="submit-phone-btn" class="btn-disabled full-btn" disabled onclick="finishReward('phone')">
             입력 완료
           </button>
         </div>

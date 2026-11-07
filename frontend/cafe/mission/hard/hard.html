@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>키우미 - 카페 HARD 미션</title>
+
+  <!-- Pretendard -->
+  <link rel="stylesheet" as="style" crossorigin
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+
+  <!-- 기존 카페 디자인 -->
+  <link rel="stylesheet" href="../../menu&cart/cafe.css">
+
+  <!-- HARD 미션 전용 디자인 -->
+  <link rel="stylesheet" href="hard.css">
+</head>
+
+<body>
+
+  <div class="kiosk-container">
+
+    <main class="page-content">
+
+      <!-- 상단 헤더 -->
+      <header class="top-header">
+
+        <div class="logo-area">
+
+          <div class="logo-icon-img">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <rect width="24" height="24" rx="6" fill="#DCFCE7"/>
+              <path d="M12 5V15M12 15C10 13 7 13 5 15M12 15C14 13 17 13 19 15"
+                stroke="#166534" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+
+          <span class="logo-text">키우미</span>
+
+        </div>
+
+        <div class="store-badge-bar">
+
+          <div class="store-title-box">
+            <div class="store-red-icon">☕️</div> 
+            <span class="store-main-title">카페 키오스크</span>
+          </div>
+
+          <button type="button" class="top-cart-badge"
+            id="topCartBadge" onclick="goToCart()">
+            장바구니 0
+          </button>
+
+        </div>
+
+      </header>
+
+
+      <!-- HARD 미션 안내창 -->
+      <section class="easy-mission-banner">
+
+        <div class="easy-mission-header">
+
+          <span class="easy-mission-level">HARD</span>
+
+          <span class="easy-mission-label">오늘의 미션</span>
+
+        </div>
+
+        <p class="easy-mission-instruction" id="missionInstruction">
+          미션을 불러오는 중입니다.
+        </p>
+
+      </section>
+
+
+
+
+
+      <!-- 상품 카테고리 -->
+      <nav class="category-tabs">
+
+        <button type="button" class="tab-btn active"
+          data-category="커피">
+          커피
+        </button>
+
+        <button type="button" class="tab-btn"
+          data-category="음료">
+          음료
+        </button>
+
+        <button type="button" class="tab-btn"
+          data-category="티">
+          티
+        </button>
+
+        <button type="button" class="tab-btn"
+          data-category="베이커리">
+          베이커리
+        </button>
+
+        <button type="button" class="tab-btn"
+          data-category="상품">
+          상품
+        </button>
+
+      </nav>
+
+
+      <!-- 상품 목록 -->
+      <section class="product-section">
+        <div class="product-grid" id="productGrid">
+          <!-- JavaScript에서 상품 카드 생성 -->
+        </div>
+
+      </section>
+
+    </main>
+
+
+    <!-- 하단 장바구니 -->
+    <div class="bottom-cart-bar" id="bottomCartBar"
+      onclick="goToCart()">
+      장바구니가 비어있습니다
+    </div>
+
+
+    <!-- 상품 수량 조절 모달 -->
+    <div class="modal-overlay" id="optionModal"
+      style="display: none;">
+
+      <div class="modal-card">
+
+        <button type="button" class="modal-close-btn"
+          onclick="closeModal()">✕</button>
+
+        <div class="modal-sub-label">상품 선택</div>
+
+        <h3 class="modal-item-title" id="modalItemTitle">
+          아메리카노
+        </h3>
+
+        <div class="modal-item-price" id="modalItemPrice">
+          2,000원
+        </div>
+
+        <div class="modal-quantity-box">
+
+          <span class="quantity-label">수량</span>
+
+          <div class="quantity-controls">
+
+            <button type="button" class="qty-btn"
+              onclick="changeQuantity(-1)">
+              -
+            </button>
+
+            <span id="modalQuantity">1</span>
+
+            <button type="button" class="qty-btn"
+              onclick="changeQuantity(1)">
+              +
+            </button>
+
+          </div>
+
+        </div>
+
+        <button type="button" class="btn-primary full"
+          id="modalAddButton" onclick="addToCart()">
+
+          장바구니 담기 ·
+          <span id="modalBtnPrice">1,000원</span>
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- JavaScript 연결 -->
+
+
+  <!-- 기존 카페 상품 및 장바구니 기능 -->
+  <script src="../../menu&cart/cafe.js"></script>
+
+  <!-- HARD 미션 전용 기능 -->
+  <script src="hard.js"></script>
+
+</body>
+</html>

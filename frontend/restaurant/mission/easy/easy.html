@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>키우미 - 음식점 EASY 미션</title>
+
+  <!-- 기존 음식점 디자인 -->
+  <link rel="stylesheet" href="../../restaurant.css">
+
+  <!-- EASY 미션 전용 디자인 -->
+  <link rel="stylesheet" href="easy.css">
+</head>
+
+<body>
+
+  <div class="kiosk-container">
+
+    <!-- 상단 헤더 -->
+    <header class="kiosk-header">
+      <div class="header-left">
+        <div class="brand-icon">🍴</div>
+        <span class="brand-title">T-order</span>
+      </div>
+
+      <div class="cart-badge-top" id="topCartBadge">
+        장바구니 0
+      </div>
+    </header>
+
+    <!-- 오늘의 미션 -->
+    <section class="easy-mission-banner">
+
+      <div class="easy-mission-header">
+        <span class="easy-mission-level">EASY</span>
+        <span class="easy-mission-label">오늘의 미션</span>
+      </div>
+
+      <p class="easy-mission-instruction" id="missionInstruction">
+        미션을 불러오는 중입니다.
+      </p>
+
+    </section>
+
+    <!-- 중앙 본문 -->
+    <div class="kiosk-body">
+
+      <!-- 왼쪽 카테고리 -->
+      <aside class="sidebar">
+        <button class="category-btn active" data-category="세트메뉴">
+          세트메뉴
+        </button>
+
+        <button class="category-btn" data-category="단일메뉴">
+          단일메뉴
+        </button>
+
+        <button class="category-btn" data-category="사이드메뉴">
+          사이드메뉴
+        </button>
+
+        <button class="category-btn" data-category="음료">
+          음료
+        </button>
+
+        <button class="category-btn" data-category="주류">
+          주류
+        </button>
+      </aside>
+
+      <!-- 메뉴 영역 -->
+      <main class="menu-content">
+
+        <div class="section-title" id="sectionTitle">
+          세트메뉴 메뉴
+        </div>
+
+        <h2 class="main-instruction">
+          원하는 메뉴를 골라주세요
+        </h2>
+
+        <!-- 메뉴 카드 자동 생성 -->
+        <div class="menu-list" id="menuList"></div>
+
+        <!-- 장바구니 보기 -->
+        <button
+          class="bottom-cart-bar"
+          id="bottomCartBar"
+          onclick="goToCart()"
+          type="button"
+        >
+          장바구니 보기 ·
+          <span id="cartCount">0</span>개 ·
+          <span id="cartTotal">0</span>원
+        </button>
+
+      </main>
+
+    </div>
+
+  </div>
+
+  <!-- 수량 선택 모달 -->
+  <div class="modal-overlay" id="optionModal">
+    <div class="modal-content">
+
+      <button class="modal-close-btn" onclick="closeModal()">×</button>
+
+      <div class="modal-subtitle">상품 선택</div>
+
+      <h3 class="modal-item-title" id="modalItemTitle">
+        1인 세트
+      </h3>
+
+      <div class="modal-item-price" id="modalItemPrice">
+        12,000원
+      </div>
+
+      <div class="quantity-control-box">
+        <span>수량</span>
+
+        <div class="quantity-btn-group">
+          <button onclick="changeQuantity(-1)">-</button>
+          <span id="modalQuantity">1</span>
+          <button onclick="changeQuantity(1)">+</button>
+        </div>
+      </div>
+
+      <button
+        class="add-to-cart-btn"
+        id="tutorialAddButton"
+        onclick="addToCart()"
+      >
+        장바구니 담기 ·
+        <span id="modalTotalPrice">12,000원</span>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- 기존 음식점 기능 -->
+  <script src="../../restaurant.js"></script>
+
+  <!-- EASY 미션 기능 -->
+  <script src="easy.js"></script>
+
+</body>
+</html>

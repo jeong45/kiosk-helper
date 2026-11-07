@@ -78,7 +78,9 @@ python -m uvicorn app.main:app --reload
 
 1) VS Code에서 프로젝트 폴더를 엽니다.
 2) Live Server 확장 프로그램을 설치합니다.
-3) frontend/splash/inde.html 파일을 엽니다.
+
+3) frontend/splash/index.html 파일을 엽니다.
+
 4) 마우스 오른쪽 버튼을 클릭하여 Open with Live Server를 선택합니다.
 
 ### 4. 서비스 이용
@@ -90,6 +92,4 @@ python -m uvicorn app.main:app --reload
 
 ## 7. 참고 자료
 
-- 프로토타입(Figma): https://www.figma.com/make/JCpm2mYyjkLTCEU2hDOLD8/%ED%82%A4%EC%9A%B0%EB%AF%B8-%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85?t=o3zhXNKVsCVK7q8g-20&fullscreen=1
-
-
+- 프로토타입(Figma): https://www.figma.com/make/JCpm2mYyjkLTCEU2hDOLD8/%EC%96%B4%EB%A5%B4%EC%8B%A0-%ED%82%A4%EC%98%A4%EC%8A%A4%ED%81%AC-%EC%97%B0%EC%8A%B5-%EC%95%B1-1%EC%B0%A8-%EC%88%98%EC%A0%95%EB%B3%B8--1-?t=0Q6p2dn4Pb1j1MbP-20&fullscreen=1

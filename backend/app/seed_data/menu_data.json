@@ -1,0 +1,2296 @@
+[
+  {
+    "category": "패스트푸드",
+    "menus": [
+      {
+        "name": "텍사스 칠리와퍼 팩1",
+        "base_price": 18000,
+        "option_groups": [
+          {
+            "type": "구성",
+            "is_required": true,
+            "items": [
+              {
+                "name": "단품",
+                "extra_price": 0
+              },
+              {
+                "name": "세트",
+                "extra_price": 1500
+              },
+              {
+                "name": "라지세트",
+                "extra_price": 2500
+              }
+            ]
+          },
+          {
+            "type": "사이드",
+            "is_required": true,
+            "items": [
+              {
+                "name": "프렌치프라이",
+                "extra_price": 0
+              },
+              {
+                "name": "프렌치프라이 교환",
+                "extra_price": 500
+              },
+              {
+                "name": "너겟킹 3조각",
+                "extra_price": 0
+              },
+              {
+                "name": "치즈스틱",
+                "extra_price": 0
+              },
+              {
+                "name": "어니언링",
+                "extra_price": 300
+              },
+              {
+                "name": "코울슬로",
+                "extra_price": 0
+              }
+            ]
+          },
+          {
+            "type": "음료",
+            "is_required": true,
+            "items": [
+              {
+                "name": "코카콜라",
+                "extra_price": 0
+              },
+              {
+                "name": "코카콜라 제로",
+                "extra_price": 0
+              },
+              {
+                "name": "스프라이트",
+                "extra_price": 0
+              },
+              {
+                "name": "씨그램",
+                "extra_price": 0
+              },
+              {
+                "name": "아메리카노",
+                "extra_price": 0
+              },
+              {
+                "name": "미닛메이드 오렌지",
+                "extra_price": 800
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "텍사스 칠리와퍼 팩2",
+        "base_price": 18000,
+        "option_groups": [
+          {
+            "type": "구성",
+            "is_required": true,
+            "items": [
+              {
+                "name": "단품",
+                "extra_price": 0
+              },
+              {
+                "name": "세트",
+                "extra_price": 1500
+              },
+              {
+                "name": "라지세트",
+                "extra_price": 2500
+              }
+            ]
+          },
+          {
+            "type": "사이드",
+            "is_required": true,
+            "items": [
+              {
+                "name": "프렌치프라이",
+                "extra_price": 0
+              },
+              {
+                "name": "프렌치프라이 교환",
+                "extra_price": 500
+              },
+              {
+                "name": "너겟킹 3조각",
+                "extra_price": 0
+              },
+              {
+                "name": "치즈스틱",
+                "extra_price": 0
+              },
+              {
+                "name": "어니언링",
+                "extra_price": 300
+              },
+              {
+                "name": "코울슬로",
+                "extra_price": 0
+              }
+            ]
+          },
+          {
+            "type": "음료",
+            "is_required": true,
+            "items": [
+              {
+                "name": "코카콜라",
+                "extra_price": 0
+              },
+              {
+                "name": "코카콜라 제로",
+                "extra_price": 0
+              },
+              {
+                "name": "스프라이트",
+                "extra_price": 0
+              },
+              {
+                "name": "씨그램",
+                "extra_price": 0
+              },
+              {
+                "name": "아메리카노",
+                "extra_price": 0
+              },
+              {
+                "name": "미닛메이드 오렌지",
+                "extra_price": 800
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "텍사스 칠리와퍼 팩3",
+        "base_price": 18000,
+        "option_groups": [
+          {
+            "type": "구성",
+            "is_required": true,
+            "items": [
+              {
+                "name": "단품",
+                "extra_price": 0
+              },
+              {
+                "name": "세트",
+                "extra_price": 1800
+              },
+              {
+                "name": "라지세트",
+                "extra_price": 2800
+              }
+            ]
+          },
+          {
+            "type": "사이드",
+            "is_required": true,
+            "items": [
+              {
+                "name": "프렌치프라이",
+                "extra_price": 0
+              },
+              {
+                "name": "프렌치프라이 교환",
+                "extra_price": 500
+              },
+              {
+                "name": "너겟킹 3조각",
+                "extra_price": 0
+              },
+              {
+                "name": "치즈스틱",
+                "extra_price": 0
+              },
+              {
+                "name": "어니언링",
+                "extra_price": 300
+              },
+              {
+                "name": "코울슬로",
+                "extra_price": 0
+              }
+            ]
+          },
+          {
+            "type": "음료",
+            "is_required": true,
+            "items": [
+              {
+                "name": "코카콜라",
+                "extra_price": 0
+              },
+              {
+                "name": "코카콜라 제로",
+                "extra_price": 0
+              },
+              {
+                "name": "스프라이트",
+                "extra_price": 0
+              },
+              {
+                "name": "씨그램",
+                "extra_price": 0
+              },
+              {
+                "name": "아메리카노",
+                "extra_price": 0
+              },
+              {
+                "name": "미닛메이드 오렌지",
+                "extra_price": 800
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "텍사스 칠리와퍼 팩4",
+        "base_price": 18000,
+        "option_groups": [
+          {
+            "type": "구성",
+            "is_required": true,
+            "items": [
+              {
+                "name": "단품",
+                "extra_price": 0
+              },
+              {
+                "name": "세트",
+                "extra_price": 1800
+              },
+              {
+                "name": "라지세트",
+                "extra_price": 2800
+              }
+            ]
+          },
+          {
+            "type": "사이드",
+            "is_required": true,
+            "items": [
+              {
+                "name": "프렌치프라이",
+                "extra_price": 0
+              },
+              {
+                "name": "프렌치프라이 교환",
+                "extra_price": 500
+              },
+              {
+                "name": "너겟킹 3조각",
+                "extra_price": 0
+              },
+              {
+                "name": "치즈스틱",
+                "extra_price": 0
+              },
+              {
+                "name": "어니언링",
+                "extra_price": 300
+              },
+              {
+                "name": "코울슬로",
+                "extra_price": 0
+              }
+            ]
+          },
+          {
+            "type": "음료",
+            "is_required": true,
+            "items": [
+              {
+                "name": "코카콜라",
+                "extra_price": 0
+              },
+              {
+                "name": "코카콜라 제로",
+                "extra_price": 0
+              },
+              {
+                "name": "스프라이트",
+                "extra_price": 0
+              },
+              {
+                "name": "씨그램",
+                "extra_price": 0
+              },
+              {
+                "name": "아메리카노",
+                "extra_price": 0
+              },
+              {
+                "name": "미닛메이드 오렌지",
+                "extra_price": 800
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "텍사스 칠리와퍼 팩5",
+        "base_price": 20500,
+        "option_groups": [
+          {
+            "type": "구성",
+            "is_required": true,
+            "items": [
+              {
+                "name": "단품",
+                "extra_price": 0
+              },
+              {
+                "name": "세트",
+                "extra_price": 1500
+              },
+              {
+                "name": "라지세트",
+                "extra_price": 2500
+              }
+            ]
+          },
+          {
+            "type": "사이드",
+            "is_required": true,
+            "items": [
+              {
+                "name": "프렌치프라이",
+                "extra_price": 0
+              },
+              {
+                "name": "프렌치프라이 교환",
+                "extra_price": 500
+              },
+              {
+                "name": "너겟킹 3조각",
+                "extra_price": 0
+              },
+              {
+                "name": "치즈스틱",
+                "extra_price": 0
+              },
+              {
+                "name": "어니언링",
+                "extra_price": 300
+              },
+              {
+                "name": "코울슬로",
+                "extra_price": 0
+              }
+            ]
+          },
+          {
+            "type": "음료",
+            "is_required": true,
+            "items": [
+              {
+                "name": "코카콜라",
+                "extra_price": 0
+              },
+              {
+                "name": "코카콜라 제로",
+                "extra_price": 0
+              },
+              {
+                "name": "스프라이트",
+                "extra_price": 0
+              },
+              {
+                "name": "씨그램",
+                "extra_price": 0
+              },
+              {
+                "name": "아메리카노",
+                "extra_price": 0
+              },
+              {
+                "name": "미닛메이드 오렌지",
+                "extra_price": 800
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "텍사스 칠리와퍼 팩6",
+        "base_price": 22500,
+        "option_groups": [
+          {
+            "type": "구성",
+            "is_required": true,
+            "items": [
+              {
+                "name": "단품",
+                "extra_price": 0
+              },
+              {
+                "name": "세트",
+                "extra_price": 1500
+              },
+              {
+                "name": "라지세트",
+                "extra_price": 2500
+              }
+            ]
+          },
+          {
+            "type": "사이드",
+            "is_required": true,
+            "items": [
+              {
+                "name": "프렌치프라이",
+                "extra_price": 0
+              },
+              {
+                "name": "프렌치프라이 교환",
+                "extra_price": 500
+              },
+              {
+                "name": "너겟킹 3조각",
+                "extra_price": 0
+              },
+              {
+                "name": "치즈스틱",
+                "extra_price": 0
+              },
+              {
+                "name": "어니언링",
+                "extra_price": 300
+              },
+              {
+                "name": "코울슬로",
+                "extra_price": 0
+              }
+            ]
+          },
+          {
+            "type": "음료",
+            "is_required": true,
+            "items": [
+              {
+                "name": "코카콜라",
+                "extra_price": 0
+              },
+              {
+                "name": "코카콜라 제로",
+                "extra_price": 0
+              },
+              {
+                "name": "스프라이트",
+                "extra_price": 0
+              },
+              {
+                "name": "씨그램",
+                "extra_price": 0
+              },
+              {
+                "name": "아메리카노",
+                "extra_price": 0
+              },
+              {
+                "name": "미닛메이드 오렌지",
+                "extra_price": 800
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "콰트로치즈와퍼",
+        "base_price": 3900,
+        "option_groups": [
+          {
+            "type": "구성",
+            "is_required": true,
+            "items": [
+              {
+                "name": "단품",
+                "extra_price": 0
+              },
+              {
+                "name": "세트",
+                "extra_price": 3500
+              },
+              {
+                "name": "라지세트",
+                "extra_price": 4200
+              }
+            ]
+          },
+          {
+            "type": "사이드",
+            "is_required": true,
+            "items": [
+              {
+                "name": "프렌치프라이",
+                "extra_price": 0
+              },
+              {
+                "name": "프렌치프라이 교환",
+                "extra_price": 500
+              },
+              {
+                "name": "너겟킹 3조각",
+                "extra_price": 0
+              },
+              {
+                "name": "치즈스틱",
+                "extra_price": 0
+              },
+              {
+                "name": "어니언링",
+                "extra_price": 300
+              },
+              {
+                "name": "코울슬로",
+                "extra_price": 0
+              }
+            ]
+          },
+          {
+            "type": "음료",
+            "is_required": true,
+            "items": [
+              {
+                "name": "코카콜라",
+                "extra_price": 0
+              },
+              {
+                "name": "코카콜라 제로",
+                "extra_price": 0
+              },
+              {
+                "name": "스프라이트",
+                "extra_price": 0
+              },
+              {
+                "name": "씨그램",
+                "extra_price": 0
+              },
+              {
+                "name": "아메리카노",
+                "extra_price": 0
+              },
+              {
+                "name": "미닛메이드 오렌지",
+                "extra_price": 800
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "통새우와퍼",
+        "base_price": 3900,
+        "option_groups": [
+          {
+            "type": "구성",
+            "is_required": true,
+            "items": [
+              {
+                "name": "단품",
+                "extra_price": 0
+              },
+              {
+                "name": "세트",
+                "extra_price": 3700
+              },
+              {
+                "name": "라지세트",
+                "extra_price": 4400
+              }
+            ]
+          },
+          {
+            "type": "사이드",
+            "is_required": true,
+            "items": [
+              {
+                "name": "프렌치프라이",
+                "extra_price": 0
+              },
+              {
+                "name": "프렌치프라이 교환",
+                "extra_price": 500
+              },
+              {
+                "name": "너겟킹 3조각",
+                "extra_price": 0
+              },
+              {
+                "name": "치즈스틱",
+                "extra_price": 0
+              },
+              {
+                "name": "어니언링",
+                "extra_price": 300
+              },
+              {
+                "name": "코울슬로",
+                "extra_price": 0
+              }
+            ]
+          },
+          {
+            "type": "음료",
+            "is_required": true,
+            "items": [
+              {
+                "name": "코카콜라",
+                "extra_price": 0
+              },
+              {
+                "name": "코카콜라 제로",
+                "extra_price": 0
+              },
+              {
+                "name": "스프라이트",
+                "extra_price": 0
+              },
+              {
+                "name": "씨그램",
+                "extra_price": 0
+              },
+              {
+                "name": "아메리카노",
+                "extra_price": 0
+              },
+              {
+                "name": "미닛메이드 오렌지",
+                "extra_price": 800
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "할라피뇨와퍼",
+        "base_price": 3900,
+        "option_groups": [
+          {
+            "type": "구성",
+            "is_required": true,
+            "items": [
+              {
+                "name": "단품",
+                "extra_price": 0
+              },
+              {
+                "name": "세트",
+                "extra_price": 3600
+              },
+              {
+                "name": "라지세트",
+                "extra_price": 4300
+              }
+            ]
+          },
+          {
+            "type": "사이드",
+            "is_required": true,
+            "items": [
+              {
+                "name": "프렌치프라이",
+                "extra_price": 0
+              },
+              {
+                "name": "프렌치프라이 교환",
+                "extra_price": 500
+              },
+              {
+                "name": "너겟킹 3조각",
+                "extra_price": 0
+              },
+              {
+                "name": "치즈스틱",
+                "extra_price": 0
+              },
+              {
+                "name": "어니언링",
+                "extra_price": 300
+              },
+              {
+                "name": "코울슬로",
+                "extra_price": 0
+              }
+            ]
+          },
+          {
+            "type": "음료",
+            "is_required": true,
+            "items": [
+              {
+                "name": "코카콜라",
+                "extra_price": 0
+              },
+              {
+                "name": "코카콜라 제로",
+                "extra_price": 0
+              },
+              {
+                "name": "스프라이트",
+                "extra_price": 0
+              },
+              {
+                "name": "씨그램",
+                "extra_price": 0
+              },
+              {
+                "name": "아메리카노",
+                "extra_price": 0
+              },
+              {
+                "name": "미닛메이드 오렌지",
+                "extra_price": 800
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "기네스콰트로치즈와퍼",
+        "base_price": 8500,
+        "option_groups": [
+          {
+            "type": "구성",
+            "is_required": true,
+            "items": [
+              {
+                "name": "단품",
+                "extra_price": 0
+              },
+              {
+                "name": "세트",
+                "extra_price": 3500
+              },
+              {
+                "name": "라지세트",
+                "extra_price": 4200
+              }
+            ]
+          },
+          {
+            "type": "사이드",
+            "is_required": true,
+            "items": [
+              {
+                "name": "프렌치프라이",
+                "extra_price": 0
+              },
+              {
+                "name": "프렌치프라이 교환",
+                "extra_price": 500
+              },
+              {
+                "name": "너겟킹 3조각",
+                "extra_price": 0
+              },
+              {
+                "name": "치즈스틱",
+                "extra_price": 0
+              },
+              {
+                "name": "어니언링",
+                "extra_price": 300
+              },
+              {
+                "name": "코울슬로",
+                "extra_price": 0
+              }
+            ]
+          },
+          {
+            "type": "음료",
+            "is_required": true,
+            "items": [
+              {
+                "name": "코카콜라",
+                "extra_price": 0
+              },
+              {
+                "name": "코카콜라 제로",
+                "extra_price": 0
+              },
+              {
+                "name": "스프라이트",
+                "extra_price": 0
+              },
+              {
+                "name": "씨그램",
+                "extra_price": 0
+              },
+              {
+                "name": "아메리카노",
+                "extra_price": 0
+              },
+              {
+                "name": "미닛메이드 오렌지",
+                "extra_price": 800
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "기네스머쉬룸와퍼",
+        "base_price": 8900,
+        "option_groups": [
+          {
+            "type": "구성",
+            "is_required": true,
+            "items": [
+              {
+                "name": "단품",
+                "extra_price": 0
+              },
+              {
+                "name": "세트",
+                "extra_price": 3500
+              },
+              {
+                "name": "라지세트",
+                "extra_price": 4200
+              }
+            ]
+          },
+          {
+            "type": "사이드",
+            "is_required": true,
+            "items": [
+              {
+                "name": "프렌치프라이",
+                "extra_price": 0
+              },
+              {
+                "name": "프렌치프라이 교환",
+                "extra_price": 500
+              },
+              {
+                "name": "너겟킹 3조각",
+                "extra_price": 0
+              },
+              {
+                "name": "치즈스틱",
+                "extra_price": 0
+              },
+              {
+                "name": "어니언링",
+                "extra_price": 300
+              },
+              {
+                "name": "코울슬로",
+                "extra_price": 0
+              }
+            ]
+          },
+          {
+            "type": "음료",
+            "is_required": true,
+            "items": [
+              {
+                "name": "코카콜라",
+                "extra_price": 0
+              },
+              {
+                "name": "코카콜라 제로",
+                "extra_price": 0
+              },
+              {
+                "name": "스프라이트",
+                "extra_price": 0
+              },
+              {
+                "name": "씨그램",
+                "extra_price": 0
+              },
+              {
+                "name": "아메리카노",
+                "extra_price": 0
+              },
+              {
+                "name": "미닛메이드 오렌지",
+                "extra_price": 800
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "기네스와퍼",
+        "base_price": 8500,
+        "option_groups": [
+          {
+            "type": "구성",
+            "is_required": true,
+            "items": [
+              {
+                "name": "단품",
+                "extra_price": 0
+              },
+              {
+                "name": "세트",
+                "extra_price": 3500
+              },
+              {
+                "name": "라지세트",
+                "extra_price": 4200
+              }
+            ]
+          },
+          {
+            "type": "사이드",
+            "is_required": true,
+            "items": [
+              {
+                "name": "프렌치프라이",
+                "extra_price": 0
+              },
+              {
+                "name": "프렌치프라이 교환",
+                "extra_price": 500
+              },
+              {
+                "name": "너겟킹 3조각",
+                "extra_price": 0
+              },
+              {
+                "name": "치즈스틱",
+                "extra_price": 0
+              },
+              {
+                "name": "어니언링",
+                "extra_price": 300
+              },
+              {
+                "name": "코울슬로",
+                "extra_price": 0
+              }
+            ]
+          },
+          {
+            "type": "음료",
+            "is_required": true,
+            "items": [
+              {
+                "name": "코카콜라",
+                "extra_price": 0
+              },
+              {
+                "name": "코카콜라 제로",
+                "extra_price": 0
+              },
+              {
+                "name": "스프라이트",
+                "extra_price": 0
+              },
+              {
+                "name": "씨그램",
+                "extra_price": 0
+              },
+              {
+                "name": "아메리카노",
+                "extra_price": 0
+              },
+              {
+                "name": "미닛메이드 오렌지",
+                "extra_price": 800
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "몬스터와퍼",
+        "base_price": 8200,
+        "option_groups": [
+          {
+            "type": "구성",
+            "is_required": true,
+            "items": [
+              {
+                "name": "단품",
+                "extra_price": 0
+              },
+              {
+                "name": "세트",
+                "extra_price": 3500
+              },
+              {
+                "name": "라지세트",
+                "extra_price": 4200
+              }
+            ]
+          },
+          {
+            "type": "사이드",
+            "is_required": true,
+            "items": [
+              {
+                "name": "프렌치프라이",
+                "extra_price": 0
+              },
+              {
+                "name": "프렌치프라이 교환",
+                "extra_price": 500
+              },
+              {
+                "name": "너겟킹 3조각",
+                "extra_price": 0
+              },
+              {
+                "name": "치즈스틱",
+                "extra_price": 0
+              },
+              {
+                "name": "어니언링",
+                "extra_price": 300
+              },
+              {
+                "name": "코울슬로",
+                "extra_price": 0
+              }
+            ]
+          },
+          {
+            "type": "음료",
+            "is_required": true,
+            "items": [
+              {
+                "name": "코카콜라",
+                "extra_price": 0
+              },
+              {
+                "name": "코카콜라 제로",
+                "extra_price": 0
+              },
+              {
+                "name": "스프라이트",
+                "extra_price": 0
+              },
+              {
+                "name": "씨그램",
+                "extra_price": 0
+              },
+              {
+                "name": "아메리카노",
+                "extra_price": 0
+              },
+              {
+                "name": "미닛메이드 오렌지",
+                "extra_price": 800
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "트러플머쉬룸와퍼",
+        "base_price": 6300,
+        "option_groups": [
+          {
+            "type": "구성",
+            "is_required": true,
+            "items": [
+              {
+                "name": "단품",
+                "extra_price": 0
+              },
+              {
+                "name": "세트",
+                "extra_price": 3500
+              },
+              {
+                "name": "라지세트",
+                "extra_price": 4200
+              }
+            ]
+          },
+          {
+            "type": "사이드",
+            "is_required": true,
+            "items": [
+              {
+                "name": "프렌치프라이",
+                "extra_price": 0
+              },
+              {
+                "name": "프렌치프라이 교환",
+                "extra_price": 500
+              },
+              {
+                "name": "너겟킹 3조각",
+                "extra_price": 0
+              },
+              {
+                "name": "치즈스틱",
+                "extra_price": 0
+              },
+              {
+                "name": "어니언링",
+                "extra_price": 300
+              },
+              {
+                "name": "코울슬로",
+                "extra_price": 0
+              }
+            ]
+          },
+          {
+            "type": "음료",
+            "is_required": true,
+            "items": [
+              {
+                "name": "코카콜라",
+                "extra_price": 0
+              },
+              {
+                "name": "코카콜라 제로",
+                "extra_price": 0
+              },
+              {
+                "name": "스프라이트",
+                "extra_price": 0
+              },
+              {
+                "name": "씨그램",
+                "extra_price": 0
+              },
+              {
+                "name": "아메리카노",
+                "extra_price": 0
+              },
+              {
+                "name": "미닛메이드 오렌지",
+                "extra_price": 800
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "치즈와퍼",
+        "base_price": 4100,
+        "option_groups": [
+          {
+            "type": "구성",
+            "is_required": true,
+            "items": [
+              {
+                "name": "단품",
+                "extra_price": 0
+              },
+              {
+                "name": "세트",
+                "extra_price": 3500
+              },
+              {
+                "name": "라지세트",
+                "extra_price": 4200
+              }
+            ]
+          },
+          {
+            "type": "사이드",
+            "is_required": true,
+            "items": [
+              {
+                "name": "프렌치프라이",
+                "extra_price": 0
+              },
+              {
+                "name": "프렌치프라이 교환",
+                "extra_price": 500
+              },
+              {
+                "name": "너겟킹 3조각",
+                "extra_price": 0
+              },
+              {
+                "name": "치즈스틱",
+                "extra_price": 0
+              },
+              {
+                "name": "어니언링",
+                "extra_price": 300
+              },
+              {
+                "name": "코울슬로",
+                "extra_price": 0
+              }
+            ]
+          },
+          {
+            "type": "음료",
+            "is_required": true,
+            "items": [
+              {
+                "name": "코카콜라",
+                "extra_price": 0
+              },
+              {
+                "name": "코카콜라 제로",
+                "extra_price": 0
+              },
+              {
+                "name": "스프라이트",
+                "extra_price": 0
+              },
+              {
+                "name": "씨그램",
+                "extra_price": 0
+              },
+              {
+                "name": "아메리카노",
+                "extra_price": 0
+              },
+              {
+                "name": "미닛메이드 오렌지",
+                "extra_price": 800
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "와퍼",
+        "base_price": 3500,
+        "option_groups": [
+          {
+            "type": "구성",
+            "is_required": true,
+            "items": [
+              {
+                "name": "단품",
+                "extra_price": 0
+              },
+              {
+                "name": "세트",
+                "extra_price": 3500
+              },
+              {
+                "name": "라지세트",
+                "extra_price": 4200
+              }
+            ]
+          },
+          {
+            "type": "사이드",
+            "is_required": true,
+            "items": [
+              {
+                "name": "프렌치프라이",
+                "extra_price": 0
+              },
+              {
+                "name": "프렌치프라이 교환",
+                "extra_price": 500
+              },
+              {
+                "name": "너겟킹 3조각",
+                "extra_price": 0
+              },
+              {
+                "name": "치즈스틱",
+                "extra_price": 0
+              },
+              {
+                "name": "어니언링",
+                "extra_price": 300
+              },
+              {
+                "name": "코울슬로",
+                "extra_price": 0
+              }
+            ]
+          },
+          {
+            "type": "음료",
+            "is_required": true,
+            "items": [
+              {
+                "name": "코카콜라",
+                "extra_price": 0
+              },
+              {
+                "name": "코카콜라 제로",
+                "extra_price": 0
+              },
+              {
+                "name": "스프라이트",
+                "extra_price": 0
+              },
+              {
+                "name": "씨그램",
+                "extra_price": 0
+              },
+              {
+                "name": "아메리카노",
+                "extra_price": 0
+              },
+              {
+                "name": "미닛메이드 오렌지",
+                "extra_price": 800
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "불고기와퍼",
+        "base_price": 3500,
+        "option_groups": [
+          {
+            "type": "구성",
+            "is_required": true,
+            "items": [
+              {
+                "name": "단품",
+                "extra_price": 0
+              },
+              {
+                "name": "세트",
+                "extra_price": 3400
+              },
+              {
+                "name": "라지세트",
+                "extra_price": 4100
+              }
+            ]
+          },
+          {
+            "type": "사이드",
+            "is_required": true,
+            "items": [
+              {
+                "name": "프렌치프라이",
+                "extra_price": 0
+              },
+              {
+                "name": "프렌치프라이 교환",
+                "extra_price": 500
+              },
+              {
+                "name": "너겟킹 3조각",
+                "extra_price": 0
+              },
+              {
+                "name": "치즈스틱",
+                "extra_price": 0
+              },
+              {
+                "name": "어니언링",
+                "extra_price": 300
+              },
+              {
+                "name": "코울슬로",
+                "extra_price": 0
+              }
+            ]
+          },
+          {
+            "type": "음료",
+            "is_required": true,
+            "items": [
+              {
+                "name": "코카콜라",
+                "extra_price": 0
+              },
+              {
+                "name": "코카콜라 제로",
+                "extra_price": 0
+              },
+              {
+                "name": "스프라이트",
+                "extra_price": 0
+              },
+              {
+                "name": "씨그램",
+                "extra_price": 0
+              },
+              {
+                "name": "아메리카노",
+                "extra_price": 0
+              },
+              {
+                "name": "미닛메이드 오렌지",
+                "extra_price": 800
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "갈릭불고기와퍼",
+        "base_price": 6800,
+        "option_groups": [
+          {
+            "type": "구성",
+            "is_required": true,
+            "items": [
+              {
+                "name": "단품",
+                "extra_price": 0
+              },
+              {
+                "name": "세트",
+                "extra_price": 3500
+              },
+              {
+                "name": "라지세트",
+                "extra_price": 4200
+              }
+            ]
+          },
+          {
+            "type": "사이드",
+            "is_required": true,
+            "items": [
+              {
+                "name": "프렌치프라이",
+                "extra_price": 0
+              },
+              {
+                "name": "프렌치프라이 교환",
+                "extra_price": 500
+              },
+              {
+                "name": "너겟킹 3조각",
+                "extra_price": 0
+              },
+              {
+                "name": "치즈스틱",
+                "extra_price": 0
+              },
+              {
+                "name": "어니언링",
+                "extra_price": 300
+              },
+              {
+                "name": "코울슬로",
+                "extra_price": 0
+              }
+            ]
+          },
+          {
+            "type": "음료",
+            "is_required": true,
+            "items": [
+              {
+                "name": "코카콜라",
+                "extra_price": 0
+              },
+              {
+                "name": "코카콜라 제로",
+                "extra_price": 0
+              },
+              {
+                "name": "스프라이트",
+                "extra_price": 0
+              },
+              {
+                "name": "씨그램",
+                "extra_price": 0
+              },
+              {
+                "name": "아메리카노",
+                "extra_price": 0
+              },
+              {
+                "name": "미닛메이드 오렌지",
+                "extra_price": 800
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "스태커4와퍼",
+        "base_price": 13000,
+        "option_groups": [
+          {
+            "type": "구성",
+            "is_required": true,
+            "items": [
+              {
+                "name": "단품",
+                "extra_price": 0
+              },
+              {
+                "name": "세트",
+                "extra_price": 3500
+              },
+              {
+                "name": "라지세트",
+                "extra_price": 4200
+              }
+            ]
+          },
+          {
+            "type": "사이드",
+            "is_required": true,
+            "items": [
+              {
+                "name": "프렌치프라이",
+                "extra_price": 0
+              },
+              {
+                "name": "프렌치프라이 교환",
+                "extra_price": 500
+              },
+              {
+                "name": "너겟킹 3조각",
+                "extra_price": 0
+              },
+              {
+                "name": "치즈스틱",
+                "extra_price": 0
+              },
+              {
+                "name": "어니언링",
+                "extra_price": 300
+              },
+              {
+                "name": "코울슬로",
+                "extra_price": 0
+              }
+            ]
+          },
+          {
+            "type": "음료",
+            "is_required": true,
+            "items": [
+              {
+                "name": "코카콜라",
+                "extra_price": 0
+              },
+              {
+                "name": "코카콜라 제로",
+                "extra_price": 0
+              },
+              {
+                "name": "스프라이트",
+                "extra_price": 0
+              },
+              {
+                "name": "씨그램",
+                "extra_price": 0
+              },
+              {
+                "name": "아메리카노",
+                "extra_price": 0
+              },
+              {
+                "name": "미닛메이드 오렌지",
+                "extra_price": 800
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "베이컨치즈와퍼",
+        "base_price": 8200,
+        "option_groups": [
+          {
+            "type": "구성",
+            "is_required": true,
+            "items": [
+              {
+                "name": "단품",
+                "extra_price": 0
+              },
+              {
+                "name": "세트",
+                "extra_price": 3500
+              },
+              {
+                "name": "라지세트",
+                "extra_price": 4200
+              }
+            ]
+          },
+          {
+            "type": "사이드",
+            "is_required": true,
+            "items": [
+              {
+                "name": "프렌치프라이",
+                "extra_price": 0
+              },
+              {
+                "name": "프렌치프라이 교환",
+                "extra_price": 500
+              },
+              {
+                "name": "너겟킹 3조각",
+                "extra_price": 0
+              },
+              {
+                "name": "치즈스틱",
+                "extra_price": 0
+              },
+              {
+                "name": "어니언링",
+                "extra_price": 300
+              },
+              {
+                "name": "코울슬로",
+                "extra_price": 0
+              }
+            ]
+          },
+          {
+            "type": "음료",
+            "is_required": true,
+            "items": [
+              {
+                "name": "코카콜라",
+                "extra_price": 0
+              },
+              {
+                "name": "코카콜라 제로",
+                "extra_price": 0
+              },
+              {
+                "name": "스프라이트",
+                "extra_price": 0
+              },
+              {
+                "name": "씨그램",
+                "extra_price": 0
+              },
+              {
+                "name": "아메리카노",
+                "extra_price": 0
+              },
+              {
+                "name": "미닛메이드 오렌지",
+                "extra_price": 800
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "사이드소스",
+        "base_price": 300,
+        "option_groups": []
+      },
+      {
+        "name": "너겟킹 8조각",
+        "base_price": 2000,
+        "option_groups": []
+      },
+      {
+        "name": "21치즈스틱",
+        "base_price": 1600,
+        "option_groups": []
+      },
+      {
+        "name": "프렌치프라이(L)",
+        "base_price": 2100,
+        "option_groups": []
+      },
+      {
+        "name": "코코넛쉬림프(단품)",
+        "base_price": 3300,
+        "option_groups": []
+      },
+      {
+        "name": "크리미모짜볼",
+        "base_price": 2200,
+        "option_groups": []
+      },
+      {
+        "name": "볼케이노칠리프라이",
+        "base_price": 2800,
+        "option_groups": []
+      },
+      {
+        "name": "치즈프라이",
+        "base_price": 2000,
+        "option_groups": []
+      },
+      {
+        "name": "트러플프라이",
+        "base_price": 2000,
+        "option_groups": []
+      },
+      {
+        "name": "어니언링",
+        "base_price": 2000,
+        "option_groups": []
+      },
+      {
+        "name": "프렌치프라이(R)",
+        "base_price": 1600,
+        "option_groups": []
+      },
+      {
+        "name": "코울슬로",
+        "base_price": 1400,
+        "option_groups": []
+      },
+      {
+        "name": "콘샐러드",
+        "base_price": 1400,
+        "option_groups": []
+      },
+      {
+        "name": "감자튀김",
+        "base_price": 1700,
+        "option_groups": []
+      },
+      {
+        "name": "코카콜라",
+        "base_price": 1800,
+        "option_groups": []
+      },
+      {
+        "name": "코코넛쉬림프(추천)",
+        "base_price": 3500,
+        "option_groups": []
+      },
+      {
+        "name": "바삭킹 2조각",
+        "base_price": 2600,
+        "option_groups": []
+      }
+    ]
+  },
+  {
+    "category": "카페",
+    "menus": [
+      {
+        "name": "아메리카노",
+        "base_price": 2000,
+        "option_groups": [
+          {
+            "type": "온도",
+            "is_required": true,
+            "items": [
+              {
+                "name": "HOT",
+                "extra_price": 0
+              },
+              {
+                "name": "ICED",
+                "extra_price": 0
+              }
+            ]
+          },
+          {
+            "type": "원두",
+            "is_required": true,
+            "items": [
+              {
+                "name": "일반원두",
+                "extra_price": 0
+              },
+              {
+                "name": "디카페인",
+                "extra_price": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "카페라떼",
+        "base_price": 3500,
+        "option_groups": []
+      },
+      {
+        "name": "바닐라라떼",
+        "base_price": 3900,
+        "option_groups": []
+      },
+      {
+        "name": "카페모카",
+        "base_price": 4000,
+        "option_groups": []
+      },
+      {
+        "name": "콜드브루",
+        "base_price": 3800,
+        "option_groups": []
+      },
+      {
+        "name": "에스프레소",
+        "base_price": 2500,
+        "option_groups": []
+      },
+      {
+        "name": "블루베리 스무디",
+        "base_price": 5100,
+        "option_groups": []
+      },
+      {
+        "name": "망고 스무디",
+        "base_price": 5000,
+        "option_groups": []
+      },
+      {
+        "name": "딸기 프라페",
+        "base_price": 5200,
+        "option_groups": []
+      },
+      {
+        "name": "초코 라떼",
+        "base_price": 4500,
+        "option_groups": [
+          {
+            "type": "온도",
+            "is_required": true,
+            "items": [
+              {
+                "name": "HOT",
+                "extra_price": 0
+              },
+              {
+                "name": "ICED",
+                "extra_price": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "말차 라떼",
+        "base_price": 4700,
+        "option_groups": [
+          {
+            "type": "온도",
+            "is_required": true,
+            "items": [
+              {
+                "name": "HOT",
+                "extra_price": 0
+              },
+              {
+                "name": "ICED",
+                "extra_price": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "딸기 주스",
+        "base_price": 4500,
+        "option_groups": []
+      },
+      {
+        "name": "유자차",
+        "base_price": 4200,
+        "option_groups": []
+      },
+      {
+        "name": "레몬차",
+        "base_price": 4200,
+        "option_groups": []
+      },
+      {
+        "name": "캐모마일",
+        "base_price": 3800,
+        "option_groups": []
+      },
+      {
+        "name": "페퍼민트",
+        "base_price": 3800,
+        "option_groups": []
+      },
+      {
+        "name": "얼그레이",
+        "base_price": 3800,
+        "option_groups": []
+      },
+      {
+        "name": "복숭아 아이스티",
+        "base_price": 3500,
+        "option_groups": []
+      },
+      {
+        "name": "플레인 크로플",
+        "base_price": 2500,
+        "option_groups": []
+      },
+      {
+        "name": "춘천감자빵",
+        "base_price": 3500,
+        "option_groups": []
+      },
+      {
+        "name": "치즈케이크",
+        "base_price": 3300,
+        "option_groups": []
+      },
+      {
+        "name": "초코 머핀",
+        "base_price": 3200,
+        "option_groups": []
+      },
+      {
+        "name": "소금빵",
+        "base_price": 2800,
+        "option_groups": []
+      },
+      {
+        "name": "마카롱",
+        "base_price": 1800,
+        "option_groups": []
+      },
+      {
+        "name": "2027 캘린더",
+        "base_price": 7500,
+        "option_groups": []
+      },
+      {
+        "name": "시그니처 머그컵",
+        "base_price": 5500,
+        "option_groups": []
+      },
+      {
+        "name": "인형 키링",
+        "base_price": 4000,
+        "option_groups": []
+      },
+      {
+        "name": "텀블러",
+        "base_price": 12000,
+        "option_groups": []
+      },
+      {
+        "name": "드립백 세트",
+        "base_price": 8500,
+        "option_groups": []
+      },
+      {
+        "name": "원두 200g",
+        "base_price": 15000,
+        "option_groups": []
+      }
+    ]
+  },
+  {
+    "category": "음식점",
+    "menus": [
+      {
+        "name": "1인 세트",
+        "base_price": 12000,
+        "option_groups": []
+      },
+      {
+        "name": "2인 세트",
+        "base_price": 30000,
+        "option_groups": []
+      },
+      {
+        "name": "4인 세트",
+        "base_price": 58000,
+        "option_groups": []
+      },
+      {
+        "name": "냉모밀정식",
+        "base_price": 17000,
+        "option_groups": []
+      },
+      {
+        "name": "비빔우동정식",
+        "base_price": 17000,
+        "option_groups": []
+      },
+      {
+        "name": "돈가스정식",
+        "base_price": 16000,
+        "option_groups": []
+      },
+      {
+        "name": "비빔밥",
+        "base_price": 10000,
+        "option_groups": []
+      },
+      {
+        "name": "김치찌개",
+        "base_price": 9000,
+        "option_groups": []
+      },
+      {
+        "name": "돈가스",
+        "base_price": 11000,
+        "option_groups": []
+      },
+      {
+        "name": "냉면",
+        "base_price": 10000,
+        "option_groups": []
+      },
+      {
+        "name": "제육덮밥",
+        "base_price": 10500,
+        "option_groups": []
+      },
+      {
+        "name": "우동",
+        "base_price": 8500,
+        "option_groups": []
+      },
+      {
+        "name": "새우튀김",
+        "base_price": 6000,
+        "option_groups": []
+      },
+      {
+        "name": "감자고로케",
+        "base_price": 5000,
+        "option_groups": []
+      },
+      {
+        "name": "미니 돈가스",
+        "base_price": 7000,
+        "option_groups": []
+      },
+      {
+        "name": "치킨 가라아게",
+        "base_price": 7500,
+        "option_groups": []
+      },
+      {
+        "name": "계란찜",
+        "base_price": 4000,
+        "option_groups": []
+      },
+      {
+        "name": "공깃밥",
+        "base_price": 1000,
+        "option_groups": []
+      },
+      {
+        "name": "콜라",
+        "base_price": 2500,
+        "option_groups": []
+      },
+      {
+        "name": "사이다",
+        "base_price": 2500,
+        "option_groups": []
+      },
+      {
+        "name": "제로콜라",
+        "base_price": 2500,
+        "option_groups": []
+      },
+      {
+        "name": "오렌지주스",
+        "base_price": 3000,
+        "option_groups": []
+      },
+      {
+        "name": "식혜",
+        "base_price": 3000,
+        "option_groups": []
+      },
+      {
+        "name": "생수",
+        "base_price": 1500,
+        "option_groups": []
+      },
+      {
+        "name": "생맥주",
+        "base_price": 5000,
+        "option_groups": []
+      },
+      {
+        "name": "병맥주",
+        "base_price": 5000,
+        "option_groups": []
+      },
+      {
+        "name": "소주",
+        "base_price": 5000,
+        "option_groups": []
+      },
+      {
+        "name": "막걸리",
+        "base_price": 6000,
+        "option_groups": []
+      },
+      {
+        "name": "하이볼",
+        "base_price": 7000,
+        "option_groups": []
+      },
+      {
+        "name": "무알콜 맥주",
+        "base_price": 4500,
+        "option_groups": []
+      }
+    ]
+  },
+  {
+    "category": "마트편의점",
+    "menus": [
+      {
+        "name": "생수",
+        "base_price": 1000,
+        "option_groups": []
+      },
+      {
+        "name": "바나나",
+        "base_price": 9000,
+        "option_groups": []
+      },
+      {
+        "name": "우유",
+        "base_price": 2800,
+        "option_groups": []
+      },
+      {
+        "name": "신라면",
+        "base_price": 1200,
+        "option_groups": []
+      },
+      {
+        "name": "감자칩",
+        "base_price": 1800,
+        "option_groups": []
+      },
+      {
+        "name": "삼각김밥",
+        "base_price": 1500,
+        "option_groups": []
+      },
+      {
+        "name": "탄산수",
+        "base_price": 1500,
+        "option_groups": []
+      },
+      {
+        "name": "오렌지주스",
+        "base_price": 2200,
+        "option_groups": []
+      },
+      {
+        "name": "콜라",
+        "base_price": 2000,
+        "option_groups": []
+      },
+      {
+        "name": "이온음료",
+        "base_price": 2100,
+        "option_groups": []
+      },
+      {
+        "name": "캔커피",
+        "base_price": 1800,
+        "option_groups": []
+      },
+      {
+        "name": "두유",
+        "base_price": 1700,
+        "option_groups": []
+      },
+      {
+        "name": "도시락",
+        "base_price": 5500,
+        "option_groups": []
+      },
+      {
+        "name": "김밥",
+        "base_price": 3000,
+        "option_groups": []
+      },
+      {
+        "name": "샌드위치",
+        "base_price": 4200,
+        "option_groups": []
+      },
+      {
+        "name": "컵라면",
+        "base_price": 1800,
+        "option_groups": []
+      },
+      {
+        "name": "핫도그",
+        "base_price": 2500,
+        "option_groups": []
+      },
+      {
+        "name": "샐러드",
+        "base_price": 4800,
+        "option_groups": []
+      },
+      {
+        "name": "새우과자",
+        "base_price": 1700,
+        "option_groups": []
+      },
+      {
+        "name": "초코과자",
+        "base_price": 2000,
+        "option_groups": []
+      },
+      {
+        "name": "젤리",
+        "base_price": 1500,
+        "option_groups": []
+      },
+      {
+        "name": "쿠키",
+        "base_price": 2300,
+        "option_groups": []
+      },
+      {
+        "name": "팝콘",
+        "base_price": 2500,
+        "option_groups": []
+      },
+      {
+        "name": "견과류",
+        "base_price": 3500,
+        "option_groups": []
+      },
+      {
+        "name": "물티슈",
+        "base_price": 2000,
+        "option_groups": []
+      },
+      {
+        "name": "칫솔",
+        "base_price": 2500,
+        "option_groups": []
+      },
+      {
+        "name": "치약",
+        "base_price": 3200,
+        "option_groups": []
+      },
+      {
+        "name": "휴지",
+        "base_price": 4500,
+        "option_groups": []
+      },
+      {
+        "name": "건전지",
+        "base_price": 4000,
+        "option_groups": []
+      },
+      {
+        "name": "우산",
+        "base_price": 9000,
+        "option_groups": []
+      }
+    ]
+  }
+]

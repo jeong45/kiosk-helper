@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // 입력된 전화번호 저장 변수
 let rawPhoneNumber = "";
+const REWARD_MODE_KEY = 'fastfoodMembershipMethod';
 
 // 스텝 페이지 이동 함수
 function goToStep(stepId) {
@@ -84,6 +85,15 @@ function updatePhoneUI() {
 
 // 완료 후 다음 결제 창 이동
 // 리워드 선택 완료 후 결제 화면으로 이동
-function finishReward() {
+function finishReward(method = 'none') {
+  const membershipMethods = {
+    barcode: '멤버십 바코드로 적립',
+    phone: '전화번호로 적립',
+    none: '적립 안함'
+  };
+  sessionStorage.setItem(
+    REWARD_MODE_KEY,
+    membershipMethods[method] || '적립 안함'
+  );
   window.location.href = '../payment/payment.html';
 }
